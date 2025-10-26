@@ -58,7 +58,16 @@ Note: If we write same code for multiple times then it is called Boiler plate co
               Core java => programming
               JDBC + servlets + JSP =>  Technology
               Hibernate + strtus + Spring + Spring Boot ===> Frameworks
+Tools
+=====
+Tools are used to automate the task.
 
+1.maven
+2.Jira
+3.Jenkins
+4.Jmeter
+5.Postman
+6.SonarQube etc...
 
 
 
