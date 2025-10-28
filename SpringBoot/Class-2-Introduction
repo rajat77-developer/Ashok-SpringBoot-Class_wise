@@ -1,0 +1,63 @@
+
+                    ===========
+                      Class-  2
+                    ===========
+
+Programming language vs Technology vs Framework
+-----------------------------------------------
+Q. What is a programming language ?
+-> Programming language contains set of programs/Set of Instructions.
+     Ex: c,c++, java
+-> Every programming language will follow set of Syntaxes/Rules
+-> Using programming language we can develop
+   Application /Tools/ Softwares/Technologies/  Framework
+
+What is technology ?
+---------------------
+Technology is a software which is developed by using Programming Languages.
+  Ex: Servelts,JSP,JDBC
+-> Technologies are used to simplify our task.
+-> By using   Technologies we can develop several types of applications.
+
+What is Framework ?
+-------------------
+-> To overcome the loop holes of Technologies Framework came into picture.
+-> Framework is a semi developed software.
+-> Framework provides common logic required for application development.
+    Ex.
+        1) Capture form data
+        2) Validate form data
+        3)Create Connection pool
+        4) DB connection pool
+
+-> Framework provides Re-usable componenets.
+-> For example, Every java developer should write below lines of code to perform DB operations.
+    class.forName("");
+    DM.getConn("");
+    createStatement();
+    executeQuery()
+    process ResultSet
+    close connection
+Note: If we write same code for multiple times then it is called Boiler plate code/Redundent Code.
+--> To avoid duplicate code /common logics in project Framework came into picture.
+
+      project = Common logics + Bussiness logics
+-> Framework provides common logics required for the project so that we can focus only on bussiness logic development.
+-> Frameworks will improve developers productivity.(we can do more work in less time ).
+    Ex:
+        Hibernate, spring,WCF,Django, Flask, Lightening etc.  
+
+
+              Core java => programming
+              JDBC + servlets + JSP =>  Technology
+              Hibernate + strtus + Spring + Spring Boot ===> Frameworks
+Tools
+=====
+Tools are used to automate the task.
+
+1.maven
+2.Jira
+3.Jenkins
+4.Jmeter
+5.Postman
+6.SonarQube etc...
