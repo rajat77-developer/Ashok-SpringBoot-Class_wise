@@ -1,0 +1,146 @@
+//scenario-1(with parameters and with return type.
+=================================================
+int add(int a, int b) {
+	
+	int c=a+b;
+	return c;
+}
+
+//Scenario-2 (with parameters without return type)
+=================================================
+
+void add1(int h ,int g)
+{
+		int i=h+g;
+}
+
+//Scenario-3(with return types and without parameters)
+======================================================
+int add2() {
+	
+	int x=10; int y=20;
+	int z=x+y;
+	return z;
+}
+//Scenaro-4(no return types and no parameters)
+
+void m4(){
+System.out.println("hi");
+
+}
+
++++++++++++++++++++++++++++++++++++++++++++++++
+Example: login page creation by using method 
+
+email id, password required ---->right ?
+-----------------------------------------
+
+--->  method should be like this 
+
+String login(String email, String password){
+ // logic will be written here 
+  return msg;
+}
+
+========
+Question:
+========
+
+1. Write a java method to find max element in given array?
+int FindMaxElement(int [] arr){
+
+//logic
+return maxElement;
+}
+2. Write a java method to find length of given name ? 
+
+int FindLength(String name){
+//logic
+return length;
+
+}
+3. Write a java method to perform sum of two numbers ?
+
+int add(int a , int b){
+//logic
+return a+b;
+}
+
+4. write a java method to concat the firstname and lastname?
+
+String concat(String firstName, string lastName){
+
+//logic
+
+return firstName+lastName;
+
+5. Write a java method to dispaly person is eligible for vote or not ?
+
+we can do it by using 2 methods 
+One.
+boolean check (int age ){
+  return age>=18;
+}
+
+
+Two.
+void check(int age){
+
+if(age>=18){
+
+System.out.println("Eligible");
+}else{
+
+System.out.println("Not Eligible ");
+}
+}
+
+6. write a java method to reverse given array
+7.write a java method to convert the name into uppercase character.
+
+String Uppsecase(String name){
+
+  return name.toUpperCase();
+}
+
+
+============================================================================================================
+
+How to call a Instance method inside the main class?
+----------------------------------------------------
+Program 1:
+==========
+
+package MethodConcept;
+public class Driver {
+	
+	public static void main(String[] args) {
+		Driver d = new Driver();
+		
+		int x= d.add(10, 25);
+		
+		System.out.println(x);
+	}
+	
+	//this is a instance method because static word is not used while creating method 
+	int add(int a , int b) {
+		
+		int c=a+b;
+		return c;
+	}
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
