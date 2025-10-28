@@ -1,0 +1,88 @@
+
+
+
+Program to call the Methods in class
+====================================
+
+//How to call static and non static method in our program.
+
+package MethodConcept;
+
+import java.util.Arrays;
+
+public class MethodDemo1Basic {
+
+public static void main(String[] args) {
+		
+		//I am declaring a array for c1 method and passing this value while calling this method.
+		int [] arr= {10,20,30};
+		
+		System.out.println("I am main method in my program");
+		
+		//this calls non static methods, create a object then we can call.
+		
+		MethodDemo1Basic s1 = new MethodDemo1Basic();
+		s1.hello();
+		s1.c1(arr);//Here we pass the arrays value along with calling the method C1.
+		
+		
+		//this calls static method (classname.methodname() )
+		MethodDemo1Basic.greet();
+		
+	}
+	
+	void hello() {
+		
+		System.out.println("I am non static method ");
+	}
+	
+	static void greet() {
+		
+		System.out.println("I am static method ");
+	}
+	
+	void c1(int [] arr) {
+		
+		System.out.println(Arrays.toString(arr));
+	}	
+}
+
+
+==============================================================================================
+
+Program to call a String concadinaton method ?
+
+----------------------------------------------
+
+package MethodConcept;
+
+public class MethodDemo1Basic {
+
+	public static void main(String[] args) {
+		
+		MethodDemo1Basic f = new MethodDemo1Basic();
+		f.fullname("ra", "jat");
+	}
+	
+void fullname(String fname, String lname) {
+		
+		String name=fname + lname;
+		System.out.println(name);
+	}	
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
