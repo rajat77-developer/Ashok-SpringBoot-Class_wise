@@ -1,0 +1,252 @@
+Task:
+=====
+Create a method to calling an array .
+
+--------------------------------------------
+package MethodConcept;
+import java.util.Arrays;
+
+public class Driver {
+	public static void main(String[] args) {
+		Driver d = new Driver();
+		//create an array and pass arrays values while calling the method
+		int[] arr= {10,20,30,40,50};
+		d.print(arr);
+				
+	}
+	
+	void print (int[]arr) {
+		
+		String str=Arrays.toString(arr);
+		System.out.println(str);
+	}
+	
+}
+
+
+============================================================================
+
+how to call a static method in the main method ?
+-------------------------------------------------
+
+
+package MethodConcept;
+
+import java.util.Arrays;
+
+public class Driver {
+	
+	public static void main(String[] args) {
+		
+		
+		//create an array and pass arrays values while calling the method
+		int[] arr= {10,20,30,40,50};
+		Driver.print(arr);
+		
+		//we can also call static method without using class name because this methods belongs to same class 
+		
+		print(arr);
+		
+	}	
+	static void print (int[]arr) {
+		
+		String str=Arrays.toString(arr);
+		System.out.println(str);
+	}
+	
+}
+
+============================================================================================================================
+Task
+=====
+
+Create 2 classes and create an object in main method from another class and call the parameters.
+
+-------------------------------------------------------------------------------------------------
+
+package MethodConcept;
+public class Driver {
+	
+	public static void main(String[] args) {
+	
+		Student s =new Student();
+		s.id=100;
+		s.name="sony";
+		System.out.println(s.id+ " " + s.name);
+		
+		Student s1= new Student();
+		s1.id=101;
+		s1.name="sonu";
+		System.out.println(s1.id + " " + s1.name);
+		
+		Student s2= new Student();
+		
+		System.out.println(s2.id + " " + s2.name);
+	  }	
+}
+
+class Student{
+	
+	int id;
+	String name;
+}
+=========================================================================================================================
+Q. Write a java method to print data available in the object.
+----------------------------------------------------------
+
+void PrintStudent(Student s){
+//logic
+
+}
+
+=======================================================================================
+Program
+-------
+
+package MethodConcept;
+public class Driver {
+	
+	public static void main(String[] args) {
+		
+		
+		Driver d = new Driver();
+		Student s =new Student();
+		
+		s.id=100;
+		s.name="sony";
+		d.print(s);
+
+	}
+	
+	void print(Student s ) {
+		
+		System.out.println(s.id + " "+ s.name);
+	}
+		
+}
+
+class Student{
+	int id;
+	String name;
+}
+
+
+
+=================================================================================================
+let us do a task as per requirement:
+
+
+Requirement is --->
+
+//Take employee class with id and salary as properties 
+//Take Driver class and write the method to print employee object data and call the print method from main method
+
+--------------------------------------------------------------------------------------------------------------
+ package MethodConcept;
+
+ public class Driver {
+	
+	public static void main(String[] args) {
+		Employee e = new Employee();
+		e.id=1;
+		e.salary=15000.00;
+		Driver d = new Driver();
+		d.print(e);	
+	}
+	void print(Employee e) {
+		System.out.println(e.id + "--" + e.salary);
+	}		
+}
+class Employee{
+		int id;
+	double salary;
+}
+
+--------------------------------------------------------------------------------------------
+
+Another requirement--->
+
+//take product class with productId, productName, productPrice as properties
+// Create Driver class with print() method to print product data
+
+
+===========================================================================
+ package MethodConcept;
+
+//take product class with productId, productName, productPrice as properties
+//Create Driver class with print() method to print product data
+
+ public class Driver {
+	
+	public static void main(String[] args) {
+		
+		Product p = new Product();
+		p.productId=1;
+		p.productName="soap";
+		p.productPrice=65.25;
+		
+		Driver d =new Driver();
+		d.print(p);
+			
+	}
+
+//void print(Product p) --> (meaning) --> taking object input inside the method to print the product data  "(Product p)"
+
+	void print(Product p) {
+		
+		System.out.println(p.productId + "-->"+p.productName+ "-->"+ p.productPrice);
+	}
+}
+
+class Product{
+	
+	
+	int productId;
+	String productName; 
+	double productPrice;
+}
+====================================================================
+
+
+Requirement--->
+
+//Take Doctor class with DoctorName, doctorAge, doctorAge as properties 
+//Create Drive class with print () method to print doctor data.
+
+
+
+===============================================================
+ package MethodConcept;
+
+//Take Doctor class with doctorName, doctorAge as properties 
+//Create Drive class with print () method to print doctor data.
+  class Doctor {
+	
+	 String doctorName;
+	 int doctorAge;
+
+ }
+  
+  public class Driver{
+	  
+	  public static void main(String[] args) {
+		  Doctor d = new Doctor();
+		  d.doctorName="Rohit";
+		  d.doctorAge=65;
+		  
+		  Driver e = new Driver();
+		  e.print(d);
+		  
+		  
+	}
+	  void print(Doctor d) {
+		  
+		  System.out.println(d.doctorName+"<--->"+d.doctorAge);
+	  }
+  }
+
+
+
+
+
+
