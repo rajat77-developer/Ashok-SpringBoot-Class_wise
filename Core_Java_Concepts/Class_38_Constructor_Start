@@ -1,1 +1,38 @@
+              Constructor
+========================================
+
+1. it is a special method in java which is used to initialize current class instance variable.
+2.  Constructor name should  be same as class name.
+3.Constructor will not have any return type (not even void).
+
+Note: If we write any return type for the constructor then it will become method .
+
+Syntax:
+
+Class Demo{
+    Demo(){
+        
+            }
+}
+
+
+will continue ===>36min vod i have completed , will complete by tomorrow.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
