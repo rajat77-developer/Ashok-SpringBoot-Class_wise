@@ -1,0 +1,155 @@
+
+Q. write a java program to return a university data based on university ID.
+ 101-->id-101,name->oxford
+ 102-->id-102,name->standford
+
+Answer---> 
+
+
+package MethodConcept;
+
+/*write a java program to return a university data based on university ID.
+101-->id-101,name->oxford
+102-->id-102,name->standford
+*/
+public class University {
+
+	
+	
+	int id;
+	String name;
+	
+	public static void main(String[] args) {
+		
+		University n = new University();
+		University university=n.m1(102);
+		
+		System.out.println(university.id+"-->"+university.name);
+		
+	}
+	
+	University m1(int id) {
+		
+		University u = new University();
+		
+		if(id==101) {
+			
+			u.id=101;
+			u.name="oxford";
+			
+		}else if(id==102){
+			
+			u.id=102;
+			u.name="standford";
+			
+		}
+		return u;	
+	}
+	
+}
+
+==========================================================================================================
+
+Task:
+write a java class with two methods 
+first method should take 2 person objects as input
+Second method should give 3 persons objects as output   
+
+
+First task:
+============
+first method should take 2 person objects as input
+---------------------------------------------------
+program --->
+
+package MethodConcept;
+public class Person {
+	
+	int id;
+	String name;
+	
+	void m1(Person p1, Person p2) {
+		
+		System.out.println(p1.id+"-->"+p1.name);
+		System.out.println(p2.id+"-->"+p2.name);
+		
+	}
+	
+	public static void main(String[] args) {
+		
+		Person p =new Person();
+		
+		Person p1= new Person();
+		p1.id=101;
+		p1.name="Raju";
+		
+		Person p2 = new Person();
+		p2.id=102;
+		p2.name="Rani";
+		
+		p.m1(p1,p2);
+	}
+
+}
+
+
+========
+Second method should give 3 persons objects as output ---> Important how to use array in method and print the method 
+==========
+
+-------
+Program--->
+-------
+
+package MethodConcept;
+
+public class Person {
+	
+	int id;
+	String name;
+	
+	Person[] m1(){
+		
+		Person p1= new Person();
+		p1.id=1;
+		p1.name="Raju";
+		
+		Person p2 = new Person();
+		p2.id=2;
+		p2.name="Rani";
+		
+		Person p3 = new Person();
+		p3.id=3;
+		p3.name="Ranjit";
+		
+		Person[]arr = {p1,p2,p3};
+		
+		return arr;
+		
+	}
+	public static void main(String[] args) {
+		
+		
+		
+		Person d = new Person(); // Here we have created one object to call the method 
+		Person [] arr = d.m1(); //we call the method and store into an array
+		
+		//we use for each loop to print the array (first approach)
+		for(Person person: arr) {
+			
+			System.out.println(person.id+"--"+person.name);
+		}
+		
+		System.out.println("  ");
+		
+		
+		//we use "for" loop to call the array index to print the data (second approach )
+		for (int i =0; i<arr.length;i++) {
+			
+			System.out.println(arr[i].id+"--"+arr[i].name);
+		}
+	}
+
+}
+
+
