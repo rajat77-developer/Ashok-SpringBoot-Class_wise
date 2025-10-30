@@ -1,1 +1,52 @@
+Application Architecture
+=========================
+
+Project: Collection of Programs
+Project: Frontend + Backend + Database
+
+Frontend: Presentation logic/ User Interface logic
+
+    Frontend Techstack:
+
+          1.HTML 
+          2.CSS
+          3.JAVA SCRIPT
+          4.BOOTSTRAP
+          4.ANGULAR (or) REACT JS (or) VUE JS
+
+    Backend:
+
+          Web Layer(REST APIs)+Bussiness Layer + Integration Layer + DAO Layer
+
+        Backend Techstack:
+                  
+                            1. Java & J2EE
+                            2.Spring Core
+                            3.Spring Boot
+                            4.JPA
+                            5.Rest APIs
+                            6.JSON
+                            7.Microservices
+                            8.Security
+                            9.kafka + redis
+                            10. Reactive Programming
+
+     Database:
+            sql database----->oracle,Mysql,Postgres,
+            No sql datat base---->MongoDB etc.....
+Tools: Maven + Github + Log4J + Junit + Jenkins + SonarQube + JIRA + Docker + Kubernetes 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
