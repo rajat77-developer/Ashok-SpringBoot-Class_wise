@@ -1,0 +1,197 @@
+                                Constructor
+                    ========================================
+
+1. it is a special method in java which is used to initialize current class instance variable.
+2.  Constructor name should  be same as class name.
+3.Constructor will not have any return type (not even void).
+
+Note: If we write any return type for the constructor then it will become method .
+
+Syntax:
+
+Class Demo{
+    Demo(){
+        
+            }
+}
+
+Note:At the time of object creation our class Constructor will be executed . Constructor is mandatory to create the object.
+Note: If we don't write the constructor then java compiler adding one default constructor to our class.
+How to check: we can check by using below command .
+        >>>  javap classname
+
+--> if we write constructor in the class , then compiler will not add any constructor.
+
+Constructor are of 2 types--->
+=========================
+1.Zero paramterized Constructor/Default constructor
+
+--> Constructor without parameter
+         class student{
+                student(){
+        
+              }
+          }
+
+2.Paramterized Constructor 
+
+Constructor which contains 1 or more parameters
+      class student{
+                student(int a, int b){
+        
+              }
+          }
+
+==============================================================================================================
+
+Task--> Basic constructor declare with print hello.
+
+
+
+
+package ConstructorConcept;
+public class ConstructorBasic {
+
+	//constructor created 
+	ConstructorBasic(){
+		
+		System.out.println("Hello");
+			}
+	
+	public static void main(String[] args) {
+		ConstructorBasic b = new ConstructorBasic();
+	}
+
+Task: 
+=====
+Parameteried constructor example
+
+
+
+package ConstructorConcept;
+
+public class ConstructorBasic {	
+	//constructor created 
+	ConstructorBasic(int i, int j){
+		
+		System.out.println(i + j);
+		
+		}
+	
+	public static void main(String[] args) {
+		ConstructorBasic b = new ConstructorBasic(6, 10);
+	}
+
+
+============================================================================
+
+Task: calling instance variable in constuructor by using this keyword.
+
+--> "this" keyword is represent 
+--> this is a predefiend keyword in java
+-->it is used to represent current class object
+
+package ConstructorConcept;
+
+public class ConstructorBasic {
+
+	String name;
+	float salary;
+
+	ConstructorBasic(String name, float salary) {
+
+		this.name = name;
+		this.salary = salary;
+
+		System.out.println(name + "  " + salary); // this will print local variable
+    System.out.println(this.name + "  " + this.salary);//this will print instance variable by using "this" keyword
+	}
+
+	public static void main(String[] args) {
+		ConstructorBasic b = new ConstructorBasic("raja", 10452.00f);
+		ConstructorBasic c = new ConstructorBasic("moja", 5486.25f);
+		ConstructorBasic d = new ConstructorBasic("monu", 7485.60f);
+	}
+
+}
+
+                      =========================
+                       CONSTRUCTOR OVERLOADING
+                      =========================
+
+
+--> Writing more than one constructor with different parameters is called as constructor overloading.
+
+
+
+
+Example--->
+
+package ConstructorConcept;
+public class ConstructorBasic {
+
+	String name;
+	float salary;
+	ConstructorBasic(){
+		    	}
+	
+	ConstructorBasic(String name, float salary) {
+
+		this.name = name;
+		this.salary = salary;
+    System.out.println(name + "  " + salary);
+	}
+	
+	ConstructorBasic(String name){
+		
+		this.name=name;
+		System.out.println(this.name+"-"+this.salary);
+	}
+
+	public static void main(String[] args) {
+		
+		// these 3 objects are calling constructor 1
+		
+		ConstructorBasic b = new ConstructorBasic("raja", 10452.00f);
+		ConstructorBasic c = new ConstructorBasic("moja", 5486.25f);
+		ConstructorBasic d = new ConstructorBasic("monu", 7485.60f);
+		
+		//this is calling constructor 2
+		ConstructorBasic e = new ConstructorBasic("monu");
+		
+		//this is going to call default constructor because of zero parameter.
+		
+		ConstructorBasic f = new ConstructorBasic(); //no output
+        }  
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
