@@ -1,0 +1,231 @@
+
+                                                          ========
+                                                            OOPS
+                                                          ========
+
+Encapsulation: Combining variables and methods as single unit is called as Encapsulation. Ex. Java classes . It is using for data hiding.
+
+Abstraction: Hiding un necessary details and providing only useful information is called as abstaction.
+
+              Ex.  abstract class and interfaces
+
+Inhheritance:  The process of extending properties from one class to another class is called so. It is used for code re-usability.
+
+Polymorphism: Exihibiting multiple behaviours based on situation is called polymorphism.
+
+              Ex. Objects will exhibit multiple behaviours
+
+
+                                        ================================================================================
+                                                                    ENCAPSULATIUON
+                                        ================================================================================
+
+-> java class is one of the best for encapsulation.
+
+Ex: 
+
+Encapsutale this variables by using private access----->
+public class BankAccount{
+
+private long acc = 77777758595;
+private String name="ashok";
+private double balance=55000.00;
+           }
+=======================================================================================================
+                                      SETTERS AND GETTERS
+=======================================================================================================
+
+Use setters and getters to reuse the variables which are declared as private
+
+---> How to write setters and getters 
+NOTE: shortcut key to generate setters and getters   ( alt + shift + s + g  )
+
+----> we are writing setters and getters for variable "private long acc"
+            
+            public void setAcc(long acc){
+                this.acc=acc;
+                }
+            public long getAcc(){
+            return this.acc;
+                }
+-----> we are writing setters and getters for variable "private String name "
+
+            public void setName(String name){
+                this.name=name;
+            }
+            public String getName(){
+                return this.name;
+            }
+
+
+===================================================================================================================================
+TASK:
+=====
+
+Q. Write a java program , generate the setters and getters and access those into a different java program.
+
+-------------------------------------------------------------------------------------------------------
+
+GetterAndSetter.java
+---------------------
+
+package Encapsulation;
+public class GetterAndSetter {
+
+	private int id;
+	private String name;
+	private double salary;
+	
+public void setId(int id) {
+		
+		this.id=id;
+	}
+	public int getId() {
+		
+		return this.id;
+	}
+	
+	public void setName(String name) {
+		
+		this.name=name;
+	}
+	public String getName() {
+		
+		return this.name;
+	}
+	
+	public void setSalary(double salary) {
+		
+		this.salary=salary;
+	}
+	public double getSalary() {
+		
+		return this.salary;
+	}
+	
+	
+}
+
+---------
+Test.java
+----------
+package Encapsulation;
+
+public class Test {
+
+	
+	  public static void main(String[] args) {
+		
+		  GetterAndSetter br = new GetterAndSetter();
+		  br.setId(77777);
+		  br.setName("Ashok");
+		  br.setSalary(5555.23);
+		  
+		  
+		  int id=br.getId();
+		  String name=br.getName();
+		  double salary=br.getSalary();
+		  
+		  
+		  System.out.println(id+"  "+ name +" " + salary);
+	}
+}
+
+=======================================================================================================
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
