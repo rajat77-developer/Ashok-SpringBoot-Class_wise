@@ -1,5 +1,5 @@
-                                      ACCESS SPECIFIERS
-                                  ===========================
+                                      ACCESS SPECIFIERS/ MODIFIERS
+                                  ====================================
 
 -> These are used to specify  accessibility for our classes ,variables and methods.
 -> In java, we have below 4  access specifiers.
@@ -10,10 +10,23 @@
     4.Default
 
 Public: It is used to specify  global access for classes, variables, methods and Constructors.
-Private: It is used to specify local access.Private variable,private methods,private constructors can't be accessed outside of the class.
-Protected: Protected members can be accessed in same package and sub classes.
-Default: Default members can be accessed in same package.
 
+      ->we can take class as public 
+      ->constructor as public 
+      ->variables and methods also we can take as public  
+
+NOTE: if we use " public " for the class name then class name & file name should be same . We should have only one public class in the java file.
+
+Private: It is used to specify local access.Private variable,private methods,private constructors can't be accessed outside of the class.
+      
+      ->we can't use private for class(it is not allowed )
+      ->we can take variables , methods, constructors as private 
+
+
+Protected: Protected members can be accessed in same package and sub classes.
+
+Default: Default members can be accessed in same package.
+      NOTE: only public and default specifires are allowed for classes. Private and protected are not allowed.
 
 
 
