@@ -1,0 +1,237 @@
+
+                          =================================================
+                                          INHERITANCE 
+                          ==================================================
+
+-> The process of extending the properties from one class to anothe class is called inhertance.
+-> To extend the properties we will use 'extends' keyword.
+-> From which class we are extending the properties that class is called as "parent class" or "super" or "base" class
+-> The class which is extending the properties is called as "Child class " or "Sub class" or "Derived " class
+-> By using inheritance we can achieve code re-usability.
+
+                            
+class student{
+//properties
+//methods
+}
+
+class user extends student{
+
+  
+}
+
+
+---> sudent is a super class and user is a sub class.
+
+====================================================================================================================================
+
+  Inheritance w.r.t to constructors
+
+-> Whenever we create a child class object, then first it will execute parent class zero-param constructor and then it will execute child class constructor.
+Q. Why parent class constructor is executing first ?
+-> Child should be able to access parent propertieance hence parent constructor will execute first to initialize parent class properties.
+
+===============================================================================================================
+
+  package Inheritance;
+
+public class User {
+
+	int id;
+	String name;
+	
+	public User() {
+			System.out.println("Parent class :: 0-param constructor called");
+	}
+	
+	/*
+	 * //we can not call parameterized constructor in child class
+	 * 
+	 *  public User(String name , int id , double salary ) {
+	 * 
+	 * System.out.println("Parent class :: 3-param constructor called");
+	 * 
+	 * }
+	 */
+	void m1() {
+		
+		System.out.println("User class :: m1() method called ");
+	}
+	
+}
+
+===================================================================================================
+package Inheritance;
+public class Student extends User {
+
+	int rank;
+	
+	public Student() {
+		
+		System.out.println("Child class :: Constructor called ");
+
+	}
+	
+	public void m2() {
+		
+		System.out.println("Student class:: m2() method called");
+	}
+	
+	public static void main(String[] args) {
+		
+		//child class object creation
+		Student s = new Student();
+		s.rank=1;
+		
+		//accessing parent class properties using child class object. 
+		s.id=101;
+		s.name="Ashok";
+		s.m1();
+		s.m2();
+		
+		System.out.println(s.rank + "<--> "+ s.id + "<-->"+ s.name);
+		
+		        }	
+        }
+
+======================================================================================
+                                  Types of Inheritance 
+======================================================================================
+
+1.Single Level
+2.Multi Level --> class a (parent class of a)--> class b ( Parent class of c ) --> class c
+3.Multiple ----> Not supported  by java due to ambiguity problems 
+4.Hybrid
+5.Hierarchical 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
