@@ -37,7 +37,33 @@ private double balance=55000.00;
 
 Use setters and getters to reuse the variables which are declared as private
 
+-----------------------------------------------------------------------------
+
+------------
+:: SYNTAX ::
+------------
+
+// setter method ---> to set value for the variable
+
+public void setId(int Id){
+
+this.id=id;
+
+}
+
+//getter method -----> to get the value of variable
+---------------------------------------------------
+
+public int getId(){
+return this.id;
+}
+
+
+
+
+-----------------------------------------------------------------------------
 ---> How to write setters and getters 
+
 NOTE: shortcut key to generate setters and getters   ( alt + shift + s + g  )
 
 ----> we are writing setters and getters for variable "private long acc"
