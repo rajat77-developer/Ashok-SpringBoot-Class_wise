@@ -1,0 +1,165 @@
+
+
+user interface---> web layer(Struts) -- Bussiness layer -- Integration,  Dao(hibernate)   ---> DB
+-------------      ------------------------------------------------------------
+frontend Application                 Backend  Application
+
+
+==========
+: Framework :
+  ==========
+-> Semi developed software  which provides common logics required for projects development.
+-> Frameworks will help the developers to impliment more functionality in less time.
+-> When we use framework to develop the project, we can focus only on bussiness logic.
+
+Types of Framework
+==================
+1. Frontend Frameworks: To develop user interface in the project.
+    Ex: Angular
+
+2. Web Frameworks : To develop web layer in the project.
+   Ex: Struts(Outdated)
+
+3. ORM Frameworks : 
+    Ex: Hibernate
+
+=> By using Structs we can develop only web layer inn the project (Controllers)
+=> By using hibernate we can develop only data access layer 
+
+
+
+To overcome the Structs framework, Spring Framework comes into market.
+==> Spring framework is called as Application Development Framework.
+==> By using Spring framework we can develop end to end application.
+==> Spring is free & open source framework
+==> Spring framework developed in modular fashion .
+
+Note: Spring frameworks means collection of modules.
+
+====================
+Spring modules
+===================
+1. spring core 
+2.spring context
+3.spring jdbc
+4.spring orm
+5.spring aop
+6.spring web mvc
+7.spring security
+8.spring social
+9.spring batch......
+
+Note: Spring is very flexible framework. It will not force to use all the modules . Based on requirement we can pickup particular
+module and we can use it .
+
+==> Spring is versatile framework.(Easily it can be integrated with other frameworks).
+==> Current spring framework   version is 6.0.
+==> Spring framework is under license of VM ware...
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
