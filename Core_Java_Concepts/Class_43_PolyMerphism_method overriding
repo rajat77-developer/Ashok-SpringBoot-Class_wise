@@ -1,0 +1,131 @@
+=================
+Method Overriding
+=================
+
+--> The process of writing same methods in parent class and child class is called as Method Overriding.
+
+NOTE: When we don't want to execute Parent method implementation, then we can write our own implementation in child class using method overriding.
+
+
+
+class parent{
+void m1(){
+    //logic
+    }
+}
+class child extends parent{
+
+void m1(){
+
+          }
+}
+
+=============================================================================
+
+Example of method overriding  :
+
+------------------------
+
+
+package Polymorphism;
+
+import java.security.DomainCombiner;
+
+class Eligibility {
+
+	boolean CheckEligibility() {
+		
+		return true;
+	}
+	
+	double getHomeLoanRofi() {
+		
+		return 10.50;
+	}
+	double getPersonalLoanRofi() {
+		
+		return 12.20;
+	}
+	
+}
+
+public class SBIbank extends Eligibility{
+	
+	
+double getHomeLoanRofi() {
+		
+		return 13.50;
+}
+	
+	public String applyHomeLoan(){
+		
+		boolean status=CheckEligibility();//parent method
+		
+		if(status) {
+			double HomeLoanRofi = getHomeLoanRofi();
+			String msg = "Your loan approved with RI as :: "+HomeLoanRofi;
+			return msg;
+		}else {
+			return "You are not eligible for home loan";
+		}		
+	}	
+	
+	public static void main(String[]args) {
+		
+		SBIbank bank = new SBIbank();
+		String msg= bank.applyHomeLoan();
+		System.out.println(msg);
+	}
+}
+
+
+Note: Object class equals () method will compare address of the objects where String class equals () method will compare content of the objects.
+Note: String class overriding equals() method.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
