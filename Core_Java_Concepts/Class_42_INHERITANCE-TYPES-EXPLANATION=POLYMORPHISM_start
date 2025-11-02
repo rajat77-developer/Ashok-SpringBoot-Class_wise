@@ -1,0 +1,224 @@
+Single level--> Class B extends Class A
+Multi level --> Class C extends Class B and Class B extends Class A extends Object
+Hierarchical--> One parent class having multiple child classes 
+
+Note: For every java class , java.lang.object class will act as Parent either directly or indirectly.
+--> If our class dose not have any parent then java.lang.object will become Parent directly.
+--> If our class having parent then java.lang.object will become parent in-directly.
+NOTE: Every java class can access methods available in java.lang.object class .
+
+============================================================================================
+          SUPER keyword
+
+--> It is used to refer parent class properties .
+
+===============================================================================================
+
+Program to understand full flow of program:::
+
+package Inheritance;
+
+
+class Parent{
+	
+	void m1() {
+		
+		System.out.println("Parent Class::M1 - called");
+	}
+void m2() {
+		
+		
+		System.out.println("Parent class :: m2 called by super keyword");
+	}
+}
+class Child extends Parent{
+	
+	void m2() {
+		
+		
+		System.out.println("Child class :: m2 called");
+		super.m2();
+	}
+}
+
+public class ParentChildConcept {
+
+	
+	public static void main(String[] args) {
+		Child c = new Child();
+		c.m1();
+		c.m2();
+		int c1 =c.hashCode();
+		System.out.println("Hash code value is :: "+c1);
+	}
+}
+
+
+===========================================================
+--->Method execution flow with respect to inheritance :::::
+============================================================
+When we call a method using Object, first it will check in current class for the method, if available it will call that method directly. If method not available in current 
+class then it will check in parent class (it can be direct or indirect parent). If parent having that method then it will call parent class method. If parent class also doesn 
+not have method then it will throw exception.   
+
+
+Note: In inheritance always priority will be given for child class / sub class object. If child class does not contain that method  then priority will be given to parent class method.
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+                                                                  POLYMORPHISM
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+poly-> many
+phism->Forms
+-> if any object is exhibitinng multiple behaviours based on the situation then it is called as Polymorphism.
+-> Polymorphism is devided into 2 types :::
+              1.static polymorphism/compiletime polymorphism
+
+                    Ex: Overloading
+
+              2. dynamic polymorphism/Runtime polymorphism
+
+                    Ex: Overriding
+
+==================
+Method Overloading
+==================
+
+--> The process of writing more than one method with same name and different parameters is called Method Overloading.
+
+Ex: 
+
+package Polymorphism;
+
+public class Calculator {
+
+	void add(int i, int j) {
+			
+		System.out.println("sum of first method : " + (i+j));
+	
+	}
+	void add (int i, int j, int k) {
+		
+		System.out.println("sum of second method: " + (i+j+k));
+	}
+	
+	public static void main(String[] args) {
+		Calculator c = new Calculator();
+		c.add(10, 20);
+		c.add(10, 20, 30);
+     c.add(10, 20, 30, 40);// invalid
+		
+	}	
+}
+
+
+   ---> When methods are performing same operation then we should give same name hence it will improve code readability.
+ex ---> 
+  
+  substring(int start)
+  substring (int start, int end)
+
+In method overloading scenario, compiler will decide method should be called . For example,   if we write like below then program will fail it compilation stage .
+
+ex. c.add(10, 20, 30, 40);// invalid
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
