@@ -1,0 +1,179 @@
+Spring core: 
+============
+=> It is base module in spring framework.
+ -> It provides fundamental concept of spring framework.
+    1. IoC container(Inversion of Control)
+    2. Dependency Injection
+    3. Bean LifeCycle
+    4. Bean Scopes
+    5. Autowiring
+
+Spring Context:
+===============
+=> It will deal wit configurations required for our Spring Application.
+
+Spring AOC:   --> Aspect Oriented Programming
+===========
+
+=> AOP is used to separate bussiness logic and secondary logic .
+  Ex: Security, Logging , auditing, Exception Handling etc...
+
+Note: If we combine bussiness logic & secondary logic then we will face maintence issues of our project.
+
+Spring JDBC:
+============
+=> Spring JDBC is used to simplify Database communication logic.
+=> in java jdbc, we need to write boiler plate code
+    
+    > Load Driver
+    > Get Connection
+    > Create Statement
+    > Execute Query
+    >Close Connection
+==> Using Spring JDBC we can directly execute query the remaining part Spring JDBC will take care.
+
+Spring MVC:
+===========
+=> It is used to develop both Web application and Distributed application
+=> Web Application(C to B)
+ Ex: gmail, Facebook etc....
+
+=> Distributed Application (B to C) / Web services or Restful Services
+
+  Ex: IRCTC --- MAKEMYTRIP
+      Passport -- Aadhar Card
+
+Spring ORM
+==========
+=> ORM-> Object Relational Mapping
+=> Spring Framework having integration with ORM frameworks.
+     Ex. Spring ORM, Spring Data JPA etc...
+NOTE: JDBC will represent the data in text format where as Hibernate ORM will represent data in Object format.
+
+Spring Security
+===============
+=> Security is very crusial for every application.
+=> By using Spring Security, We can implement both authentication and authorization.
+=> Spring Security with O.AUTH2.0
+=> Spring Security with JWT.(JSON WEB TOKENS)
+
+ Spring Batch
+=============
+=> Batch means bulk operations.
+=>Sending monthly statement to customers in email
+=> Sending reminders to customers Bulk msg
+
+Spring Cloud : It provides some commom tools to quickly build distributed systems.
+============
+=> It provides service registry to register all our microservices at one place. 
+=> It provides load balancer to balance load of our application.
+=> It provides monitoring facilities.
+=> It provides API gateway to have single entry point for all our apis.
+=> Routing.
+=> It provides Circuit breakers(Fault tolerance Systems/Resillence).
+=> Distributed messaging .
+
+Spring Test:
+===========
+=> It provides Unit Test Framework.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
