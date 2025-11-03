@@ -1,0 +1,180 @@
+                                          ------------
+                                          Spring Core: 
+                                          ------------
+
+
+
+---> it is all about managing dependencies among the classes with loosely coupling.
+
+==> In project we will develop several classes. All those classes we can categorize into 3 types
+
+1.POJO
+2.JAVA BEANS
+3.COMPONENTS
+
+What is POJO ?
+--------------
+--> POJO---plain old java object 
+--> Any java class which can be compiled by using only JDK software is called POJO class.
+Ex: Below is a POJO class.
+                          Class Demo{
+                                      int id;
+                                      String name;
+                                   }
+Ex: Below is not a pojo class.
+
+            Class Demo implements Servlet{
+        
+                            } 
+
+
+===================
+What is Java Bean ?
+===================
+
+--> Any java class which follows bean specification rules is called Java beans.
+
+                    Bean specific rules 
+                    ====================
+                    
+                        1.Class should implement serializable interface.
+                        2.Class should have private data members(variables).
+                        3.Every Private variable should have public setter and public getter method.
+                        4. Class should have zero-param constructor.
+
+NOTE: Bean classes are used to write bussiness logic and store and retrive data.
+
+====================
+What is Component ?
+===================
+=> The java class which contains bussiness logic is called Component class.
+  
+    Ex: Controllers, Service, Dao classes.
+    
+    -> Controller classes will have logic to deal with request and response.
+    -> Service classes will have bussiness logic of our project 
+          Ex: Generate OTP, send OTP, Send Email, Encrypt and Decrypt password etc...
+    -> DAO classes will contain the logic to communicate with database.
+
+
+=============================================================================================================
+
+In a project, we will develop  multiple classes and those classes will be dependent on other classes.
+
+Ex: 
+  ==> Controller class will call service class methods
+  ==>    Service class will call DAO class methods 
+
+These classes are dependent:
+
+     Classes work flow:  --> UI ----> Controller ----->Services----->DAO ---> DB
+
+
+==> in java , one class talks to another class by using 2 ways 
+
+          1. Inheritance(IS-A)
+          2.Composition(HAS-A)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
