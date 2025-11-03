@@ -47,7 +47,10 @@ Spring modules
 6.spring web mvc
 7.spring security
 8.spring social
-9.spring batch......
+9.spring batch
+10.spring cloud
+11.spring data jpa
+12.spring rest
 
 Note: Spring is very flexible framework. It will not force to use all the modules . Based on requirement we can pickup particular
 module and we can use it .
@@ -57,8 +60,7 @@ module and we can use it .
 ==> Spring framework is under license of VM ware...
 
 
-
-
+    URL: spring.io
 
 
 
