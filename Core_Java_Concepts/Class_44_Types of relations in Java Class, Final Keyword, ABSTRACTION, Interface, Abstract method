@@ -1,0 +1,211 @@
+Types of relations in Java Class
+==================================
+
+In java we can use below 2 types of relations 
+1. IS-A relation ----> inheritance
+2. HAS-A relation ---> Composition
+
+
+       |---Person   
+user ->|---student
+       |---Employee
+
+what ever the propertis for "user" , all are applicable for Person,Student, Employee
+Student IS-A User
+Person  IS-A User
+Employee IS-A User
+
+--> If one class wants to re-use all the properties of another class then we will go for IS-A relation.
+
+Inheritance is a good example for this .
+
+========
+Example:
+========
+package Polymorphism;
+
+class user{
+	
+	int id;
+	String name;
+	
+	void m1() {
+		
+		System.out.println("My id is :"+id+", My name is :"+ name);
+	}
+}
+public class IsAhasArelationship extends user {
+	
+	public static void main(String[] args) {
+		
+		IsAhasArelationship s = new IsAhasArelationship();
+		s.id=100;
+		s.name="Ashol";
+		s.m1();
+				
+	}
+
+}
+
+==============
+HAS-A relation
+==============
+
+--> If one class wants to re-use some properties of another class then we will go for HAS-A relation.
+
+              CAR --- ENGINE
+
+here, CAR has functionaly and ENGINE has a functionality
+
+So, CAR has a relationship with ENGINE
+
+Example : Composition is the exmaple for this .
+=========
+Example:
+=========
+
+package Polymorphism;
+
+class Engine{
+	
+	int id;
+	String name;
+	String Fueltype;
+	
+	void start() {
+		
+		System.out.println("Engine starting......");
+	}
+	
+	
+}
+public class HasARelationship  {
+	void drive() {
+		
+		Engine e = new Engine();//HAS A relation
+		e.start();
+		System.out.println("My journey started....");
+
+    }
+	public static void main(String [] args) {
+		
+		HasARelationship c = new HasARelationship();
+		c.drive();
+		System.out.println();
+	}
+
+}
+=================================================================================================================================
+
+Final Keyword
+==============
+-> Final is a reserved keyword in java.
+->Final class can not be inherited.
+->Final variable are nothing but constants.Final variable value cannot be modified.
+            Ex: public final int id =101;
+                 id = 104;//invalid
+
+->Final method can not overriden.We can't override final methods .
+->We can use this keyword at three place.
+          
+          1.Class level
+          2.Variable level
+          3.Method level
+
+===========
+ABSTRACTION:
+============
+
+->The process of hiding un-necessary  data and providing only useful data is called Abstraction.
+-> We can achieve abstraction using interfaces and Abstract classes.
+===========
+Interface
+==========
+
+-> Interface are used to achieve loosely coupling and abstraction.
+-> Interfaces contains only abstract method.(upto 1.7v of java)
+->To create a interface we will use "interface " keyword.
+-> Interface does not contains "constructor".
+-> We can not create object for the interface.
+-> Once interface is created then anybody can provide implementation for the interface.
+-> Implementing interface means overriding "interface abstract methods"
+-> When we are implementing a interface then its mandatory to implement all abstract methods of that interface.
+->To implement a interface , we will use "implements " keyword.
+-> One java class can implement multiple interfaces at a time.
+
+example:
+
+        ---->KOTAK
+RBI     ----> SBI 
+        ---->AXIS
+Here RBI is "interface" and all other banks are following the RBI rules. so other banks are implementing the rules of RBI,and 
+that is compulsory to obey the rules 
+
+
+
+==============================================================
+Example:
+
+interfae
+----------
+public interface RBI{
+public abstract void moneyTransfer();
+public abstract void checkBalance();
+}
+============
+public class SBI implements RBI{
+
+
+public abstract void moneyTransfer(){
+
+System.out.println("money transfered");
+      };
+public abstract void checkBalance(){
+
+System.out.println("check the balance .....");
+
+    };
+
+public static void main(String[] args ){
+
+SBI sb = new SBI();
+sb.moneyTransfer();
+sb.checkBalance();
+
+  }
+}
+
+---> this is how we implements the interface.
+
+============
+Method Types
+============
+-> In java we can write 2 types of methods 
+      1.Concrete method
+      2.Abstract method
+
+-> The method which contains body is called as "Concrete method".
+
+example:
+    public void m1(){
+        /logic
+    }
+-> The method which does not contain body is called as "Abstract method".
+
+example:
+   public abstract void m2();
+
+Note: By using abstract keyword, we can create abstract methods and abstract classes.
+
+
+
+
+
+
+
+
+
+
+
+
+
