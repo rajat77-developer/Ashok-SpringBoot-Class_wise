@@ -1,0 +1,125 @@
+
+
+==> If we want to drive the car then we need to start the engine, that means car class drive() method should call engine class start() method .
+
+Q.In how many ways car class can call engine class method ?
+
+    1. Inheritance
+    2. Composition
+
+Note: If we use any one fo this approach then car class will become tightly coupled with engine class.That is not recommended.
+
+############## To develop classes with loosely coupling we need to use interface ###########################################
+
+steps: 
+
+step-1:
+======
+
+Create a interface:
+
+IEngine.java
+------------
+package ashokit.in;
+
+public interface IEngine {
+
+	public int start();
+}
+
+Step:2
+======
+Now-create classes one by one
+
+PetroEngine.java
+================
+package ashokit.in;
+
+public class PetrolEngine implements IEngine {
+
+	
+	@Override
+	public int start() {
+		
+		System.out.println("petrol engine started...");
+		return 1;
+	}
+}
+
+DieselEngine.java
+==================
+package ashokit.in;
+
+public class DieselEngine implements IEngine {
+
+	
+	@Override
+	public int start() {
+		
+		System.out.println("diesel engine started....");
+		return 1;
+	}
+	
+}
+
+Car.java
+=========
+package ashokit.in;
+
+public class Car {
+
+	
+	
+	//we have declared a variable 
+	
+	private IEngine eng;
+	
+	//we have created a constructor to choose our user which engine need to start 
+	public Car(IEngine eng) {
+
+		this.eng=eng;
+	}
+	
+	public void drive() {
+		
+		int start =  eng.start();
+		
+		if(start>=1) {
+			
+			System.out.println("Journey started");
+		}else {
+			
+			System.out.println("Engine is in trouble ");
+		}
+	}
+}
+
+Main.java
+--------
+
+package ashokit.in;
+
+public class Main {
+
+	
+	public static void main(String[] args) {
+
+//here we pass Diesel Engine
+
+		Car car = new Car(new DieselEngine());
+		car.drive();
+		
+	}
+}
+
+PetrolEngine.java
+
+
+
+
+
+
+
+
+
+
