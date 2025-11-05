@@ -9,10 +9,15 @@ Q.In how many ways car class can call engine class method ?
 
 Note: If we use any one fo this approach then car class will become tightly coupled with engine class.That is not recommended.
 
-############## To develop classes with loosely coupling we need to use interface ###########################################
+##################### To develop classes with loosely coupling we need to use interface ###########################################
 
-steps: 
+--> loosely coupling means without creating Object and without inheriting properties we should be able to access one class methods in another class.
 
+--> If we make any changes in Engine class then Car class should not be effected then we can say our classes are loosely coupled.
+
+=======
+:steps: 
+=======
 step-1:
 ======
 
@@ -112,7 +117,7 @@ public class Main {
 	}
 }
 
-PetrolEngine.java
+
 
 
 
