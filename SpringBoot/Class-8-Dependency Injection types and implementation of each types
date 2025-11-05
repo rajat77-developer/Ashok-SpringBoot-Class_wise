@@ -1,0 +1,215 @@
+                        =============================
+                        What is Dependency Injection
+                        =============================
+
+=> The process of injecting one class object into another class is called as "Dependency Injection".
+=>We can perform dependency injection in 3 ways->
+
+      1.Setter Injection(SI)
+      2.Constructor Injection(CI)
+      3.Field Injection(FI)
+
+                                1.Setter Injection
+                                ===================
+
+=> Setter injection means , injecting dependent object int target object using target class setter method.
+
+
+Below is the example:
+--------------------
+
+========
+Car.java
+========
+
+package ashokit.in;
+public class Car {
+
+	//we have declared a variable 
+	
+	private IEngine eng;
+	
+	//setter injection
+	
+	public void setEng(IEngine eng) {
+		
+		this.eng = eng;
+	}
+	public void drive() {
+		
+		int start =  eng.start();
+		
+		if(start>=1) {
+			
+			System.out.println("Journey started");
+		}else {
+			
+			System.out.println("Engine is in trouble ");
+		}
+	}
+}
+
+Note: In the above program, 'Car' class is dependent on 'Engine' class object should be injected into 'Car' class.
+
+Finally--> Car is dependent on engine.
+
+=========
+Main.java
+=========
+
+package ashokit.in;
+public class Main {
+
+	public static void main(String[] args) {
+		//creating target object
+		Car car = new Car();
+		//injecting dependent object into target through setter method 
+		car.setEng(new DieselEngine());
+		car.drive();
+	}
+}
+                                    
+                                    2.Constructor Injection
+                                    =======================
+
+==> Constructor Injection means, injecting dependent object into target object using target class constructor.
+========
+car.java
+========
+
+package ashokit.in;
+
+public class Car {
+
+	// we have declared a variable
+
+	private IEngine eng;
+public Car(IEngine eng) {
+	  
+	  this.eng=eng; }
+	  
+	 
+	public void drive() {
+
+		int start = eng.start();
+
+		if (start >= 1) {
+
+			System.out.println("Journey started");
+		} else {
+
+			System.out.println("Engine is in trouble ");
+		}
+	}
+}
+
+=========
+Main.java
+=========
+
+package ashokit.in;
+public class Main {
+
+	public static void main(String[] args) {
+
+		  Car car = new Car(new DieselEngine()); 
+		  car.drive(); 
+
+	}
+}
+
+Q. Can we perform both SI and CI for single variable ?
+
+Answer: Yes, we can but setter injection will override Constructor injection value .
+
+
+
+                                      ===================
+                                      Field Injection(FI)
+                                      ===================
+=> Field Injection(FI) means, injecting depending object into target class using target class variable is called Field Injection(FI).
+
+
+We use  " REFLECTION API " to achive Field Injection(FI).
+
+
+Let's see the program,
+----------------------
+
+package ashokit.in;
+
+public class Car {
+
+	// we have declared a variable
+
+	private IEngine eng;
+public void drive() {
+
+		int start = eng.start();
+
+		if (start >= 1) {
+
+			System.out.println("Journey started");
+		} else {
+
+			System.out.println("Engine is in trouble ");
+		}
+	}
+}
+
+
+########## We can access private variables outside of the class by using " reflection api " like below -->  
+
+Main.java
+=========
+
+package ashokit.in;
+
+import java.lang.reflect.Field;
+
+public class Main {
+
+	public static void main(String[] args) throws Exception {
+
+		
+		//Class.forName is used to load the class into jvm
+		Class<?> clz = Class.forName("ashokit.in.Car");
+		
+		
+		//Here we use reflection api
+		Field engField = clz.getDeclaredField("eng");
+		engField.setAccessible(true);
+	   
+		//By using --newInstance();--we create an object like "new" keyword
+		Object object = clz.newInstance();
+		
+		Car carobj = (Car) object;
+		//Here I am injecting the value to the variable 
+		engField.set(carobj, new DieselEngine());
+		carobj.drive();
+		 
+
+	}
+}
+
+
+NOTE: This is not recommended because this is violating the OOPS principles .........
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
