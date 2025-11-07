@@ -1,0 +1,33 @@
+=====================================================
+Differece between BeanFactory and ApplicationContext
+=====================================================
+
+=> BeanFactory interface having - XmlBeanFactory as implementation class.
+
+    BenaFactory factory = new XmlBeanFactory(new ClassPathSource("Beans.xml"));
+
+=> ApplicationContext interface having - ClassPathXmlApplicationcontext as implementation class.
+    		
+      ApplicationContext context = new ClassPathXmlApplicationCotext("Beans.xml");
+
+= BeanFactory will follow Lazy loading concept that means when we request then only it will create Bean object.
+=> ApplicationContext will follow eager loading for Singleton Beans.For prototype beans it will also follow Lazy Loading 
+
+Note: Spring Bean defalut scope is singleton.
+
+Eager Loading means creating objects for Spring Bean when IoC starts.
+Lazy loading means creating objects for Spring Bean when we call getBean() method.
+
+
+Note:
+ 
+
+
+
+
+
+
+
+
+
+
