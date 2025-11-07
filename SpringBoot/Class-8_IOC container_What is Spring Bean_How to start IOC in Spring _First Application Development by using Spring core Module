@@ -1,0 +1,111 @@
+                                    =============
+                                    IOC container
+                                    =============
+
+=> IOC stands for inversion of Control.
+=> IoC is responsible for Dependeny Injection in Spring Application.
+=> Dependency Injection means creating and injecting dependent bean objects into target bean classes.
+
+Note: IoC container will manage life cycle of Spring Beans.
+
+Note: We need to provide "Java classes + Bean Configuration" as input for IOC then
+      IOC will perform DI and provides Spring Beans which are ready to use.
+
+=====================
+What is Spring Bean ?
+======================
+      => Spring bean and bean , both are same.
+      =>  Any java class whose life cycle (creation to distruction )is managed by IOC is called spring bean.
+      => We can represent Java class as Spring Bean in 2 ways
+       1. XML Approach
+         ex: <bean id ="id1" class = "pkg.ClassNmae " />
+       2. Annotation Approach( Recommended)
+         ex: @Component, @Service, @Repository etc.... 
+
+Note: Spring supports both approaches but SpringBoot only supports Annotation approach.(no xmls).
+
+                              Java classes
+                                    |
+                                    |
+   Bean configuration ------- IOC container(perform the DI(Dependecy Injection))   ---------------> Spring Beans (Ready to use )
+
+============================
+How to start IOC in Spring ?
+============================
+
+1. BeanFactory
+2.ApplicationContext(recommended)
+
+
+  Ex: ApplicationContext context = new ClassPathXmlApplicationContext(String configFile);
+
+ Note: Bean configuration file contains Bean defination. 
+
+     (target class, dependency injection types, dependent class)
+
+Note: When IoC container started it will read bean defination from bean configuration File and it will perform Dependency Injection.
+
+
+
+=========================================================
+First Application Development by using Spring core Module
+==========================================================
+
+Pre requesites: JDK1.8v, STS IDE
+--------------------------------
+
+1.Create Maven project in IDE
+2. Add Spring core dependencies in pom.xml file(www.mvnrepository.com)
+
+      <dependency>
+          <groupId>org.springframework</groupId>
+          <artifactId>spring-context</artifactId>
+          <version>5.2.22.RELEASE</version>
+      </dependency>
+
+3.Create required Java classes (Ex: IEngine, PetrolEngine, DieselEngine, and Car)
+4.Create Bean configuration File and configure Bean Definations.
+
+    <bean id ="petrolEng" class="in.ashokit.beans.PetrolEngine"/>
+    <bean id ="dieselEng" class="in.ashokit.beans.DieselEngine"/>
+    <bean id ="car" class="in.ashokit.beans.Car"/>
+       <property name ="eng " ref = "petrolEng" />
+    
+     </bean>
+
+Note: Here "property" tag used for setter injection.
+
+
+5. Create Main Class and start IOC container to test the application.
+
+Main.java
+=========
+
+package in.ashokit.main;
+
+import org.springframework.context.*;
+import org.springframework.context.support.ClassPathXmlApplicationCotext;
+
+import in.ashokit.beans.Car;
+public class App {
+
+	
+	 public static void main(String[] args) {
+		
+		 //staring IOC container
+		 ApplicationContext context = new ClassPathXmlApplicationCotext("Beans.xml");
+		 
+		 //getting bean object from IOC
+
+		 Car car = context.getBean(car.getClass());
+		 car.drive();
+	}
+}
+
+
+
+
+
+
+
+
