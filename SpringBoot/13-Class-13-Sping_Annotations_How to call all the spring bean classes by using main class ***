@@ -1,0 +1,40 @@
+
+                                              ==================
+                                              SPRING ANNOTATIONS
+                                              ==================                                      
+
+
+Annotations==> represents metadata
+=> Annotations introduced in java 1.5v
+
+=> Annotations are alternate for xml configuration.
+=> In SpringFramework we have several annotations.
+
+1.@Configuration: To represent java class as Configuration class.
+2.@ComponentScan: To identify springBean classes available in the project based on "basePackageName".
+3.@Component: To represent java class in spring bean.
+4.@Service: To represent java class in spring bean.(Bussiness layer classes)
+5.@Repository: To represent java class in spring bean.(Persistance layer classes )
+6.@Scope: To represent bean scope 
+8.@Autowired: To perform dependency injection
+9.Qualifier: to perform autowiring based on byName.
+10.@Primary: To represent primary bean for autowiring.
+11.@Bean: To call the method which returns bean object.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
