@@ -132,6 +132,7 @@ Interface
 -> When we are implementing a interface then its mandatory to implement all abstract methods of that interface.
 ->To implement a interface , we will use "implements " keyword.
 -> One java class can implement multiple interfaces at a time.
+-> One java class can extend properties from only one class and it can implement multiple interfaces at a time.
 
 example:
 
