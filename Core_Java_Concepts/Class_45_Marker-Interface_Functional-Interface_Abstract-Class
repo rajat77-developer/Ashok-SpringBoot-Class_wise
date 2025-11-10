@@ -1,0 +1,133 @@
+=> We can not create Object for interface.
+=> Interface reference variable can hold its implementation class objects.
+  Ex: Bank b = new AxisBank();
+      Bank b = new HdfcBank();
+Note: When method is taking interface a parameter that means that method is expecting interface implementation class object as parameter.
+
+            public void m1(bank b){
+            
+                     }
+Note: When method is having interface as a return type that means that method will return interface implementation object as return type.
+
+             public Bank m2(){
+
+             }
+
+                                              ================
+                                              MARKER INTERFACE
+                                              =================
+
+
+NOTE: If interface does not have any method then it is called as "MARKER INTERFACE.."
+
+     Ex: Clonable, Serializable......
+
+==> If our class implements predefined marker interface then JVM will treat our classes as special classes and JVM will provide special functionality.
+Example: 
+
+public interface Demo{
+
+  }
+
+public class test implements Demo{
+
+  }
+
+Note: We can create our own marker interfaces but there is no use because JVM don't know about our marker interfaces.
+
+
+==================================================================================================================================
+Note: In java 1.8, they introduced Functional interfaces.
+
+=> The interface which contains only one abstract method is called as Functional Interface.
+=> Functional interfaces are introduced to called "Lambda Expressions."
+
+
+
+==> One interface can't implements another interface.
+==> One interface can extend another interface.
+Ex: 
+ public interface Bank{
+public void checkBalance();
+ }
+public interface RbiBank extends Bank{
+
+public void applyLoan();
+}
+==> In interface, we can declare variables also, by default they are public static final.
+
+                                        ==============
+                                        ABSTRACT CLASS
+                                        ==============
+
+=> The class which contains both concrete method and abstract method is called as abstrat class.
+=> We will use " abstract " keyword to represent class as abstract class.
+=> To write abstract method " abstract " keyword is mandatory.
+=> We can write constructor in abstract class but we can not create object.
+=> Abstract class can have child class.
+=> When we extend properties from abstract class then it is mandatory to override all abstract methods of that class.
+=> Abstract class constructor will be executed  when we create object for child class.
+
+      Ex:  public abstract final void m1();//invalid
+
+=> We can not use "abstract" and "final" combination because it is illegal because abstract means override in child class where as "final " means don't override.
+                                              =======
+                                              Example: 
+                                              =======
+
+
+package BankProject;
+
+abstract class DieselMachine {
+
+	public DieselMachine() {
+		
+		System.out.println("DieselMachine Constructor..");
+	}
+
+	public void start() {
+		
+		 System.out.println("Machine starting......");
+        	}
+
+	public abstract void fillfuel();
+	
+    }
+	
+public class Machine extends DieselMachine{
+		
+		public Machine() {
+
+		System.out.println("Machine constructor...");
+		
+	    	}
+		
+		@Override
+			public void fillfuel() {
+			
+			System.out.println("Filling fuel tank.....");
+			
+			}
+	
+    public static void main(String[] args) {
+    	
+    	Machine m = new Machine();
+    	m.fillfuel();
+    	m.start();
+    
+    }	
+	
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+
