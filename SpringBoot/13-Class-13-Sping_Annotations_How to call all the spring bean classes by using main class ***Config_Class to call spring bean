@@ -1,0 +1,394 @@
+
+                                              ==================
+                                              SPRING ANNOTATIONS
+                                              ==================                                      
+
+
+Annotations==> represents metadata
+=> Annotations introduced in java 1.5v
+
+=> Annotations are alternate for xml configuration.
+=> In SpringFramework we have several annotations.
+
+1.@Configuration: To represent java class as Configuration class.
+2.@ComponentScan: To identify springBean classes available in the project based on "basePackageName".
+3.@Component: To represent java class in spring bean.
+4.@Service: To represent java class in spring bean.(Bussiness layer classes)
+5.@Repository: To represent java class in spring bean.(Persistance layer classes )
+6.@Scope: To represent bean scope 
+8.@Autowired: To perform dependency injection
+9.Qualifier: to perform autowiring based on byName.
+10.@Primary: To represent primary bean for autowiring.
+11.@Bean: To call the method which returns bean object.
+
+Program: 
+========
+in.shok.beans
+-------------
+car.java
+-------
+
+package in.shokit.beans;
+
+import org.springframework.stereotype.Component;
+
+@Component 
+public class Car {
+
+	
+	public Car() {
+
+		System.out.println("car :: Constructor...");
+	
+	}
+}
+--------------------------
+Motor.java
+----------
+package in.shokit.beans;
+
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
+
+@Component
+@Scope(value="prototype")
+public class Motor {
+
+	
+	public Motor() {
+
+	System.out.println("motor::Constructor..");
+	
+	}
+}
+
+Robot.java
+----------
+package in.shokit.beans;
+
+public class Robot {
+
+	
+	public Robot() {
+		
+			System.out.println("Robot:: Constructor...");
+
+}
+}
+
+UserDao.java
+------------
+package in.shokit.beans;
+
+import org.springframework.stereotype.Repository;
+
+
+//Dao class is nothing but Data Access Logic
+@Repository
+public class UserDao {
+
+	
+	
+	
+	public UserDao() {
+
+	System.out.println("userDao:: Constructor...");
+	}
+}
+
+UserService.java
+---------------
+
+package in.shokit.beans;
+
+import org.springframework.stereotype.Service;
+
+@Service
+public class UserService {
+
+	
+	public UserService() {
+  
+		System.out.println("UserService:: Constructor");
+	
+	}
+}
+
+
+in.shokit.config
+=================
+AppConfig.java
+--------------
+package in.shokit.config;
+
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
+
+import in.shokit.beans.Robot;
+
+@Configuration
+@ComponentScan(basePackages= {"in.shokit" , "in.ibm"})
+
+public class AppConfig {
+
+	
+	public AppConfig() {
+
+		System.out.println("AppConfig:: Constructor...");
+		}
+	
+	@Bean
+	public Robot buildRobot() {
+		
+		Robot r = new Robot();
+		return r;
+		
+	}
+}
+
+in.shokit.driver
+================
+MainApp.java
+------------
+
+package in.shokit.driver;
+
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+
+import in.shokit.beans.Motor;
+import in.shokit.config.AppConfig;
+
+public class MainApp {
+
+	
+	public static void main(String[] args) {
+		
+		
+		
+		ApplicationContext context = new AnnotationConfigApplicationContext(AppConfig.class);
+		
+		Motor m1= context.getBean(Motor.class);
+		System.out.println(m1.hashCode());
+		
+		Motor m2= context.getBean(Motor.class);
+		System.out.println(m2.hashCode());
+	
+	}
+}
+
+in.shokit.report
+=================
+
+ReportService.java
+------------------
+package in.shokit.report;
+
+import org.springframework.stereotype.Component;
+@Component
+public class ReportService {
+
+	
+	public ReportService() {
+
+		System.out.println("ReportService:: Constructor......");
+	}
+}
+
+in.shokit.util
+===============
+EmailUtil.java
+--------------
+
+package in.shokit.util;
+
+import org.springframework.stereotype.Component;
+
+@Component
+public class EmailUtil {
+
+	
+	public EmailUtil() {
+		
+			System.out.println("EmailUtil::Constructor...");
+	
+	}
+}
+
+in.ibm.com
+===========
+
+TriggerService.java
+-------------------
+package in.ibm.com;
+
+import org.springframework.stereotype.Component;
+
+@Component
+
+public class TriggerService {
+
+	
+	public TriggerService() {
+
+	System.out.println("TriggerService :: Constructor....");
+	
+	}
+}
+
+==============
+=============================================================================================================
+"Autowired" implementation
+----------------------------
+
+in.ashokit.service
+==================
+IReport.java
+------------
+package in.ashokit.service;
+
+
+public interface IReport {
+
+	public void generateReport();
+}
+
+ExcelReport.java
+================
+
+package in.ashokit.service;
+
+import org.springframework.stereotype.Component;
+
+@Component("excel")
+public class ExcelReport implements IReport {
+
+	
+	public void generateReport() {
+		
+		System.out.println("Excel report generated....");
+	}
+}
+
+PdfReport.java
+==============
+package in.ashokit.service;
+
+import org.springframework.context.annotation.Primary;
+import org.springframework.stereotype.Component;
+
+@Component("pdf")
+//@Primary
+public class pdfReport implements IReport {
+
+	public void generateReport() {
+		
+		
+		System.out.println("pdf report generated....");
+	}
+}
+
+in.ashokit.cfg
+==============
+AppConfig.java
+--------------
+package in.ashokit.cfg;
+
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
+
+@Configuration
+@ComponentScan(basePackages={"in.ashokit"})
+public class AppConfig {
+		
+}
+
+in.ashokit.report
+=================
+ReportService.java
+------------------
+package in.ashokit.report;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Service;
+
+import in.ashokit.service.IReport;
+
+
+@Service
+public class ReportService {
+
+
+	/*
+	 * @Autowired
+	 * 
+	 * @Qualifier("pdf") 
+	 * private IReport report;
+	 * 
+	 */
+	
+	
+	@Autowired
+	@Qualifier("pdf")
+	private IReport pdfreport;
+	
+	@Autowired
+	@Qualifier("excel")
+	private IReport Excelreport;
+
+	public void generate() {
+
+		System.out.println("Injected:: "+Excelreport.getClass().getName());
+		Excelreport.generateReport();
+	
+	}
+
+}
+
+
+in.ashokit.test
+===============
+Test.java
+---------
+
+package in.ashokit.test;
+
+import java.security.Provider.Service;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import in.ashokit.cfg.AppConfig;
+import in.ashokit.report.ReportService;
+
+public class Test {
+	
+	public static void main(String[] args) {
+		
+		ApplicationContext context = new AnnotationConfigApplicationContext(AppConfig.class);
+		
+		ReportService service= context.getBean(ReportService.class);
+		
+			service.generate();
+	
+	}
+
+}
+
+
+
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Need to be practice for all annotation 
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+
+
+
+
+
+
+
+
+
