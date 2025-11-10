@@ -1,0 +1,67 @@
+=> Spring boot is one approach to develop  Spring based application with less configurations.
+
+    Spring Boot = Spring Framework - XML configuration
+
+=> Spring boot is not the replacement for Spring Framework. Boot developed on top of Spring Framework.
+
+Note: All Spring framework concepts can be used  in Spring Boot also.
+
+=====================
+SPRING BOOT ADVANTAGE
+=====================
+
+1. less configuraiton and no xml configurations
+2. Pom staters
+    ex:   web-stater, jpa-stater, security-stater, mail-stater
+3. Auto configuration
+4.Embedded server(Ex: Tomcat, jetty, Netty )
+5.Actuators(Production Ready Features)
+
+=====================================================================================================================
+Spring boot makes it easy to create stand-alone , production -grade Spring based Application that you can "JUST RUN"
+=====================================================================================================================
+
+Spring Boot released in 2014.
+
+===> Java 17 is mandatory to work with spring Boot 3.x version.
+
+=======================================================================================
+SPRING BOOT APPLICATION CREATION
+=======================================================================================
+
+==> We can create boot application in 2 ways 
+
+  1. initializr website (start.spring.io)
+  2. Spring stater project in IDE
+
+2. Spring stater project in IDE
+-------------------------------
+
+Note: If we are trying to create boot application using IDE then internally IDE will communicate with initializer website to create the project.
+
+Note: Internet connection is mandatory for system to create Spring Boot application.
+
+Build Tool: Maven/ Gradel
+Language: Groovy/java/kotlin
+GroupId: It represents company name/Project name
+  Ex: in.ashokit
+  artifactId: It represents project name / module name
+
+  Ex: MyFirstApp/UserManagementApp/TicketBookingApp
+
+Version: 0.0.1-SNAPSHOT
+
+SNAPSHOT: Project under development
+
+RELEASE/FINAL-Project development completed
+
+packageName: It represents base package in the project
+
+Ex: in.ashokit.passport
+  
+
+
+
+
+
+
