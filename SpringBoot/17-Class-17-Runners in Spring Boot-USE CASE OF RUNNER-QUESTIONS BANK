@@ -1,0 +1,121 @@
+
+======================
+Runners in Spring Boot
+======================
+=> Runners are used to execute the logic only once when boot application got started.
+=> SpringApplication.run() method will call runners.
+=> In SpringBoot we have 2 types Runners.
+   1.ApplicationRunner
+   2.CommandLineRunner
+====================
+USE CASE OF RUNNER
+====================
+=> Loading data from db to cache memory.
+
+
+====================
+1.ApplicationRunner
+====================
+
+code:
+=====
+
+   package in.psa.runner;
+
+import org.springframework.boot.ApplicationArguments;
+import org.springframework.boot.ApplicationRunner;
+import org.springframework.stereotype.Component;
+
+@Component
+public class MyAppRunner implements ApplicationRunner {
+	
+	public void run(ApplicationArguments args )throws Exception{
+		
+		System.out.println("App runner :: run() method executed........");
+	}	
+}
+
+===================
+2.CommandLineRunner
+===================
+code:
+=====
+package in.psa.runner;
+
+import org.springframework.boot.CommandLineRunner;
+import org.springframework.stereotype.Component;
+
+@Component
+public class MyCmdRunner implements CommandLineRunner {
+	
+	public void run (String[] args) throws Exception{
+		
+		System.out.println("MyCmdRunner:: run() method executed...........");
+	}
+
+}
+
+
+
+
+
+======================================================================================================================
+                                                  QUESTIONS BANK
+=====================================================================================================================
+
+1. What is spring booot ?
+2.spring boot application creation process ?
+3.Advantage of spring boot?
+4.SpringBoot application folder structure 
+5. What is start class?
+6.what is @SpringBootApplication.
+7.What is Component Scanning.
+8.what is base package naming convension.
+9.what is springapplication.run().
+10.How IoC container will be created in spring boot.
+11.what is banner in spring boot.can we customize that ?
+12.what is runner in spring boot.
+13.what is application.perperties file in spring boot.
+14.what is dependency injection.
+15.what type of DI we can perform in spring boot.
+16.what is bean scope.
+17.what is autowiring.
+18.what are the modes are available for autowiring.
+19.what is bean lifecycle.
+20.how to represent java class spring bean.
+21. what is the difference between @Component and @Bean annotation.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
