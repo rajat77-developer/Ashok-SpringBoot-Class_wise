@@ -1,0 +1,97 @@
+Note: SpringApplication is a predefined class and it will identify what type of application we have created based on dependencies added in pom.xml file.
+
+1.if we add (Spring-boot-starter )-----------Standalone
+=> For standalone application, it will use "AnnotationConfigApplicationContext" class will be used to start IoC container.
+
+2. if we add-->(Spring-boot-web-starter) ----- web app
+=> For web application, it will use   "AnnotationConfigServletWebAppApplicationContext" class will be used to start IoC container.
+
+3.if we add-->(spring-boot-webflux-starter)   ------  reactive application
+  => For reactive application, It will use "AnnotationConfigReactiveWebServerApplication" class will be used to start IoC container.
+
+Note: Based on type of our application , It will start IOC container.
+
+=> run() method will print banner on the console.(i.e  spring logo).
+=> run() method will start IoC container.
+=> run() method will call runners.
+=> run () method will return context of IoC container.
+
+
+============================================================
+WHAT IS BANNER IN SPRING BOOT
+============================================================
+
+=> when we run boot application, it will print spring logo on the console that is called banner in spring boot.
+=> Spring boot having 3 modes for banner set.
+                
+                1.off
+                2.log
+                3.console(default)
+=> we can set banner mode using below property in "application.properties" file
+             spring.main.banner-mode=off
+
+=> We can customize banner text in spring boot application by using "banner.txt" file under src/main/resources folder.
+
+        url to generate ASCCI Text: https://patorjk.com/software/taag/#p=display&f=Doom&t=pankaj+sir+academy&x=none&v=4&h=4&w=80&we=false
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
