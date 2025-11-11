@@ -1,0 +1,86 @@
+SPRING BOOT APPLICATION FOLDER STRUCTURE
+========================================
+
+src/main/java              ---> To keep our project source code
+
+                            - Application.java: it is class start of the springboot.(main class)
+                            
+src/main/resource          ---> To keep project configuration files
+
+                                  -application.properties/yml
+
+src/test/java             ----> To keep junit codes (unit testing )
+
+                                      -ApplicationTest.java
+
+src/test/resource           ----> Unit testing related config file goes here 
+Maven dependencies          ---> Downloaded jars will be available here
+pom.xml                     ---> maven configuration file(Dependecies )
+
+
+  
+
+
+                                =======================================
+                                        SPRING BOOT START CLASS
+                                =======================================
+
+package in.ashokit;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+
+//"ctrl+t" to see the @SpringBootApplication details  
+
+public class Application {
+
+	public static void main(String[] args) {
+		SpringApplication.run(Application.class, args);
+	}
+
+}
+-----------------------------------------------------------------------------------------------
+
+=> It is the entry point for boot application execution .
+
+=>@SpringBootApplication annotation is equals to below 3 annotations
+                  1.@SpringBootConfiguration
+                  2.@EnableAutoConfiguration
+                  3.@ComponentScan
+
+=> Spring Boot start class will act as Configuration class because of @SpringBootConfiguration annotation.
+=> In Spring boot application auto configuration feature will be available because of @EnableAutoConfiguration annotation.
+=> Component Scan will be performed in spring boot because of @ComponentScan annotation.
+
+
+
+Note: Package naming convention will play important role in component scanning.
+
+
+            basePackage: in.ashokit
+                          in.ashokit.service --> will be scanned
+                          in.ashokit.dto     --> will be scanned
+                          com.ashokit.util   --> will not be scanned 
+
+
+=======================================
+What is SpringApplication.run() method
+=======================================
+
+
+=>  Spring boot start class main() method will call SpringApplication.run() method.
+=>  SpringApplication.run() is the entry point for boot application execution. This run() method will return reference of IOC.
+
+
+
+
+
+
+
+
+
+
+
+
