@@ -1,0 +1,220 @@
+=====================================
+ 1. public String toString() method :   
+======================================
+=> It is used to represent Object in String format.
+=> When we call toString() or when we print any object by default it will call Object class toString() method.
+
+Object class toString() implementation method
+=============================================
+
+public String toString(){
+
+return this.getClass().getName() + " @ " + Interger.toHexString(this.hashCode());
+}
+
+
+Output: Student@15db9742
+
+-> If you don't want this implementation then we can override toString() method in our class.
+
+=============================================================================================
+Example
+-------
+
+package in.psa.dev;
+public class Student {
+	
+	int id;
+	String name;
+	
+	public static void main(String[] args) {
+		
+		Student s = new Student();
+		s.id=101;
+		s.name="sonu";
+		System.out.println(s.toString());
+	}
+	
+	public String toString() {
+		
+		return id+ " "+name;
+	}
+
+}
+=========================================================
+Note: String class is already override toString() method.
+==========================================================
+                                    
+
+                                   ===========================
+                                    2. int hashCode() method
+                                   ===========================
+
+=> When we create object for a class then JVM will assign one unique hashcode for every object.
+=> Using hashCode() method we can get hashCode of the object.
+=> If we don't want to execute Object class hashCode() method then we can override hashCode() method in our class.
+
+========
+Example
+========
+
+package in.psa.dev;
+
+public class Student {
+	
+	int id;
+	String name;
+	
+	public static void main(String[] args) {
+		
+		Student s = new Student();
+		s.id=101;
+		s.name="sonu";
+		System.out.println(s.hashCode());
+		
+		String s1 = new String("hi");
+		System.out.println(s1);
+	}
+	
+	public int hashCode() {
+		return id;
+	}
+}
+
+
+                            =========================================================
+                                  3. boolean equals(Object obj ) method
+                            =========================================================
+
+=> equals() method is used to compare one object with another object and returns boolean value.
+
+Note: Object class equals() method will compare address of the object not content.
+
+
+
+package in.psa.dev;
+
+import java.util.Objects;
+
+public class Student {
+	
+	int id;
+	String name;
+	
+	
+	public Student(int id, String name) {
+
+	this.id=id;
+	this.name=name;
+	
+	}
+	
+	public static void main(String[] args) {
+		
+		
+		Student s = new Student(101, "john");
+		Student s1 = new Student(101, "john");
+		
+		System.out.println(s.equals(s1));//this is comparing the address
+		System.out.println(s1 == s);//this is comparing the address
+		
+		
+		String s2 = new String("sonu");
+		String s3 = new String("sonu");
+		
+		System.out.println(s2.equals(s3)); // this is comparing the value
+	
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(id, name);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Student other = (Student) obj;
+		return id == other.id && Objects.equals(name, other.name);
+	}
+	
+
+}
+
+
+Note: In String class equals () method overriden to compare content of objects thats why in above program for String 
+       we are getting "true " as a output. For student class it is checking address hence we are getting "false" as output.
+
+
+=>  If we want to comapre cotnent of our student objects then we need to override below.
+
+
+package in.psa.dev;
+import java.util.Objects;
+
+public class Student {
+	
+	int id;
+	String name;
+	
+	
+	public Student(int id, String name) {
+
+	this.id=id;
+	this.name=name;
+	
+	}
+	
+	public static void main(String[] args) {
+		
+		
+		Student s = new Student(101, "john");
+		Student s1 = new Student(101, "john");
+		
+		System.out.println(s.equals(s1));//this is comparing the address
+		System.out.println(s1 == s);//this is comparing the address
+		
+		
+		String s2 = new String("sonu");
+		String s3 = new String("sonu");
+		
+		System.out.println(s2.equals(s3)); // this is comparing the value
+	
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(id, name);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Student other = (Student) obj;
+		return id == other.id && Objects.equals(name, other.name);
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
