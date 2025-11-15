@@ -1,0 +1,149 @@
+
+
+==========================================================================
+Q. what is static control flow and instance control flow in java program ?
+==========================================================================
+
+
+======================================
+static control flow
+=====================================
+=> When class is loaded into jvm then static control flow will start 
+When we run java program JVM will check for below static members and jvm will allocate memory for them.
+        1.static variable
+        2.static method
+        3.static blocks
+
+Once memory allocation completed for static members then it will start execution in below order
+        
+        1.static block
+        2.static method
+        3.static variable
+=> static variables can be accessed directly in static blocks and static methods.
+Note: If we want to access any instance method or instance variable in static area then we should create object and using that
+      object only we can access.we can't access directly without object.
+
+===========================================
+Instance control flow
+==========================================
+=> Instance means object.
+=>Instance control flow will begin when object is created.
+=>When object is created memory will be allocated for instance variables, instance methods and instance blocks .
+=> Once memory allocation completed then execution will happen in below order
+
+a. instance block 
+b. constructor 
+c.instance method (if we call)--only main method will execute autometically by jvm.
+
+Note: static members can be access directly  in instance areas because  for static members memory already allocated at the time of class loading. 
+
+
+===================================================================================================================================================
+
+
+=> To create interface we will use "interface" keyword.
+=> To create abstract class we will use "abstract" keyword.
+
+=> interface contains abstract methods.
+=> Abstract classes can contain both Abstract methods and concrete methods.
+
+
+=> Interface can not have constructor.
+=> Abstract class can have constructor.
+
+=> We can not create object for interface.
+=> We can not create object for Abstract class.
+
+=> One interface can not implement another interface.
+=> One interface can extend another interface.
+
+
+=> when we implement any interface then we have to implement all the abstract methods of that interface.
+=> When we extend abstract class , we need to override all the abstract methods.
+
+=> Abstract class constructor will be executed when we create object for sub class.
+
+=> If interface contains only one method then it is called as FUNCTIONAL INTERFACE.
+=>If interface does not have any method then it is called as MARKER INTERFACE.
+
+=> When we don't know implementation for methods then we will go for interface.
+=> When we know partial implementation for methods then we will go for abstract class.
+
+=============================================================================================
+                                          BLOCKS IN JAVA
+=============================================================================================
+=> Block means some part or some piece of information or some piece of code.
+=> In java program, we can write 2 types of blocks
+                                
+                                1.instance block
+                                2.static block
+
+===============
+instance block
+===============
+
+=> If you want to execute some piece of code when object is created then we will go for instance block.
+=> Instance block will be executed before constructor execution.
+syntax: 
+                  
+                  {
+                  
+                  //logic
+                  
+                  }
+==================
+Static Block
+==================
+=> If you want to execute some piece of code when class is loaded into jvm then we go for static block
+=> Static block will execute before main() method execution.
+syntax:
+
+        static {
+        
+           //logic
+        
+           }
+
+
+
+
+                                                ====================================
+                                                      java.lang.Object.class
+                                                ====================================
+
+
+=> Object is a predefined class available in java.lang package.
+=> Object class will act as super class for all the classes in java either directly or in-directly.
+
+Note: If our class does not have any super class then Object class will become direct Super class.
+      If our class having any super class then Object class will become in direct super class.
+=> Object class having 11 methods, those methods are by default available for every java project.
+
+                          1. protected object clone()
+                          2.boolean equals(Object obj)
+                          3.protected void finalize()
+                          4.Class<?>getClass()
+                          5.int hashCode()
+                          6.String toString()
+                          7.notify()
+                          8.notifyAll()
+                          9.void wait()
+                          10.void wait(long timeout )
+                          11.void wait(long timeout, int nanos)
+
+Note: Last 5 methods will be used in Multi-Threading concept.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
