@@ -1,9 +1,30 @@
-=====================================
- 1. public String toString() method :   
-======================================
+=================
+INTERVIEW QUESTION
+===================
+
+In how many ways we can create Object for a class ? 
+
+		Ans.    1.using NEW operator
+		        2. using newInstance() method
+			    3.using clone() method
+===================================================
+Q. Difference between overloading and overriding ? 
+===================================================
+
+writing the same method with the different parameters in the same class is called overloading.
+writing the same method in the super class and in the sub class is called overriding.
+
+
+
+
+										=====================================
+										 1. public String toString() method :   
+										======================================
+
 => It is used to represent Object in String format.
 => When we call toString() or when we print any object by default it will call Object class toString() method.
 
+--------------------------------------------
 Object class toString() implementation method
 =============================================
 
@@ -41,6 +62,11 @@ public class Student {
 	}
 
 }
+
+
+=> We will override toString () method to print content of object.
+   Note: String class is already overriding toString() method.
+
 =========================================================
 Note: String class is already override toString() method.
 ==========================================================
@@ -87,15 +113,13 @@ public class Student {
                             =========================================================
 
 => equals() method is used to compare one object with another object and returns boolean value.
+   If objects are same then it will return true otherwise it will return false value.
 
 Note: Object class equals() method will compare address of the object not content.
 
 
-
 package in.psa.dev;
-
 import java.util.Objects;
-
 public class Student {
 	
 	int id;
@@ -204,6 +228,134 @@ public class Student {
 		return id == other.id && Objects.equals(name, other.name);
 	}
 }
+								
+								=======================
+								Class getClass() method
+								=======================
+
+=> This method is used to get Runtime instance of class.
+
+
+
+package in.psa.dev;
+
+import java.lang.reflect.Method;
+
+public class Student {
+
+	public static void main(String[] args) throws Exception {
+		
+		
+		Student s = new Student();//obj creation
+		Class cls= s.getClass();
+	  
+		 System.out.println(cls.getName());
+		 System.out.println(s.getClass().getName());//this is called method chaining
+		 
+		 
+		 //another approach to create a object 
+		 
+		 Object object = cls.newInstance();//2nd approach to create object 
+		 System.out.println(object);	 
+	}
+
+}
+												
+												=============================
+												    4.clone() method
+												=============================
+
+=> This method is used to create duplicate object for the given object.
+=>If we want to clone any object then that class should implement Cloneable interface which is marker interface.
+=> If your class implements Cloneable interface then only JVM will allow you to clone the object.
+
+
+package students;
+
+
+
+
+public class Student1 implements Cloneable{
+	
+	public static void main(String[] args) throws Exception {
+		
+		
+		Student1 s = new Student1();
+		System.out.println(s);
+		
+		Object clone = s.clone();//cloning (another approch to create obj for a class )
+		System.out.println(clone);
+	}
+
+}
+
+
+
+
+OutPut: 	students.Student1@65b3120a
+            students.Student1@6f539caf
+
+
+
+
+
+=================
+FINALIZE() METHOD
+=================
+
+
+When garbage collector removing any object from JVM then it will call finalize() method.
+Note: Garbage Collector is used to remove un-used object/  un-referenced objects from JVM heap area.
+
+
+
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+class --> This is a keyword to create class in java.
+Class --> This is predefiend class available in java.lang package
+
+Note: newInstance() method available in Class it is used to create obj for a class.
+
+Object --> This is also predefined class available in java.lang package .
+           Default parent for all java classes. 
+           It contains 11 methods. Every java class can access Object class methods by default.
+
+
+====================================
+overview for what we cover till now
+=====================================
+
+1.procedural oriented language(PoP)
+2.Object Oriented Programming Language(OOP)
+3.Classes
+4.Objects
+5.Variablels(Instance, static, local)
+6.Methods(Parameters and return types)
+7.Instance methods and static methods
+8.Constructors (default, 0-param constructor, parameterized constructor)
+9.Constructor overloading
+10. this keyword
+11. access modifier(public, private, default and protected )
+12.Encapsulations
+13. Setters and getters method
+14.Inheritance
+15.inheritance types
+16.Method Execution Order w.r.t Inheritance
+17.Polymorphism
+18.Method overloading
+19.Method overriding
+20.Concrete method and abstract methods
+21.Abstraction
+22.Interfaces
+23.Marker Interface
+24.Abstract classes
+25.Blocks
+26.Static control flow
+27.Instance control flow
+29.Object class methods(11 methods )
+30. final keyword
 
 
 
