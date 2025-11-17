@@ -1,8 +1,27 @@
+==========================================================
 Q. which dependency injection is better (SI / CI /FI ) ?
+===========================================================
+
+FI --> violate the oop principal because of reflection API.
+SI --> We will expect a null pointer exception
+CI --> This is recommended 
+
+============================================
+Q. @Component vs @Service vs @Repository ?
+===========================================
+
+@Component — for general-purpose beans that don’t fit Service/Repository/Controller (utilities, helpers, configuration beans not created with @Bean).
+If none of the other stereotypes fit, use @Component
+
+@Service — for classes that implement business logic, orchestration between DAOs and controllers, transactions at service level.
+Use it for core domain behavior.
+
+@Repository — for classes that directly talk to the database (JPA repositories, DAOs, JDBC).
+Use it when your class encapsulates persistence code. Spring can apply exception translation here.
 
 
 
-
+--------------------------------------------------
 Perform a simple task and practice on @Autowired
 ---------------------------------------------------
 
