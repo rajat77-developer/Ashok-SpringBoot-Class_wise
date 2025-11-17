@@ -1,0 +1,382 @@
+Q. which dependency injection is better (SI / CI /FI ) ?
+
+
+
+
+Perform a simple task and practice on @Autowired
+---------------------------------------------------
+
+
+Application.java
+----------------
+package com.example;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ConfigurableApplicationContext;
+import com.example.service.ReportService;
+
+@SpringBootApplication
+public class Application {
+
+	public static void main(String[] args) {
+		ConfigurableApplicationContext context = SpringApplication.run(Application.class, args);
+	
+	ReportService reportService = context.getBean(ReportService.class);
+		reportService.printName(101);
+	
+	}
+
+
+ReportService.java
+------------------
+
+package com.example.service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import com.example.dao.ReportDao;
+
+@Service
+public class ReportService {
+
+	private ReportDao reportDao;
+		
+ //we will do setter injection.
+	
+	public ReportService() {
+
+		System.out.println("0-param constructor is called ");
+	
+	}
+	  @Autowired 
+	  public void setReportDao(ReportDao reportDao) {
+	  
+		  System.out.println("setReportDao() method called");
+	  this.reportDao=reportDao; }
+	 
+    public void printName(Integer userId) {
+		
+		String nameById = reportDao.getNameById(userId);
+		System.out.println(nameById);
+	}
+}
+
+
+ReportDao.java
+--------------
+
+package com.example.dao;
+
+import org.springframework.stereotype.Repository;
+
+//DAO means the class which contains the database implementation.
+
+@Repository
+public class ReportDao {
+	
+	public String getNameById(Integer userId) {
+		
+		if(userId == 100) {
+		
+			return "John";
+		
+		}else if(userId == 101){
+			
+			return "smith";
+		
+		}else {
+			
+			return "Name Not Found";
+   		    }
+       }
+    }
+  }
+===============================================================================================================
+                      Now we will do the same by using Constructor based Injection
+===============================================================================================================
+Application.java
+----------------
+
+package com.example;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ConfigurableApplicationContext;
+
+import com.example.service.ReportService;
+
+@SpringBootApplication
+public class Application {
+
+	public static void main(String[] args) {
+		ConfigurableApplicationContext context = SpringApplication.run(Application.class, args);
+	
+	ReportService reportService = context.getBean(ReportService.class);
+	
+	reportService.printName(101);
+	
+	
+	
+	}
+
+}
+
+
+ReportService.java
+-----------------
+
+package com.example.service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.example.dao.ReportDao;
+
+@Service
+public class ReportService {
+
+	
+	private ReportDao reportDao;
+	
+	public ReportService() {
+
+		System.out.println("0-param constructor is called ");
+	
+	}
+	
+	@Autowired
+	public ReportService(ReportDao reportDao) {
+		
+		System.out.println("param constructor is called");
+		 	this.reportDao=reportDao;
+	}
+	
+	public void printName(Integer userId) {
+		
+		String nameById = reportDao.getNameById(userId);
+		System.out.println(nameById);
+	}
+}
+
+Note: here we have declared 2 constructor but param constructor will be called because we have annotate with @Autowired with param constructor 
+ReportDao.java
+---------------
+
+package com.example.dao;
+
+import org.springframework.stereotype.Repository;
+
+//DAO means the class which contains the database implementation.
+
+@Repository
+public class ReportDao {
+	
+	public String getNameById(Integer userId) {
+		
+		if(userId == 100) {
+		
+			return "John";
+		
+		}else if(userId == 101){
+			
+			return "smith";
+		
+		}else {
+			
+			return "Name Not Found";
+		}		
+	}
+
+}
+
+
+ReportService.java
+------------------
+
+package com.example.service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.example.dao.ReportDao;
+
+@Service
+public class ReportService {
+
+	
+	private ReportDao reportDao;
+	
+	public ReportService() {
+
+		System.out.println("0-param constructor is called ");
+	
+	}
+	
+	@Autowired
+	public ReportService(ReportDao reportDao) {
+		
+		System.out.println("param constructor is called");
+		 	this.reportDao=reportDao;
+	}
+	
+	public void printName(Integer userId) {
+		
+		String nameById = reportDao.getNameById(userId);
+		System.out.println(nameById);
+	}
+}
+
+ReportDao.java
+--------------
+package com.example.dao;
+
+import org.springframework.stereotype.Repository;
+
+//DAO means the class which contains the database implementation.
+
+@Repository
+public class ReportDao {
+	
+	public String getNameById(Integer userId) {
+		
+		if(userId == 100) {
+		
+			return "John";
+		
+		}else if(userId == 101){
+			
+			return "smith";
+		
+		}else {
+			
+			return "Name Not Found";
+		}
+		
+		
+	}
+
+}
+
+
+
+=====================================================================================================
+
+now lets do some experiment with service layer
+===============================================
+
+==============================================================
+if we do DI at variable level then it is called field injection.
+
+                  @Autowired
+                  	private ReportDao reportDao;
+  ==============================================================
+if we use multiple @Autowired , can we get error---> No
+example
+--------
+
+package com.example.service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.example.dao.ReportDao;
+
+@Service
+public class ReportService {
+
+	@Autowired
+	private ReportDao reportDao;
+	
+	public ReportService() {
+
+		System.out.println("0-param constructor is called ");
+	
+	}
+	
+	@Autowired
+	public ReportService(ReportDao reportDao) {
+		
+		System.out.println("param constructor is called");
+		 	this.reportDao=reportDao;
+	}
+	
+	@Autowired
+	public void setReportDao(ReportDao reportDao) {
+		
+		System.out.println("setter method called ........");
+		this.reportDao=reportDao;
+	}
+	
+	public void printName(Integer userId) {
+		
+		String nameById = reportDao.getNameById(userId);
+		System.out.println(nameById);
+	}
+}
+
+
+==================================================================================================================
+
+so most of the developer go with "FI" dependency injections.
+but it is  not recommended. Backend it is called reflection api which will violate the OOP principle.
+
+ReportService.java
+==================
+
+package com.example.service;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import com.example.dao.ReportDao;
+
+@Service
+public class ReportService {
+
+	@Autowired
+	private ReportDao reportDao;
+	
+	public void printName(Integer userId) {
+		
+		String nameById = reportDao.getNameById(userId);
+		System.out.println(nameById);
+	}
+}
+
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+RECOMMEDED APPROACH IS CONSTRUCTOR BASED INJECTION
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+ReportService.java
+-------------------
+
+package com.example.service;
+import org.springframework.stereotype.Service;
+import com.example.dao.ReportDao;
+
+@Service
+public class ReportService {
+
+
+	private ReportDao reportDao;
+		
+	public ReportService(ReportDao dao) {
+
+		System.out.println("param constructor ............Constructor injection is recommended ");
+		this.reportDao=dao;
+	
+	}
+	
+	public void printName(Integer userId) {
+		
+		String nameById = reportDao.getNameById(userId);
+		System.out.println(nameById);
+	}
+}
+
+
+
+
+
+
