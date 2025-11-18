@@ -196,9 +196,11 @@ Exception Hierarchy
 =====================
 => In this hierarchy, Throwble is the root class
 
-   Throwble 
-    - Exception
-	- Error
+  1. Throwble 
+     1.1 Exception
+		1.1.1 -> Checked Exception
+		1.1.2 -> Un-checked Exception
+	 1.2 Error
 
 Q.Difference beween Exception and Error ?
 =========================================
@@ -210,10 +212,10 @@ Exception Types
 
 Exceptions are devided into 2 types
 
-1.Checked Exception : Will be identified at compile time.
+1.Checked Exception : Will be identified at compile time.(occures at run time)
 	Ex: IOException, FileNotFoundException, SQLException etc...
 
-2.Un-checked Exception : Will occure at run time.
+2.Un-checked Exception : Will occure at run time.(compiler can not identify these exception)
    Ex: NullPointerException, ArithmethicException etc........
 
 
