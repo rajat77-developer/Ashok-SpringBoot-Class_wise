@@ -1,0 +1,131 @@
+                                          ==============
+                                          super Keyword
+                                          ==============
+
+=>super keyword is used to access parent class properties (variable/method/constructor)
+=>It is used to access direct parent properties.
+
+========
+Example:
+========
+package strpool;
+
+class Parent {
+
+	void m1() {
+		
+		System.out.println("parent() method is called ");
+	}
+}
+
+public class Child extends Parent{
+	
+	void m1() {
+		
+		super.m1();
+		System.out.println("child() method is called ");
+	}
+	
+   public static void main(String[] args) {
+	
+	   Child c = new Child();
+	   c.m1();
+	   
+     }
+
+}
+                                                        
+                                                        ============
+                                                          package
+                                                        ============
+
+=> Packages are used to group the classes and interfaces.
+
+=> In java languages, so many classes, interfaces, exceptions, errors are already available
+
+   Ex: String, StringBuffer, StringBuilder , Arrays, BufferedReader, Scanner etc....
+
+=> Sun people devided predefinded classes, interfaces, exceptions into several packages.
+                      1. java.lang
+                      2.java.io
+                      3.java.util
+                      4.java.sql
+
+=> java.lang package  is default package and it is available for all java classes by default.
+=> if we want to use any predefined class which is not part of java.lang package then we have to import that package using "import" keyword.
+
+          //Example of predefined package import
+          package strpool;
+          import java.io.BufferedReader;
+          import java.io.InputStreamReader;
+          
+          public class Demo {
+          
+          	public static void main(String[] args) {
+          		
+          		InputStreamReader isr = new InputStreamReader(System.in);
+          		BufferedReader br = new BufferedReader(isr);
+          	}
+          }
+
+                                    ==================================
+                                        user defined package 
+                                    ==================================
+
+=> In our package , we will create our own packages to organize project related classes and interfaces.
+=> To create a package we will use "package " keyword
+=> In java class, package statement should be in first line and class should have only one package statement.
+
+Ex: 
+
+package com.tcs.aadhar
+
+sample package naming convension : --> company-name.project-name.module-name
+
+                    com.ibm.irctc.admin
+                          AdminLogin.java
+                          AdminServer.java
+                    com.ibm.irctc.user
+                          UserLogin.java
+                          UserService.java
+                    com.ibm.irctc.reports
+                          ReportService.java
+
+
+=> In project we can create 2 classes with same project with 2 diffrent packages.
+
+Note: 
+  1. In class, package statement should be in first line (top).
+  2. After package statement we can write multiple imports.
+  3. import java.io.* (it means all classes , interface, exceptions of io package will be imported )--> not recommended
+  4.If 2 classes are in same package then import not required.
+
+
+
+                                  ==========================
+                                    Exception Handling
+                                  ==========================
+
+
+                              -> What is exception
+                              -> Why to handle exception
+                              -> Type of exception
+                              -> Exception vs error
+                              -> Exception Hierarcy
+                              -> Checked Exception
+                              -> Un-Checked Excception
+                              -> Exception Handling Keyword
+
+
+
+
+
+
+
+
+
+
+
+
+
+
