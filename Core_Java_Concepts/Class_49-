@@ -1,0 +1,49 @@
+                                    ====================================================================
+                                                          Exception Handling
+                                    ====================================================================
+
+-> Java provied 5 keywords to handle exceptions
+
+                                        1.try
+                                        2.catch
+                                        3.finally
+                                        4.throws
+                                        5.throw
+
+=====
+try 
+=====
+-> It is used to keep risky code
+syntax: 
+           try {
+                 //stmt
+                  }
+
+
+Note :  we can not write only try block
+
+try-catch----> valid combiantion
+try-finally---> vaild combiantion
+try-catch-finally--> valid combination
+only try block --> invalid
+
+=======
+catch
+=======
+
+=> catch block is used to catch the exception which occured in try block.
+=> To write catch block , try block is mandatory.
+
+syntax:  
+                        try {
+                              //logic
+                        }catch(Exception e){
+                       //logic to catch exception info
+                        }
+Note: If exception occured in try block then only catch block will execute otherwise catch block will not execute 
+
+
+
+
+
+
