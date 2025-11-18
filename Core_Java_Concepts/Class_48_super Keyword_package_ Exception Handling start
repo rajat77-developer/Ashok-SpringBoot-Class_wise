@@ -107,14 +107,163 @@ Note:
                                   ==========================
 
 
-                              -> What is exception
-                              -> Why to handle exception
-                              -> Type of exception
-                              -> Exception vs error
-                              -> Exception Hierarcy
-                              -> Checked Exception
-                              -> Un-Checked Excception
-                              -> Exception Handling Keyword
+			                              -> What is exception
+			                              -> Why to handle exception
+			                              -> Type of exception
+			                              -> Exception vs error
+			                              -> Exception Hierarcy
+			                              -> Checked Exception
+			                              -> Un-Checked Excception
+			                              -> Exception Handling Keyword
+			
+															1.try
+															2.catch
+															3.finally
+															4.throw
+															5.throws
+			
+											-> try with Resources (java 1.7 v feature)
+											-> User defined Exceptions
+
+
+Graceful/Successful termination : Termination after executing program successfully.
+========================================================================
+
+package in.psa.userDemo;
+
+public class Demo {
+  public static void main(String[] args) {
+		
+		System.out.println("main () method started...");
+		
+		System.out.println("welcome to java......");
+		
+		System.out.println("main() method ended....... This is called graceful termination");
+	}
+}
+
+Abnormal Termination: termination in the millde of program execution
+====================================================================
+
+package in.psa.userDemo;
+
+public class Demo {
+
+	
+	public static void main(String[] args) {
+		
+		
+		System.out.println("main () method started...");
+		
+		int x =10 /0 ; //this is the culprit
+		
+		System.out.println("welcome to java......");
+		
+		System.out.println("main() method ended....... This is called graceful termination");
+	}
+}
+
+
+Error: 
+
+     main () method started...
+    Exception in thread "main" java.lang.ArithmeticException: / by zero
+	at ExceptionHandling/in.psa.userDemo.Demo.main(Demo.java:11)
+
+===============================================
+				What is Exception ?
+===============================================
+
+=> Un-expected and unwanted situation  in the program execution is called as Exception.
+=> Exception will disturb normal flow of the program execution.
+=> When Exception occured program will be terminated autometically.
+   
+   Note: As a programmer we are responsible for programs graceful termination.
+=> To achieve graceful termination we need to handle the exceptions occured while program execution. 
+=> The process of handling Exception is called as Exception Handling.
+=> The main aim of Exception Handling to achieve graceful termination of the program.
+
+===> In Java we have so many predefined exceptions.
+
+Ex: 
+		ArithematicException
+		NullPointerException
+		FileNotFoundException
+		SQLException 
+
+=====================
+Exception Hierarchy
+=====================
+=> In this hierarchy, Throwble is the root class
+
+   Throwble 
+    - Exception
+	- Error
+
+Q.Difference beween Exception and Error ?
+=========================================
+
+---> Exception can be handled but Error can not be handled.
+
+Exception Types
+===============
+
+Exceptions are devided into 2 types
+
+1.Checked Exception : Will be identified at compile time.
+	Ex: IOException, FileNotFoundException, SQLException etc...
+
+2.Un-checked Exception : Will occure at run time.
+   Ex: NullPointerException, ArithmethicException etc........
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
