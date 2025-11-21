@@ -4,7 +4,9 @@
 
 Q. What is the difference between final, finalize(), finally() ?
 
-
+final: --> it is a keyword which is used to declare final variables, final methods and final classes.
+finalize() : ---> it is predefined method available in object class, and it will be called by garbage collector before removing unsed objects from heap memory.
+finally(): ---> it is a block we will use to execute some clean activities in exception handling.
 
 
 -> Java provied 5 keywords to handle exceptions
@@ -200,6 +202,7 @@ catch-finally--> invalid combination
         	}
         
         }
+
 
 
 
