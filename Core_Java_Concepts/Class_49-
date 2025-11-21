@@ -2,6 +2,11 @@
                                                           Exception Handling
                                     ====================================================================
 
+Q. What is the difference between final, finalize(), finally() ?
+
+
+
+
 -> Java provied 5 keywords to handle exceptions
 
                                         1.try
@@ -20,7 +25,7 @@ syntax:
                   }
 
 
-Note :  we can not write only try block
+Note :  we can not write only try block. try block required catch or finally(it can have both also).
 
 try-catch----> valid combiantion
 try-finally---> vaild combiantion
@@ -41,6 +46,164 @@ syntax:
                        //logic to catch exception info
                         }
 Note: If exception occured in try block then only catch block will execute otherwise catch block will not execute 
+
+Example: 
+
+package in.psa.userDemo;
+
+public class Demo {
+
+	
+	public static void main(String[] args) {
+		
+		
+		System.out.println("main () method started...");
+		
+		
+		try{
+		
+			System.out.println("try block start....");
+			
+			int x =10 /0 ;
+			
+			String s = null;
+		    s.length();
+		    
+		    System.out.println("try block end....");
+		
+		} catch(NullPointerException e) {
+			System.out.println("in catch block..");
+			e.printStackTrace();
+			
+		} catch (ArithmeticException e) {
+			
+			System.out.println("in catch block...");
+			e.printStackTrace();
+		}
+		
+		System.out.println("welcome to java......");
+		
+		System.out.println("main() method ended....... This is called graceful termination");
+	}
+}
+
+
+Note: we can attach multiple catch {} block with a single try {} and order should be child to parent. But this is not a recommended approach.
+       let's do recommended approach--->
+
+package in.psa.userDemo;
+
+public class Demo {
+
+	
+	public static void main(String[] args) {
+		
+		
+		System.out.println("main () method started...");
+		
+		
+		try{
+		
+			System.out.println("try block start....");
+			
+			int x =10 /0 ;
+			
+			String s = null;
+		    s.length();
+		    
+		    System.out.println("try block end....");
+		
+		} catch(Exception e) {
+			System.out.println("in catch block..");
+			e.printStackTrace();
+			
+		} 
+		
+		System.out.println("welcome to java......");
+		
+		System.out.println("main() method ended....... This is called graceful termination");
+	}
+}
+
+
+====> In below scenario, our catch block will not execute because there is no exception in try block ---->
+
+package in.psa.userDemo;
+
+public class Demo {
+
+	
+	public static void main(String[] args) {
+		
+		System.out.println("main () method started...");
+		
+try{
+		
+			System.out.println("try block start....");
+			
+			String s ="hi";
+			int i= s.length();
+		    
+	   System.out.println("try block end....");
+		
+		} catch(Exception e) {
+			System.out.println("in catch block..");
+			e.printStackTrace();
+			
+		} 
+		
+		System.out.println("welcome to java......");
+		
+		System.out.println("main() method ended....... This is called graceful termination");
+	}
+}
+
+=======
+finally
+=======
+=> it is used to perform resource clean up activities.
+=> finally block will execute always(irrespective of the exception).
+try with finally----> valid combination
+try-catch-finally---> valid combination
+catch-finally--> invalid combination
+
+  ========
+: Example :
+  ========
+        
+        package in.psa.userDemo;
+        
+        public class ExceptionHandling {
+        	
+        	public static void main(String[] args) {
+        		
+        		System.out.println("main() method start....");
+        		
+        		try {
+        			
+        			System.out.println("try block start ...");
+        			int i = 10/ 0;
+        			System.out.println("try block end...");
+        			
+        		}catch(Exception e){
+        			
+        			System.out.println("catch block start....");
+        			e.printStackTrace();
+        			
+        			}finally {
+        				
+        				System.out.println("finally-block...");
+        			}
+        		
+        		System.out.println("main() method end...");		
+        		
+        	}
+        
+        }
+
+
+
+
 
 
 
