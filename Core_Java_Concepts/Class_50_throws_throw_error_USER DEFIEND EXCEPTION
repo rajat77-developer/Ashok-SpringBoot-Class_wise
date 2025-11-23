@@ -1,0 +1,235 @@
+                                                =========
+                                                throws
+                                                =========
+
+throws: it is used to hand over checked exceptions to caller method/ jvm.
+Note: we can ignored checked exceptions using " throws " keyword.
+
+Example: 
+
+            package in.psa.userDemo;
+            
+            import java.io.FileNotFoundException;
+            import java.io.FileReader;
+            
+            public class Demo3 {
+
+          //throws Exception --> this is called super class exception
+             
+public static void main(String[] args) throws Exception {
+            		
+            		
+            		FileReader fr = new FileReader("abc.txt");
+
+                Class.forName("");
+            	}
+            
+            }
+                                                
+                                                ==========
+                                                : throw :
+                                                ==========
+            
+
+
+throw: 
+
+-> It is used to throw exceptions programatically.
+-> throw keyword is used to create the exception.
+
+syntax: 
+
+   throw new Exception("msg");
+
+Example:
+========
+
+package in.psa.userDemo;
+
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+
+public class Demo3 {
+public String getName(int id) throws Exception {
+	
+	if(id == 100) {
+		
+		return("raju");
+	}else if ( id == 101) {
+		
+		return("sonu");
+	}else {
+		
+		throw new Exception("Invalid Id");
+	}
+}
+
+
+	
+	public static void main(String[] args) throws Exception {
+		
+					Demo3 d = new Demo3();
+					String name = d.getName(101);
+					System.out.println(name);
+					
+					String name2 = d.getName(200);
+					System.out.println(name2);
+					
+
+	}
+
+}
+
+
+
+OUTPUT:
+-------
+sonu
+
+Exception in thread "main" java.lang.Exception: Invalid Id
+	at ExceptionHandling/in.psa.userDemo.Demo3.getName(Demo3.java:17)
+	at ExceptionHandling/in.psa.userDemo.Demo3.main(Demo3.java:29)
+
+===========================================================
+
+Exception in thread "main" java.lang.Exception: Invalid Id
+	at ExceptionHandling/in.psa.userDemo.Demo3.getName(Demo3.java:17)
+	at ExceptionHandling/in.psa.userDemo.Demo3.main(Demo3.java:29)
+
+--> this is called exception stack trace.
+
+
+
+
+                                                ============
+                                                    ERROR
+                                                =============
+
+
+--> Below example called as StackOverflowError 
+
+Example: 
+
+
+package in.psa.userDemo;
+
+public class Demo4 {
+	
+	void m1() {
+		
+		m2();
+	}
+	
+	void m2() {
+		
+		m1();
+	}
+
+	
+	public static void main(String[] args) {
+		
+		System.out.println("main() method start ---->");
+		Demo4 d = new Demo4();
+		
+		d.m1();
+		
+		System.out.println("main() method end ::: STOP :::");
+	}
+	
+}
+
+
+
+
+Output:
+
+main() method start ---->
+Exception in thread "main" java.lang.StackOverflowError
+	at ExceptionHandling/in.psa.userDemo.Demo4.m2(Demo4.java:12)
+	at ExceptionHandling/in.psa.userDemo.Demo4.m1(Demo4.java:7)
+	at ExceptionHandling/in.psa.userDemo.Demo4.m2(Demo4.java:12)
+	at ExceptionHandling/in.psa.userDemo.Demo4.m1(Demo4.java:7)
+	at ExceptionHandling/in.psa.userDemo.Demo4.m2(Demo4.java:12)
+	at ExceptionHandling/i
+
+
+                                    
+                                    ======================
+                                    USER DEFIEND EXCEPTION
+                                    ======================
+
+-> In java language, we have several pre-defined exceptions.
+
+Ex:  IOException, FileNotfound Exception, ClassNotFound Exception, SQL Exception, Arithmetic Exception, ArrayNegativeSize Exception, NullPointerException, ClassCastException etc..
+
+--> Based on project requirement, sometimes we need to create our own exceptions those are called as User Defined Exceptions.
+
+ Ex: InvalidCredentialException, NoRecordFoundExceptions, NoDataFoundExceptions, InvalidInputExceptions,
+
+---> To create our own exception we need to extend the properties from Exception / RuntimeException class.
+
+
+Example: 
+
+
+First we need to create one "NoDataFoundException" class in my package , this exception is called USER DEFINED EXCEPTON
+
+
+NoDataFoundException.java
+==========================
+
+package in.psa.userDemo;
+
+public class NoDataFoundException extends RuntimeException{
+	
+	public NoDataFoundException() {
+
+	
+	}
+	public NoDataFoundException(String msg) {
+
+		
+		super(msg);
+	}	
+
+}
+===============================================================================
+Now we will call this in our programe
+
+Demo5.java
+===========
+
+package in.psa.userDemo;
+public class Demo5 {
+
+	
+	private String getName(int id) {
+		
+		if(id == 100) {
+			
+			return "sonu";
+		}else if (id == 101) {
+			
+			return "monu";
+		}else {
+			
+			throw new NoDataFoundException("Invalid Id");
+		}
+	}
+	
+	public static void main(String[] args) {
+		
+		Demo5 d = new Demo5();
+		String name = d.getName(200);
+		System.out.println(name);
+	}
+}
+
+
+OUTPUT:
+========
+
+Exception in thread "main" in.psa.userDemo.NoDataFoundException: Invalid Id
+	at ExceptionHandling/in.psa.userDemo.Demo5.getName(Demo5.java:17)
+	at ExceptionHandling/in.psa.userDemo.Demo5.main(Demo5.java:24)
+
