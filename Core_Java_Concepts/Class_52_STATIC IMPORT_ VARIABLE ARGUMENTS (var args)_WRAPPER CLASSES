@@ -1,0 +1,292 @@
+                                        STATIC IMPORT
+                                        =============
+
+
+
+---> This is  a normal program for import---->
+---> Drawback is , if we have 100 methods in Person, we have to write one by one using classname, to minimize the boiler plate code, we choose static import.
+- -> Static import is used to access static members directly without using class name.
+
+Person.java
+===========
+
+package com.ibm.aadhar;
+
+public class Person {
+	
+	public static void speak() {
+		
+		System.out.println("Hi, I am Rajat");
+	}
+	
+public static void m1() {
+		
+		System.out.println("Hi, I am m1() method");
+	}
+
+public static void m2() {
+	
+	System.out.println("Hi, I am m2() method");
+}
+
+}
+
+
+Demo.java
+==========
+
+package p1;
+import com.ibm.aadhar.Person;
+public class Demo {
+	
+	public static void main(String[] args) {
+		
+		Person.speak();
+		Person.m1();
+		Person.m2();
+	}
+
+}
+
+=================================================================================
+Exmaple the same program using STATIC IMPORT
+--------------------------------------------
+
+-----------
+Person.java
+-----------
+
+package com.ibm.aadhar;
+
+public class Person {
+	
+	public static void speak() {
+		
+		System.out.println("Hi, I am Rajat");
+	}
+	
+public static void m1() {
+		
+		System.out.println("Hi, I am m1() method");
+	}
+
+public static void m2() {
+	
+	System.out.println("Hi, I am m2() method");
+  }
+}
+
+---------
+Demo.java
+---------
+
+package p1;
+import static com.ibm.aadhar.Person.*;
+public class Demo {
+	
+	public static void main(String[] args) {
+		
+		speak();
+		m1();
+		m2();
+	}
+}
+                                        
+                                        =============================
+                                        VARIABLE ARGUMENTS (var args)
+                                        ==============================
+--> introduced in java 1.5
+--> when we don't know how many parameters to take for a method then we can use var-args.
+--> Variable argument should be the last argument of the method.
+--> A method should contain only one variable argument.
+
+                                    Syntax:  public int add(int... x){
+                                    
+                                    
+                                    }
+
+NOTE: (int... x) ---> these dots are called ellipses--> only 3 ellipse are allowed to declare variable argument.
+
+public void m1(String s, int... a)//valid
+public void m1(String s, boolean... b)//valid
+public void m1(int a, String... s)//valid
+public void m1(int... a)//valid
+public void m1(double.... d)//Invalid
+public void m1(int... a, int b)//Invalid
+public void m1(int i, int... j)//valid
+
+
+one example for normal method overloading
+-----------------------------------------
+
+variableArguments.java
+======================
+
+package com.ibm.aadhar;
+
+public class variableArguments {
+	
+	public int add(int a, int b) {
+		
+		return a+b;
+	}
+	
+
+	public int add(int a, int b, int c) {
+		
+		return a+b+c ;
+	}
+
+
+	public int add(int a, int b, int c, int d) {
+		
+		return a+b+c+d ;
+	}
+
+	public static void main(String[] args) {
+		
+		
+		variableArguments v = new variableArguments();
+		
+		int d = v.add(20, 30);
+		
+		System.out.println(d);
+	}	
+}
+
+
+
+By using variable arguments
+===========================
+
+Look how simple is the code ---->
+
+variableArguments.java
+========================
+
+package com.ibm.aadhar;
+
+public class variableArguments {
+	
+	public void add (int... a) {
+		
+		int sum = 0;
+		
+		for(int x : a) {
+			
+			sum = sum + x;
+		}
+		System.out.println(sum);
+		
+	}
+
+	public static void main(String[] args) {
+		
+		
+		variableArguments v = new variableArguments();
+		
+		v.add(20, 30);
+		v.add(10, 20, 30);
+		v.add(20, 50, 40, 60);
+		v.add(11, 22, 33, 44, 55, 66);
+		
+	}	
+	
+}
+
+                                                  
+                                                  ===============
+                                                  WRAPPER CLASSES 
+                                                  ===============
+--> Java is a object oriented programming language.
+--> In java we can represent everything in the form of object.
+--> To represent primitive types of data in object format java provided Wrapper classes.
+--> In every primitive type corresponding Wrapper class is available.
+--> All Wrapper classes are part of java.lang package
+
+primitive    Wrapper Class
+---------    -------------
+  byte  ------> Byte
+  short ------> Short
+  int   ------> Integer
+  long  ------> Long
+  float ------> Float
+  double -----> Double
+  char  ------> Character  
+  boolean ----> Boolean
+
+
+==============================
+What is boxing and un-boxing ?
+==============================
+
+--> The process of converting primitive data type into Wrapper Object is called as boxing. 
+--> The process of converting Wrapper class object to primitive data type is called as un-boxing.
+--> From java 1.5 , boxing and unboxing processe automated hence they are called as Auto Boxing and Auto UnBoxing.
+
+--------
+Example
+--------
+
+package com.ibm.aadhar;
+
+public class WrapperClassDemo {
+	
+	
+	public static void main(String[] args) {
+			
+		byte b = 20;
+		System.out.println(b);
+		
+		
+		Byte b1 = new Byte(b);//Auto boxing
+		System.out.println(b1);
+		
+		byte b2 = b1;//Auto Un-Boxing
+		System.out.println(b2);
+		
+	}
+
+}
+
+
+=============================================
+Another example
+---------------
+
+package com.ibm.aadhar;
+
+public class WrapperClassDemo1 {
+	
+	
+	public static void main(String[] args) {
+		
+		int i = 10; //primitive data type
+		
+		Integer i1 = new Integer(i);//auto boxing
+		System.out.println(i1);//calls toSting() method
+		
+		
+		int j = i1;
+		System.out.println(j);
+		
+		Integer i2 = new Integer("20");
+		Integer i3 = new Integer("30");
+		
+		
+		Integer i4 = i2 + i3 ;
+		
+		System.out.println(i4);
+	}
+
+}
+
+
+
+
+
+
+
+
+
+
