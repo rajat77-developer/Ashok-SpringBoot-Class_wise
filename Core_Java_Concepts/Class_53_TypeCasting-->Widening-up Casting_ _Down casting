@@ -1,0 +1,162 @@
+                                            ================
+                                              Type Casting
+                                            ================
+
+-> Converting data from one data type to another data type is called Type Casting.
+-> Type Casting is devided into 2 types..
+
+1. Widening/ Up Casting
+2. Narrowing/ Down Casting
+
+-> The process of converting data from lower data type to higher data type is called as Widening/ Up Casting.
+-> As we are converting lower data type to higher data type there is no data lose.
+-> For widening no need to specify type casting explicitley. (JVM will take care of that ).
+            
+            byte b = 20;
+            int i = b;
+-> The process of converting data from higher data type to lower data type is called as Narrowing/ Down casting.
+-> As we are converting higher data type to lower data type there is a chance of data loss.
+-> For narrowing we need to specify type casting manually/ explicitley otherwise program can't be complied.
+
+========
+Example:
+========
+                  
+                  package com.ibm.aadhar;
+                  
+                  public class TypeCasting {
+                  
+                  	
+                  	public static void main(String[] args) {
+                  		
+                  		byte b = 20;
+                  		int i = b;  // widening / up casting
+                  		
+                  		
+                  		long num = 100;
+                  		int j = (int) num; // narrowing / down casting
+                  	}                                               
+}
+
+                                  ========================
+                                  WORKING WITH STRING TYPE (string to int )
+                                  ========================
+                  
+-> String type data can be converted to integer using Interger.parseInt(xx) method.
+-> parseInt() is a static method available in integer Wrapper class.
+
+Example: 
+
+
+
+package com.ibm.aadhar;
+
+public class TypeCastingString {
+	
+	public static void main(String[] args) {
+		
+		
+		String s1 = args[0];
+		String s2 = args[1];
+		
+		
+		int i = Integer.parseInt(s1);
+		int j = Integer.parseInt(s2);
+		
+		System.out.println(s1 + s2);
+		
+		System.out.println(i + j);
+		
+	}
+
+}
+
+
+
+
+
+
+=======================================================
+
+String s1 = "hi";
+int i = Integer.parseInt(s1);  //NumberFormatException
+
+
+
+========================================================
+                                          
+                                          ==========================
+                                          Working with int to string 
+                                          ==========================
+
+
+
+
+
+Example:
+========
+
+package com.ibm.aadhar;
+public class TypeCastingIntToString {
+	
+		public static void main(String[] args) {
+		
+		int i = 10;
+		int j = 20;
+		
+		String s1 = String.valueOf(i);
+		String s2 = String.valueOf(j);
+		
+		System.out.println(s1 + s2);
+	}
+
+}
+
+                                ==========================================
+                                Typcasting with respect to Reference types
+                                ==========================================
+
+
+--> parent class object can be converted to child class.
+
+
+
+
+
+package com.ibm.aadhar;
+
+public class TypeCastingParentToChild implements Cloneable {
+	
+	public static void main(String[] args) throws Exception {
+		
+		
+		//child object
+		TypeCastingParentToChild d = new TypeCastingParentToChild();
+		
+		// storing child object into parent class reference variable
+		Object obj = d;
+		
+		//cloning - getting parent object
+		Object object = d.clone();
+		
+		//storing parent object into child class reference variable
+		TypeCastingParentToChild d1 = (TypeCastingParentToChild)object;
+		
+	}
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
