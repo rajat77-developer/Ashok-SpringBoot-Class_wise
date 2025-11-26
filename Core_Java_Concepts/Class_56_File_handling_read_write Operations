@@ -1,0 +1,176 @@
+
+
+        ===========================================================================================
+                    WRITE  A PROGRAM TO FIND THE FILE AND DIRECTORIES IN A GIVEN PATH
+        ===========================================================================================
+
+-----> 
+
+package com.ibm.aadhar;
+import java.io.File;
+public class Test1 {
+
+	public static void main(String[] args) throws Exception {
+		
+		File f = new File("E:\\JAVA\\ASHOK IT");
+				
+		String[] list = f.list();
+	
+		for(String name : list) {
+			
+			File f1 = new File(f, name);
+		
+			if(f1.isFile()) {
+				
+				System.out.println("File: " + name);
+			
+			} else if (f1.isDirectory()) {
+			
+			System.out.println(" Directory :" +name);
+			
+			}
+		}	
+	}
+}
+
+                ===========================================================================================
+                          Write a java program to add data to a file using FileWriter class
+                ===========================================================================================
+
+
+package com.ibm.aadhar;
+
+import java.io.FileWriter;
+import java.io.IOException;
+
+public class FileOperationsWriteRead {
+	
+	public static void main(String[] args) throws Exception {
+		
+		FileWriter fw = new FileWriter("data.txt");
+	
+	
+			fw.write("Hi, good evening ");
+			fw.write("\n");
+			fw.write("How are you darling");
+			fw.write("\t");
+			
+			fw.write("Hope, everything is okay");
+			
+			fw.flush();//forcefully send the data to the file 
+			fw.close();//remove the link between java program and file 
+	
+	
+	}
+
+}
+
+
+
+
+
+===========================================================================================
+                 Java program to read the data from a file 
+===========================================================================================
+
+
+This is not a recommended approach but of lengthy process.--------->
+
+package com.ibm.aadhar;
+
+import java.io.FileReader;
+import java.io.IOException;
+
+public class FileOperationsWriteRead {
+	
+	public static void main(String[] args) throws Exception {
+		
+
+		FileReader fr = new FileReader("data.txt");
+		
+		int i = fr.read();
+		
+		while (i != -1) {
+			
+			System.out.print((char)i);
+			i = fr.read(); //read next character and re initialize i variable
+		}
+
+		fr.close();
+	
+	}
+
+}
+
+
+                                                        =============================
+                                                        : WE DO PREFER BELOW METHOD :
+                                                        =============================
+
+
+--> using BufferedReader we will achieve this task because this will read the data line by line .
+package com.ibm.aadhar;
+
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+
+public class FileOperationsWriteRead {
+	
+	public static void main(String[] args) throws Exception {
+		
+
+		FileReader fr = new FileReader("data.txt");
+		
+		BufferedReader br = new BufferedReader(fr);
+		
+		String line = br.readLine(); //reading first line data
+		
+		while(line != null) {
+		System.out.println(line);
+
+		line=br.readLine();//reading next line and re-initialing line variable.
+		
+		}
+  }
+
+}
+
+
+NOTE: FileReader will read the data character by character while BufferedReader will read the data Line by Line.
+
+Assignment: 
+
+1. Write a java program to find how many characters , how many words and how many lines of data available in the file.
+2. write a java program to read 2 files data and write 2 files content into 3rd file.
+3. Write a java program  to find names which are available in 2 files.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
