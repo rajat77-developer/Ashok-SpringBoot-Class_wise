@@ -20,6 +20,8 @@
 createNewFile(); --> It is used to create a new empty file.
 mkdir(); ---> It is used to create new empty directory.
 delete(); --> It is used to delete the file / directory based on given name.
+isFile(); ---> It is used to check weather it is a file or not.
+isDirectory(); ---> It is used to check weather it is a directory or not.
 
 Example: 
 ========
