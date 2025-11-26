@@ -1,0 +1,173 @@
+                                        ============================
+                                        :     File Handling        :
+                                        ============================
+
+-> Very important are in every programming language.
+-> Below are the common file operations in the project.
+
+1. Create a file
+2. Write the data to file 
+3. Read the data from file
+4. Delete the file
+
+--> To perform file operations java language provided one predefined class java.io.File
+--> java.io package contains set of classes and interfaces to perform input and output operations.
+
+                    File f = new File( String name );
+
+--> We have several methods in the file class.
+
+createNewFile(); --> It is used to create a new empty file.
+mkdir(); ---> It is used to create new empty directory.
+delete(); --> It is used to delete the file / directory based on given name.
+
+Example: 
+========
+
+package com.ibm.aadhar;
+
+import java.io.File;
+import java.io.IOException;
+
+public class test {
+	
+	public static void main(String[] args) throws Exception {
+		
+		File f = new File("abc.txt");
+		boolean fstatus = f.createNewFile();
+		System.out.println(fstatus);
+		
+		
+		File f1 = new File("sonu.txt");
+		boolean f1status = f1.createNewFile();
+		System.out.println(f1status);
+		
+		File f2 = new File("WorkSpaceByFileCreation");
+		boolean f2status = f2.mkdir( );
+		System.out.println(f2status);
+		
+		File f3 = new File("WorkSpaceByFileCreation", "siba");
+		boolean f3status = f3.createNewFile();
+		System.out.println(f3status);
+	}
+
+}
+
+
+
+==================================================================
+-> Java program to display all the files and folders in given path
+==================================================================
+package com.ibm.aadhar;
+
+import java.io.File;
+import java.io.IOException;
+
+public class test {
+	
+	public static void main(String[] args) throws Exception {
+		
+		//File f = new File("WorkSpaceByFileCreation");
+    File f = new File("D:\\Eclipis Workspace\\ExceptionHandling\\WorkSpaceByFileCreation");
+		String[] arr = f.list();
+		
+		for( String name : arr) {
+			
+			System.out.println(name);
+		} 
+	}
+
+}
+
+=============================================
+java program to delete a folder in given path
+=============================================
+package com.ibm.aadhar;
+
+import java.io.File;
+
+public class Test1 {
+
+	public static void main(String[] args) {
+		
+		
+		File f = new File("data");
+				
+		boolean status = f.delete();
+	
+		System.out.println(status);
+	
+	
+	}
+}
+
+                                    
+                                    ==================================================
+                                                  FILE OPERATIONS (O/I Streams)
+                                    ==================================================
+
+-> To perform operations on the file we need to use I/O streams.
+-> Using I/O streams we can establish link between java program and file(physical file).
+
+java program <---- write ----> file
+java program <---- read  ----> file
+
+
+I/O streams devided into 2 types.
+
+1. Byte Stream: To read/write Binary data (images, audios, videos, pdf etc)...
+2.Characters Stream: To read/write character data(text file).
+
+-> Byte stream is providing 2 types of classes.
+
+        1.InputStream related classes(Ex: FileInputStream )
+        2.OutputStream related classes(Ex: FileOutputStream )
+-> Character stream is also providing 2 types of classes.
+
+        1.Reader classes (Ex: FileReader )
+        2.Writer classes( Ex: FileWriter )
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
