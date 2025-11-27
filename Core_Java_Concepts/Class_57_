@@ -1,0 +1,88 @@
+                                                    ============
+                                                    PrintWriter
+                                                    ============
+
+System.out.println("hi");
+
+System   ---> It is a class in java.lang package
+out      ---> It is a static variable in System class. The data type of "out" variable is PrintWrite class.
+println()---> It is a method available in PrintWriter class.
+
+
+
+
+==============================================
+Writing data to file using PrintWriter class
+=============================================
+
+package com.ibm.aadhar;
+
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
+
+public class PrintWriterClassDemo {
+	
+	
+	
+	public static void main(String[] args) throws Exception {
+		
+		
+		PrintWriter fw = new PrintWriter("f1.txt");
+		fw.write("This is a PrintWriter appraoch to create a file");
+		fw.flush();
+		fw.close();
+		
+	}
+
+}
+
+
+OUTPUT:    this will create a file named "f1.txt" with the content "this ia a PrintWriter approach to create a file ".
+
+
+
+=========================
+Writing data to console
+=========================
+
+
+package com.ibm.aadhar;
+
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
+
+public class PrintWriterClassDemo {
+	
+	
+	
+	public static void main(String[] args) throws Exception {
+		
+		
+		PrintWriter fw = new PrintWriter(System.out);
+		fw.write("hi");
+		fw.write("hello");
+		
+		fw.flush();
+		fw.close();
+		
+	}
+
+}
+
+
+OUTPUT: hihello
+
+
+
+==========================================================================================================================
+
+                                    SERIALIZATION AND DE-SERIALIZATION
+
+==========================================================================================================================
+
+-> When store data in the object, that data will be available if our program is running. If our program got terminated then we will loose our objects and data available in the objects.
+-> If we don't want to loose the data even after program got terminated then we should go for Serialization.
+
+
+
+
