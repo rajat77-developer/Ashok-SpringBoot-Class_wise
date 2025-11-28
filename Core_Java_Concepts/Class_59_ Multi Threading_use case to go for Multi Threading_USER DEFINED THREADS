@@ -1,0 +1,130 @@
+                                    ===================================
+                                            Multi Threading
+                                    ===================================
+
+Task:  Work
+
+Single Tasking: Performing only one task at  a time is called single tasking.
+Ex: 
+    
+    1.Explain the topic 
+    2.Dictate the notes
+    3.Ask questins
+
+-> If we perform single tasking then it will take lot of time to complete all the work.
+
+
+Multi Tasking: Performing multiple tasks at a time is called multi tasking.
+
+1.Speaking and Writting
+2. Reading book and eating
+-> If we perform multi tasking   then we complete multiple works at a time.
+
+Multi Tasking can achieve in 2 ways.
+1.Process based multitasking
+
+    Ex: windows os 
+
+2.Thread based multi tasking 
+
+-> To execute our program logics paralelly then we need to go for Thread based Multi Tasking.
+-> Using Thread based Multi Tasking our program can complete the work quickly.
+-> To implement Thread based multi tasking we will use Multi Threading.
+-> Java supports multi threading.
+
+                    
+                    ==================================
+                    use case to go for Multi Threading
+                    ==================================
+
+1. Send sms to all customers at a time.
+2. Send email to all customers at a time.
+3.Generate and send bank statements to all customers in email.
+
+Note: The main aim of multi tasking is used execute our program logic paralelly so that we can complete more work in less time.
+-> For every java program execution, JVM will create one thread by default. That thread is called as "Main" thread.
+
+
+
+
+
+---------------------------------------
+program to see the current thread name:
+---------------------------------------
+
+
+package p1;
+public class Demo {
+	
+	public static void main(String[] args) {
+		
+		
+		Thread currentThread = Thread.currentThread();
+		System.out.println(currentThread.getName());
+	}
+
+}
+
+NOTE: Thread is a predefiend class available in java.lang package. In Thread class, we have a static method currentThread().
+
+
+                                    =================================
+                                        USER DEFINED THREADS
+                                    =================================
+
+->In java, we can create Threads in 2 ways.
+        1. By extending Thread class
+        
+        2. By implementing runnable interface
+---> Java program to create user defined thread using Thread class.
+
+
+package p1;
+
+public class Demo1 extends Thread {
+	
+	public void run() {
+		
+		System.out.println("my thread started....");
+		m1();
+		System.out.println("my thread completed .........");
+	}
+	
+	
+	public void m1() {
+		
+		
+		System.out.println("i am from m1() method ");
+	}
+	
+	
+	public static void main(String[] args) {
+		
+		Thread currentThread = Thread.currentThread();
+		String name = currentThread.getName();
+		
+		System.out.println("thread name is :" + name);
+		
+		
+		
+		Demo1 d = new Demo1();
+		
+		Thread t = new Thread(d);
+		
+		t.start();//--> internally it will call the run() method 
+		
+		
+		System.out.println(name + "thread completed ");
+		
+	}
+
+}
+
+
+
+
+
+
+
+
+
