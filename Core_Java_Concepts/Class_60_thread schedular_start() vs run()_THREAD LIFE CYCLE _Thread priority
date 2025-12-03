@@ -1,0 +1,293 @@
+
+
+package ThreadingDefaultClass;
+public class RunnableDemo implements Runnable {
+	
+	public void run() {		
+		System.out.println("Run() method is called");
+	}
+	
+	public static void main(String[] args) {
+		
+		RunnableDemo d = new RunnableDemo();
+		
+		Thread t = new Thread(d);
+		t.start();
+		
+	}
+
+}
+===================================================================================================================
+
+Q. What is a difference between extending Thread class and implementing Runnable interface , which is recommended ?
+
+Answer: 
+
+-> If we extend properties from Thread class we can't extend properties from any other class because java does not suppost 
+    multiple heritances.(We are closing gate for inheritance )
+-> If we implemet runnable interface then in future we can extend properties from any class based on requirement.(Our gate is open for inheritance ).
+
+============================
+What is thread schedular ? 
+============================
+
+--> It is a program in the JVM which is responsible to schedule Threads execution and resources allocation which are required for the thread execution.
+
+--> When we call start() method then Thread schedular will start its operation.
+        1.Allocating resources.
+        2.Thread scheduling.
+        3.Thread execution by calling run() method.
+
+=================
+start() vs run()
+=================
+
+--> To start thread execution we will call start() method
+   t.start();
+--> Once start () method is called then Thread schedular will come into picture to execute our thread.
+--> Start method will call run() method internally.
+--> inside run() method we will write logic which should be executed by the thread.
+
+===============================================================================================
+ Can we call the run() method directly without calling start() method ?
+===============================================================================================
+--> Yes, we can call run() method directly but it will execute like a normal method(there is no use) by "main" thread.
+--> If we want to execute run() method as a thread method then we should call start() method then internally it 
+    will call run() method. (Thread scheduler will take care of thread execution )......
+-->
+
+package ThreadingDefaultClass;
+
+public class ThreadNameDemo implements Runnable {
+	
+	public void run() {
+		
+		
+		System.out.println("run() method started.........");
+		Thread t = Thread.currentThread();
+		System.out.println(t.getName());
+		
+		System.out.println("run() method completed");
+	}
+	
+	
+	
+	public static void main(String[] args) {
+		
+		
+		ThreadNameDemo d = new ThreadNameDemo();
+		Thread t = new Thread(d);
+		t.start();
+	}
+
+}
+
+========================================================================================================
+                            WHAT IS THREAD LIFE CYCLE ?
+========================================================================================================
+
+Thread life cycle contains several phases of Thread execution.
+          1.New
+          2.Runnable 
+          3.Running
+          4.Blocked
+          5.Terminated
+
+New  : A thread begins its life cycle in the new state. Thread remains in the new state until we will start () method.
+Runnable : After calling start() method , thread comes from new state to runnable state.
+Running : A thread comes to running state when Thread schedular will pick up that thread for execution.
+waiting: A thread is in waiting state if it waits for another thread to complete the task.
+Terminated: A thread enters into terminated state once it completes its task.
+
+// java program by using sleep() method 
+
+
+package ThreadingDefaultClass;
+
+public class ThreadNameDemo implements Runnable {
+	
+	public void run() {
+		
+		
+		System.out.println("run() method started.........");
+		
+		try {
+			Thread.sleep(5000);//this will go to blocked state, 5000 milliseconds  means 5 seconds 
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		Thread t = Thread.currentThread();
+		System.out.println(t.getName());
+		
+		System.out.println("run() method completed");
+	}	
+	
+	public static void main(String[] args) {	
+		ThreadNameDemo d = new ThreadNameDemo();
+		Thread t = new Thread(d);
+		t.start();
+	}
+}
+
+
+////java program to start multiple threads to perform same activity.
+
+Program:
+========
+
+package ThreadingDefaultClass;
+
+public class ThreadNameDemo implements Runnable {
+	
+	public void run() {
+		
+		
+		System.out.println("run() method started.........");
+		
+		try {
+			Thread.sleep(5000);//this will go to blocked state, 5000 milliseconds  means 5 seconds 
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		Thread t = Thread.currentThread();
+		System.out.println(t.getName());
+		
+		System.out.println("run() method completed");
+	}
+		
+	public static void main(String[] args) {
+		
+		
+		ThreadNameDemo d = new ThreadNameDemo();
+		Thread t1 = new Thread(d);
+		Thread t2 = new Thread(d);
+		Thread t3 = new Thread(d);
+		
+		t1.start();//runnable state
+		t2.start();//runnable state
+		t3.start();//runnable state
+	}
+
+}
+
+
+==============================================================================
+same program , but need to get the details which thread start first and which one completed first
+==================================
+
+package ThreadingDefaultClass;
+
+public class ThreadNameDemo implements Runnable {
+	
+	public void run() {
+		
+		
+		System.out.println("run() method started........."+Thread.currentThread().getName());
+		
+		try {
+			Thread.sleep(5000);//this will go to blocked state, 5000 milliseconds  means 5 seconds 
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		System.out.println("run() method completed......"+Thread.currentThread().getName());
+	}
+	
+	
+	
+	public static void main(String[] args) {
+		
+		
+		ThreadNameDemo d = new ThreadNameDemo();
+		Thread t1 = new Thread(d);
+		Thread t2 = new Thread(d);
+		Thread t3 = new Thread(d);
+		
+		t1.start();//runnable state
+		t2.start();//runnable state
+		t3.start();//runnable state
+	}
+
+}
+
+
+
+Output:
+=======
+
+run() method started.........Thread-2
+run() method started.........Thread-1
+run() method started.........Thread-0
+run() method completed......Thread-0
+run() method completed......Thread-1
+run() method completed......Thread-2
+
+
+
+===================================================================================================
+small changes done in below program like added priority to execute the threads but it does not work
+===================================================================================================
+
+package ThreadingDefaultClass;
+
+public class ThreadNameDemo implements Runnable {
+	
+	public void run() {
+		
+		
+		System.out.println("run() method started by........."+Thread.currentThread().getName());
+		
+		try {
+			Thread.sleep(5000);//this will go to blocked state, 5000 milliseconds  means 5 seconds 
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		System.out.println("run() method completed by ......"+Thread.currentThread().getName());
+	}
+	
+	
+	
+	public static void main(String[] args) {
+		
+		
+		ThreadNameDemo d = new ThreadNameDemo();
+		
+		Thread t1 = new Thread(d);
+		t1.setPriority(10);
+		t1.setName("Thread--1");
+		
+		Thread t2 = new Thread(d);
+		t2.setPriority(9);
+		t2.setName("Thread--2");
+		
+		Thread t3 = new Thread(d);
+		t3.setPriority(8);
+		t3.setName("Thread--3");
+		
+		t1.start();//runnable state
+		t2.start();//runnable state
+		t3.start();//runnable state
+	}
+
+}
+
+
+OUTPUT:
+=======
+
+
+run() method started by.........Thread--1
+run() method started by.........Thread--3
+run() method started by.........Thread--2
+run() method completed by ......Thread--1
+run() method completed by ......Thread--2
+run() method completed by ......Thread--3
+
+
+
+
+
+
+
+
+
+
