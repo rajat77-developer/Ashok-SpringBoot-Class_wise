@@ -1,0 +1,87 @@
+2 types we can implement thread---
+1.By extending thread class
+2.By implementing Runnable interface
+
+run() method  --> thread execution logic
+start() method -> it is used to start the thread execution. It calls run () method internally.
+
+
+NOTE: we should not start one thread more than one time.
+
+public static void main(String [] args ){
+
+Demo d = new Demo();
+Thread t = new Thread(d);
+
+t.start();
+t.start();//java.lang.illegalThreadStateExcepton
+}
+
+
+                                  =======================
+                                     Collable Interface
+                                  =======================
+--> This interface introduced in java 1.5..
+--> Using Callable interface also we can create the Thread.
+--> This interface contains call () method.
+
+Syntax: public Object call ()
+
+==================================================================
+what is the difference between Runnable and Collable interfaces
+==================================================================
+-> Runnable is a functional interface which contains run() method.
+-> Collable is  a functional interface which contains call() method.
+
+-> Runnable run() method returns void(no return type).
+-> Callable call() method returns object.
+
+-> Runnable interface present in java.lang package.
+-> Collable interface present in java.util.concurent package.
+
+
+
+===============================
+     EXECUTOR SERVICE 
+===============================
+-> It is introduced in java 1.5..
+-> Using executor service we can implement multi threading.
+-> Using executors we can create thread pool.
+-> Using Executor service we can submit tasks to pool of threads.
+-> ExecutorService will re-use threads available in the pool to complete all submitted tasks.
+
+
+
+================================================================
+    Java program with executor service with collable interface
+================================================================
+
+package ThreadingDefaultClass;
+import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
+
+public class CollableDemo implements Callable {
+	
+	public Object call() throws Exception {
+		
+		System.out.println("call() -method executed.....");
+		return "Successful";
+	}
+	
+	public static void main(String[] args) throws Exception{
+		
+		CollableDemo d = new CollableDemo();
+		
+		ExecutorService exService = Executors.newFixedThreadPool(10);
+		
+			for(int i=0; i < 15; i ++) {
+				
+				Future submit = exService.submit(d);//submitting the task to the thread pool.
+				System.out.println(submit.get().toString());
+			}
+			exService.shutdown();//it is going to shutdown the thread.
+	}
+
+}
