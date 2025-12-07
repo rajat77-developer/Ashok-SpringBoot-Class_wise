@@ -1,0 +1,100 @@
+                                =================================
+                                        COLELCTIONS AGENDA
+                                =================================
+1.why we need to go for collections
+2.what is collection framework
+3.collections hierarchy
+3.List interface and implementations
+4.Set interface and implementations
+5.Queue interface and implementations
+6.Map interface and implementations
+7.Cursors
+8.Collections Sorting
+
+
+
+============================================================================================================
+Rough diagram or overview
+=========================
+
+
+=================================
+Approach-1 : Premitive Data Type
+=================================
+variables--> to store the data 
+data types--> type of data that we can store in variable
+
+1. Primitive data types (byte,short, int, long, float, double, char, boolean )
+2. referenced data types (Array, String, Class etc....)
+
+int a = 10;
+int b = 20; 
+int c = 30;
+
+i want to store 1000 values ? ---> 1000 variables we need 
+====>>> to overcome this problem java introduced ARRAY concept where we can declare one variable with many values
+
+================
+    ARRAY
+================
+-> We can store group of values in single variable.
+
+int [] a =new int [5];
+    arr[0]=100;
+    arr[1]=200;
+    arr[2]=300;
+    arr[3]=400;
+    arr[4]=500;
+-------------------------
+ Limitations(drawback )
+-------------------------
+1.Array size is fixed
+2.We can store only homogenious values(same type of values )
+
+ex: 
+
+   Student s[] = new Student[100];
+s[1]=new Student( 10, "raju" );
+s[2]=new Student( 11, "raja" );
+s[3]=new Student( 12, "rajha" );
+
+s[4]=new Employee( 15, "Khadim" );//invalid 
+
+note: this is called homogenious values ........
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
