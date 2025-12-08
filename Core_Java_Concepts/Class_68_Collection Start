@@ -35,7 +35,7 @@ i want to store 1000 values ? ---> 1000 variables we need
 ====>>> to overcome this problem java introduced ARRAY concept where we can declare one variable with many values
 
 ================
-    ARRAY
+Apporach 2: ARRAY
 ================
 -> We can store group of values in single variable.
 
@@ -62,16 +62,165 @@ s[4]=new Employee( 15, "Khadim" );//invalid
 
 note: this is called homogenious values ........
 
+====================================
+    Approach 3: Object Array
+====================================
+Object [] a = new Object [100];
+a[0] = new Student(101, "Raju");
+a[1] = new Student (102, "Ranu");
+a[3] = new Employee(101, "Rajat" 10000.00  );
+
+
+
+Here size is fixed 
+insert, updata, retrive, sort the data 
+
+
+
+To overcome the problem of arrays concept , java introduced COLLECTIONS 
+
+                                        =======================
+                                            COLLECTIONS
+                                        =======================
+
+--> collections are used to store group of objects/values
+--> collections are growable in nature (dynamically collection size can be increased and decreased based on data )
+--> we can store any type of data in Collections (homegeneuous and heterogeneuous)
+--> Collections providing predefined methods to insert, update, delete, retrive, sort etc..........
+--> Collections is a entity/container which is used to store group of Objects..
+--> Collections framework means set of classes and interfaces.
+
+Collections
+=============
+
+collections is a framework
+Framework means ready made software
+Collections is called as framework because it is providing predefined interfaces, classes and methods to perform operations on data.
+
+Example:
+78788787878982928
+shorting this array ----> Collections.sort(num);
+
+                            ========================================
+                                    Collections hierarchy
+                            ========================================
+
+1.Iterable(super interface)
+2.Collections(interface)
+3.List(Interface)
+4.Set(Interface)
+
+5.Map(Interface)   ---- > separate family
+
+
+
+List: It is used to store group of objects.( Duplicates are allowed )
+
+                1. ArrayList
+                2. LinkedList
+                3. Vector
+                4. Stack
+
+Set: It is used to store group of objects.( Duplicates are not allowed )
+                
+                1.HashSet
+                2.LinkedHashSet
+                3.TreeSet
+Queue: It is used to store group of objects. ( FIFO--First In First Out )
+
+                1.PriorityQueue
+
+Map: It is used to store group of objects.( Key-Value pair )
+                
+                1.HashMap
+                2.LinkedHashMap
+                3.HashTable
+                4.TreeMap
+                5.IdentityHashMap
+                6.WeakHashMap
+
+
+============
+  Cursors
+============
+          1.Iterator
+          2.Listiterator
+          3.Enumeration
 
 
 
 
 
+                               
+                                =================
+                                  List Interface
+                                =================
+
+--> It is child interface of Collection interface.
+--> List interface having 4 implementation classes.
+                
+                1. ArrayList
+                2. LinkedList
+                3. Vector
+                4. Stack
+
+List I = new List();//Invalid because we can't create obj for interface..
+
+ArrayList al = new ArrayList();// valid , we can create obj for class...
+
+List l = new ArrayList(); // valid , " because interface reference variable can hold implementation object".
 
 
 
+---> There are several methods available in List interface, example
+                    
+                    add()
+                    set()
+                    remove()
+                    contains()
 
 
+---------------------------------------------------------------------------
+                One simple collection java program
+---------------------------------------------------------------------------
+
+package Collections;
+
+import java.util.ArrayList;
+
+public class CollectionsListDemo {
+	
+	
+	public static void main(String[] args) {
+		
+	
+		ArrayList al = new ArrayList();// object creation--> default capacity 10
+
+		al.add(100);
+		al.add(200);
+		al.add("Raju");
+		al.add("Ranu");
+		al.add(1000.50);
+		
+		System.out.println("Size of array before removal :: "+al.size());
+		al.remove(0);
+		System.out.println("Size of array after removal::"+al.size());
+		System.out.println(al);
+	
+	
+	
+	}
+	
+	
+}
+
+
+
+Output:
+--------
+
+Size of array before removal :: 5
+Size of array after removal::4
 
 
 
