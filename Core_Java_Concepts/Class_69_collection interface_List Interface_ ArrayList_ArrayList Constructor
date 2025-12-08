@@ -1,0 +1,55 @@
+--> Collections framework related classes & interfaces are part of java.util package.
+                          ===============================
+                                collection interface
+                          ===============================
+--> It is super interface for List, Set, Queue.
+--> Collection interface providing several methods to store and retrive objects.
+
+1.add(Object obj): store one object
+2.get(int index) : get job
+3.remove(int index): remove obj
+4.set (int index, Object obj ) : insert obj using index
+5.indexOf (Object obj ) : first occurance of object 
+6. lastIndexOf(Object obj ) : last occurance of object
+7. listIterator () : to iterate collection objs
+
+                              ==========================
+                                  List Interface
+                              ==========================
+
+-->  Extending properties from Collection Interface
+--> Allow duplicate objects
+--> It will maintain objects in insertion order
+--> It is having 4 implementation classes
+
+              1.ArrayList
+              2.LinkedList
+              3.Vector
+              4.Stack
+
+List l = new List();//invalid
+List l = new ArrayList();//valid
+List l = new LinkedList();//valid
+
+=====================
+  ArrayList
+====================
+-> Implementation class of List Interface
+-> Duplicate objects are allowed
+-> Insertion order preserved
+-> null values are accepted
+-> Internal data structure of ArrayList is growable array.
+-> Default capacity is 10.
+
+-------------------------------
+    ArrayList Constructor
+-------------------------------
+-->  ArrayList al= new ArrayList(); ---> if you don't know then we can use this one and default capacity is 10.
+--> ArrayList al = new ArrayList(int capacity); --> if you know about how many objects you are going to store then use this once 
+
+
+
+
+
+
+
