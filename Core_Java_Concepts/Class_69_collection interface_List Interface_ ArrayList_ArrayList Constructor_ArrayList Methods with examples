@@ -1,0 +1,154 @@
+--> Collections framework related classes & interfaces are part of java.util package.
+                          ===============================
+                                collection interface
+                          ===============================
+--> It is super interface for List, Set, Queue.
+--> Collection interface providing several methods to store and retrive objects.
+
+1.add(Object obj): store one object
+2.get(int index) : get job
+3.remove(int index): remove obj
+4.set (int index, Object obj ) : insert obj using index
+5.indexOf (Object obj ) : first occurance of object 
+6. lastIndexOf(Object obj ) : last occurance of object
+7. listIterator () : to iterate collection objs
+
+                              ==========================
+                                  List Interface
+                              ==========================
+
+-->  Extending properties from Collection Interface
+--> Allow duplicate objects
+--> It will maintain objects in insertion order
+--> It is having 4 implementation classes
+
+              1.ArrayList
+              2.LinkedList
+              3.Vector
+              4.Stack
+
+List l = new List();//invalid
+List l = new ArrayList();//valid
+List l = new LinkedList();//valid
+
+=====================
+  ArrayList
+====================
+-> Implementation class of List Interface
+-> Duplicate objects are allowed
+-> Insertion order preserved
+-> null values are accepted
+-> Internal data structure of ArrayList is growable array.
+-> Default capacity is 10.
+
+-------------------------------
+    ArrayList Constructor
+-------------------------------
+-->  ArrayList al= new ArrayList(); --->(this is default constructor) if you don't know then we can use this one and default capacity is 10.
+--> ArrayList al = new ArrayList(int capacity); --> if you know about how many objects you are going to store then use this once 
+--> ArrayList al = new ArrayList(Collection c);--> if you want to convert one collection to anoter collection at this point of time we will use this constructor.
+======================
+Methods of ArrayList
+======================
+0.add(Object obj) --> add object at the end of the collection. 
+1.add(int index, Object )  -- > it is used to add one object to the collections
+2.addAll(Collection c) ---> i want to add one collection to another collection
+3.remove(int index) ----> remove an object from collection by using index
+4.remove(Object obj )---> remove an object from collection by using object
+5.get (int index) ---> get(int index) is a method in the List interface that returns the element present at the specified index (position) in the list. The indexing starts from 0. If the index is invalid, it throws IndexOutOfBoundsException.
+6.contains(Object obj)
+7.clear() --> i want to remove all the student from the class, like i want to remove the object from the collection.
+8.isEmpty()
+9.retainAll(Collection c)
+10.indexOf(Object obj) --> i want to check first occurance of the index(there are multiple raju in our class )
+11.lastIndexOf(Object obj) --> last index  of raju
+12.set(int index, Object Obj  ) --> replace the object based on given index
+13.iterator() --> forward direction
+14.listIterator() ---> forward & backword
+
+
+--------------------------------------------------------------------
+java program to check the use case of all these methods in ArrayList
+---------------------------------------------------------------------
+
+
+
+
+package Collections;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class ListArrayListDemo {
+
+	
+	public static void main(String[] args) {
+		
+		List l = new ArrayList();
+		l.add(100);
+		l.add(100);
+		l.add(200);
+		l.add(300);
+		l.add(400);
+		l.add(100);
+		l.add(1000);
+		l.add(null);
+		
+		
+		System.out.println(l);
+		System.out.println(l.contains(100));
+		System.out.println(l.get(0));
+		System.out.println(l.indexOf(100));
+		System.out.println(l.lastIndexOf(100));
+		l.remove(0);
+		System.out.println("After removing 0th index ::"+l);
+		System.out.println(l.get(6));
+		//l.clear();
+		System.out.println(l);
+		System.out.println(l.size());
+		
+		List l2 = new ArrayList();
+		l2.add(500);
+		l2.add(600);
+		l2.add(l);
+		
+		System.out.println(l2);
+		
+		
+	}
+}
+
+
+
+OUTPUT:
+
+[100, 100, 200, 300, 400, 100, 1000, null]
+true
+100
+0
+5
+After removing 0th index ::[100, 200, 300, 400, 100, 1000, null]
+null
+[100, 200, 300, 400, 100, 1000, null]
+7
+[500, 600, [100, 200, 300, 400, 100, 1000, null]]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
