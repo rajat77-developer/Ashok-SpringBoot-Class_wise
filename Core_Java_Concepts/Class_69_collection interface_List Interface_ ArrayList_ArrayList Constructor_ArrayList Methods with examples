@@ -55,11 +55,11 @@ Methods of ArrayList
 2.addAll(Collection c) ---> i want to add one collection to another collection
 3.remove(int index) ----> remove an object from collection by using index
 4.remove(Object obj )---> remove an object from collection by using object
-5.get (int index) ---> get(int index) is a method in the List interface that returns the element present at the specified index (position) in the list. The indexing starts from 0. If the index is invalid, it throws IndexOutOfBoundsException.
-6.contains(Object obj)
+5.get (int index) ---> to get object based on index
+6.contains(Object obj) --> to check presence of the object
 7.clear() --> i want to remove all the student from the class, like i want to remove the object from the collection.
-8.isEmpty()
-9.retainAll(Collection c)
+8.isEmpty() --> to check collection is empty or not 
+9.retainAll(Collection c) --> Keep only common elements and remove remaining object 
 10.indexOf(Object obj) --> i want to check first occurance of the index(there are multiple raju in our class )
 11.lastIndexOf(Object obj) --> last index  of raju
 12.set(int index, Object Obj  ) --> replace the object based on given index
