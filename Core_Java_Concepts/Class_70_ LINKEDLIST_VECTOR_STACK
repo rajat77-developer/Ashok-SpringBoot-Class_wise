@@ -1,0 +1,438 @@
+
+========================================================================
+java program to get the array object with multiple approaches like below
+========================================================================
+
+package Collections;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+import java.util.ListIterator;
+
+public class ListArrayListDemo {
+
+	
+	public static void main(String[] args) {
+		
+		List l = new ArrayList();
+		l.add(100);
+		l.add(100);
+		l.add(200);
+		l.add(300);
+		l.add(400);
+		l.add(100);
+		l.add(1000);
+		l.add(null);
+		
+	//	Approach : 1 --> to get the data from ArrayList
+		System.out.println("===========First Approach============");
+		System.out.println("===========By using For Loop Approach============");
+		
+		for(int i =0; i< l.size();i++) {
+			
+			System.out.println(l.get(i));
+		}
+		
+		System.out.println("============Second Approach==========");
+		System.out.println("===========For Each Loop Approach============");
+	// Approach : 2 --> to get the data from ArrayList
+		
+		for(Object obj : l) {
+			
+			System.out.println(obj);
+		}
+		
+	// Approach : 3 --> to get the data from ArrayList
+		
+		System.out.println("===========Third Apparoach============");
+		System.out.println("===========Iterator Apparoach============");
+		
+		Iterator iterator = l.iterator();
+
+		while(iterator.hasNext()){
+			System.out.println(iterator.next());
+			
+		}
+		
+		//Approach :4 --> to get the data from ArrayList
+		
+		System.out.println("===========Fourth Approach============");
+		System.out.println("===========ListIterator Apparoach============");
+		
+		ListIterator listIterator = l.listIterator();
+		
+		while(listIterator.hasNext()) {
+			
+			System.out.println(listIterator.next());
+		}
+		
+		System.out.println("===========Fifthth Approach============");
+		System.out.println("===========For-each()method ::Lambda Approach============");
+		
+		
+		
+		l.forEach(i -> {
+			
+			System.out.println(i);
+		});
+		
+	}
+}
+
+
+OUTPUT:
+      
+      ===========First Approach============
+      ===========By using For Loop Approach============
+      100
+      100
+      200
+      300
+      400
+      100
+      1000
+      null
+      ============Second Approach==========
+      ===========For Each Loop Approach============
+      100
+      100
+      200
+      300
+      400
+      100
+      1000
+      null
+      ===========Third Apparoach============
+      ===========Iterator Apparoach============
+      100
+      100
+      200
+      300
+      400
+      100
+      1000
+      null
+      ===========Fourth Approach============
+      ===========ListIterator Apparoach============
+      100
+      100
+      200
+      300
+      400
+      100
+      1000
+      null
+      ===========Fifthth Approach============
+      ===========For-each()method ::Lambda Approach============
+      100
+      100
+      200
+      300
+      400
+      100
+      1000
+      null
+
+
+
+==================================================================================================================================
+below program is based on create a arraylist and adding the data , then printing the data with accending order and decending order
+==================================================================================================================================
+
+
+package Collections;
+
+import java.util.ArrayList;
+import java.util.ListIterator;
+
+public class Demo {
+	
+	
+	public static void main(String[] args) {
+		
+		
+		ArrayList<Student> a = new ArrayList<>();
+		
+		a.add(new Student(1, "raju"));
+		a.add(new Student(2, "rani"));
+		a.add(new Student(3, "raja"));
+		a.add(new Student(4, "rahul"));
+		
+		
+		for(Student s : a) {
+			
+			System.out.println(s.toString());
+		}
+		
+		System.out.println("===Print reverse order====");
+		
+		
+		for(int i = a.size()-1; i >=0; i --) {
+			
+			System.out.println(a.get(i));
+		}
+		
+		System.out.println("===ListIterator approach===");
+		
+		ListIterator<Student> li = a.listIterator();
+		while(li.hasNext()) {
+			
+			System.out.println(li.next());
+		}
+		System.out.println("===================");
+		
+		while(li.hasPrevious()) {
+			System.out.println(li.previous());
+		}
+	}
+
+}
+
+
+
+OUTPUT:
+=======
+
+1-->raju
+2-->rani
+3-->raja
+4-->rahul
+===Print reverse order====
+4-->rahul
+3-->raja
+2-->rani
+1-->raju
+===ListIterator approach===
+1-->raju
+2-->rani
+3-->raja
+4-->rahul
+===================
+4-->rahul
+3-->raja
+2-->rani
+1-->raju
+
+
+
+
+
+
+    ======
+    Notes: 
+    ======
+
+-> ArrayList class is not recommended for insertions because it has to perform lot of shiftings
+-> ArrayList class is recommended to retriveal operations because it will retrieve based on index directly.
+-> internal data structure is growable array.
+-> duplicate are allowed.
+-> homogenius and hetereogenius data supported.
+                                            
+                                            ===========
+                                            LINKEDLIST
+                                            ===========
+-> Implementation of List interface.
+-> Internal data structure is double linked list.
+-> insertion order preserved.
+-> duplicate objects are allowed.
+-> null objects also allowed.
+-> homogenius and hetereogenius data we can stored.
+---------------------------
+java program on LinkedList
+---------------------------
+
+package Collections;
+
+import java.util.LinkedList;
+
+public class Demo {
+	
+	
+	public static void main(String[] args) {
+		
+		
+		LinkedList<Integer> ls = new LinkedList<>();
+		
+		ls.add(10); // 1 node
+		ls.add(20); // 1 node
+		ls.add(30); // 1 node
+		ls.add(40); // 1 node
+		
+		System.out.println(ls);
+		
+		System.out.println(ls.get(0));
+		ls.add(2, 25);
+		System.out.println(ls);
+		ls.add(1, 15);
+		System.out.println(ls);
+		
+		
+		System.out.println(ls.getLast());
+		
+		
+		}
+
+}
+
+
+
+
+OUTPUT: 
+
+[10, 20, 30, 40]
+10
+[10, 20, 25, 30, 40]
+[10, 15, 20, 25, 30, 40]
+40
+
+
+
+                                                
+                                                =======
+                                                VECTOR
+                                                =======
+
+
+
+
+-> Implementation class of List interface.
+-> Internal data structure is growable array.
+-> Duplciates are allowed.
+-> Insertion order preserved.
+-> This is synchronized.
+-> Vector is called legacy class(jdk 1.0 ).
+
+-> To traverse vector we can use Enumeration as a cursor.
+-> Enumenration is called as Legacy cursor(jdk 1.0).
+
+
+
+  ========
+  Example:
+  ========
+
+package Collections;
+import java.util.Enumeration;
+import java.util.Vector;
+
+public class Demo {
+	
+	
+	public static void main(String[] args) {
+		
+		Vector<Integer> v = new Vector<>();
+		v.add(100);
+		v.add(200);
+		v.add(300);
+		v.add(null);
+		
+		System.out.println(v);
+		
+		Enumeration<Integer> elements = v.elements();
+		
+		while(elements.hasMoreElements()) {
+			
+			System.out.println(elements.nextElement());
+		}
+		
+	}
+
+}
+
+
+OUTPUT:
+=======
+        [100, 200, 300, null]
+        100
+        200
+        300
+        null
+
+
+                                    ========
+                                     STACK
+                                    ========
+-> LIFO----> Last In First Out
+
+-> Implementation class of List interface.
+-> Extending from vector class.
+-> Data Structure of Stack is LIFO(last in first out).
+
+push() --> to insert object
+pop()  --> to get last element 
+peek() --> to remove last element 
+
+
+========
+Example:
+========
+
+package Collections;
+
+import java.util.Stack;
+
+public class Demo {
+	
+	
+	public static void main(String[] args) {
+		
+		
+		Stack s = new Stack();
+		
+		s.push(100);
+		s.push(200);
+		s.push(300);
+		s.push(400);
+		
+		
+		System.out.println(s);
+		System.out.println(s.peek());//will give the top element.
+		System.out.println(s.pop());//remove top element and return that
+		System.out.println(s);
+		
+		
+		
+	}
+
+}
+
+OUTPUT:
+======
+[100, 200, 300, 400]
+400
+400
+[100, 200, 300]
+
+
+
+
+
+
+
+
+
+LINKEDLIST
+----------
+
+ArrayList  --> Growable Array
+LinkedList --> Double Linked List
+Vector     --> Growable Array & Thread Safe
+Stack      -->  L I F O
+
+
+1. Iterator ---> forward direction
+2.ListIterator --> forward & backward direction
+3. Enumeration --> forward direction & supports for legacy collection classes.
+
+
+
+
+
+
+
+
+
+
+
+
+
