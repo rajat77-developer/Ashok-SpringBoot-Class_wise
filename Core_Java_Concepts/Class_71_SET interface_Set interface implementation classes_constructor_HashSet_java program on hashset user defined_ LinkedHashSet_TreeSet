@@ -165,7 +165,163 @@ LinkedHashSet
 	
 	}
 
+NOTE:
+=====
+HashSet will not maintain insertain order where as LinkedHashSet will maintain order.
+HashSet will follow HashTable data structure where as LinkedHashSet will follow HashTable + Double Linked List data structure.
 
+
+====================
+TreeSet
+===================
+-> Implementation class for set interface.
+-> It will maintain natural sorting order.
+-> Null value is not allowed.
+-> Duplciate values are not allowed.
+
+Note: when we add Null value it will try to comapre null value with previous object then we will get NullPointerException error.
+
+-> It supports only homogenius data.
+
+Note: TreeSet should perform sorting so it will always compare newly added object with old object. In order to compare the objects should be of same type other wise we will get ClassCastexception.
+
+-> Internal data structure is binary.
+
+
+
+
+
+
+
+Example 
+=======
+
+	package Collections;
+	
+	import java.util.TreeSet;
+	
+	public class Demo {
+		
+		
+		public static void main(String[] args) {
+			
+		
+			
+			TreeSet lhs = new TreeSet<>();
+			
+			lhs.add(10);
+			lhs.add(20);
+			lhs.add(30);
+			lhs.add(50);
+			lhs.add(40);
+			
+			System.out.println(lhs);
+			
+			
+		}
+	
+	}
+	
+	
+OUTPUT:
+=======
+[10, 20, 30, 40, 50]
+
+
+Example 2:
+=========
+
+	package Collections;
+	
+	import java.util.TreeSet;
+	
+	public class Demo {
+		
+		
+		public static void main(String[] args) {
+			
+		
+			
+			TreeSet lhs = new TreeSet<>();
+			
+			lhs.add("raju");
+			lhs.add("aju");
+			lhs.add("samu");
+			lhs.add("hari");
+			lhs.add("halow");
+			
+			System.out.println(lhs);
+			
+			
+		}
+	
+	}
+	
+	
+
+OUTPUT:
+=======
+
+[aju, halow, hari, raju, samu]
+
+
+================
+with iterator
+===============
+
+	package Collections;
+	
+	import java.util.Iterator;
+import java.util.TreeSet;
+	
+	public class Demo {
+		
+		
+		public static void main(String[] args) {
+			
+		
+			
+			TreeSet lhs = new TreeSet<>();
+			
+			lhs.add("raju");
+			lhs.add("aju");
+			lhs.add("samu");
+			lhs.add("hari");
+			lhs.add("halow");
+			
+			System.out.println(lhs);
+			
+			Iterator iterator = lhs.iterator();
+			
+			while(iterator.hasNext()) {
+				
+				System.out.println(iterator.next());
+			}
+			
+			
+		}
+	
+	}
+	
+	
+
+
+
+
+OUTPUT
+=======
+
+[aju, halow, hari, raju, samu]
+aju
+halow
+hari
+raju
+samu
+
+
+
+
+cursers are used to travers the collections.
 
 
 
