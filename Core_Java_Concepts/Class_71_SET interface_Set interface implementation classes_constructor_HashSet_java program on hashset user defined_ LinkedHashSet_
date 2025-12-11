@@ -1,0 +1,219 @@
+
+                                                    =======
+                                                     SET
+                                                    ======
+--> Set is a interface available in java.util package.
+--> Set interface extending from Collection interface.
+--> Set is used to store group of object.
+--> Duplicate objects are not allowed.
+--> Supports homogenius and hetero genious.
+
+            ============================================
+            Set interface implementation classes
+            ============================================
+1. HashSet
+2. LinkedHashSet
+3. TreeSet
+
+========
+HashSet
+========
+-> Implemetation class of set interface
+-> Duplicate elements are not allowed.
+-> Null is allowed.
+-> Insertation order will not be maintained.
+-> Initial capacity is 16.
+-> Load factor is 0.75..
+-> Internal data structure is Hashtable.
+===============
+constructor
+=============
+HashSet hs = new HashSet();
+HashSet hs = new HashSet(int capacity);
+HashSet hs = new HashSet(int capacity, float loadFactor);
+
+----------
+Example
+--------
+
+package Collections;
+
+import java.util.HashSet;
+import java.util.Iterator;
+
+public class Demo {
+	
+	
+	public static void main(String[] args) {
+		
+		
+		HashSet<String> hs = new HashSet<>(100, 10.05f);
+		
+		hs.add("one");
+		hs.add("two");
+		hs.add("three");
+		hs.add("four");
+		hs.add(null);
+		
+		System.out.println(hs);
+		hs.remove("three");
+		System.out.println(hs);
+		
+		Iterator<String> iterator = hs.iterator();
+		while(iterator.hasNext()) {
+			
+			System.out.println(iterator.next());
+		}
+		
+		
+	}
+
+}
+
+
+
+
+
+OUTPUT:
+======
+
+[null, four, one, two, three]
+[null, four, one, two]
+null
+four
+one
+two
+
+
+
+
+java program on hashset user defined
+======================================
+
+
+	package Collections;
+	
+	import java.util.HashSet;
+	import java.util.Iterator;
+	
+	public class Demo {
+		
+		
+		public static void main(String[] args) {
+			
+		
+			
+			HashSet<Student> hs = new HashSet<>();
+			
+			hs.add(new Student(101, "raju"));
+			hs.add(new Student(102, "raja"));
+			hs.add(new Student(103, "ranu"));
+
+			
+			Iterator<Student> iterator = hs.iterator();
+			
+			while(iterator.hasNext()) {
+				
+				System.out.println(iterator.next());
+			}
+			
+			
+		}
+	
+	}
+	
+	
+
+
+Output:
+101-->raju
+102-->raja
+103-->ranu
+
+
+=================================
+LinkedHashSet
+================================
+
+-> Implemetation class for set interface.
+-> Duplcaites are not allowed.
+-> Insertion order will be preserved.
+-> Internal data structure is Hash table + Double linked list
+-> Initial capacity is 16.
+-> Load factor 0.75
+
+	package Collections;
+	import java.util.LinkedHashSet;
+	
+	public class Demo {
+		
+		
+		public static void main(String[] args) {
+					
+			LinkedHashSet<Integer> lhs = new LinkedHashSet<>();
+			
+			lhs.add(10);
+			lhs.add(20);
+			lhs.add(30);
+			lhs.add(40);
+			lhs.add(null);
+			lhs.add(50);
+			
+			System.out.println(lhs);
+			
+		}
+	
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
