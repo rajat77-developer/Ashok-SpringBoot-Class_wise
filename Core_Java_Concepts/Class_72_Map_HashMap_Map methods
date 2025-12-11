@@ -1,0 +1,290 @@
+Sure interview question
+
+1.How HashMap works internally ? 
+
+                                                                  =========
+                                                                    Map
+                                                                  ========
+
+->  Map is an interface available in java.util package
+-> Map is used to store the data in key-value format
+-> One key-value pair is called as one Entry.
+-> One map object can have multiple entries.
+-> In Map keys should be unique and values can be duplicate.
+-> If we try to store duplicate key in map then it will replace old key data with new key data.
+-> We can take key & value as any type of data.
+
+Ex:
+(Map<Integer, String>)
+101-raju
+102-ranu
+103-ramu
+
+Ex 2:
+(Map<String. Integer>)
+india-104
+somia-102
+
+
+Map<k,v>==Map<Obejct, Object>
+
+
+--> map interface having several implementation classes.
+
+1.HashMap
+2.LinkedHashMap
+3.TreeMap
+4.HashTable
+5.IdentityHashMap
+6.WeakHashMap
+
+----------------------------
+      Map methods
+-----------------------------
+
+put(k,v) --> To store one entry in map object.
+get(k)  ---> to get value based on given key.
+remove(k) --> to remove one entry based on given key.
+containsKey(k)--> to  ckeck presence of entry based on key.
+KeySet() --> to get all keys of map
+values() --> to get all values of the map
+entrySet() -> to get all entries
+clear() --> to remove all the entries of map
+isEmpty() -> to check weather map obj is empty or not 
+size() --> to get size of the map(how many entries available)
+
+========================================
+
+Example 1: 
+
+key as integer and value is string
+
+------------------------------------
+
+
+package Collections;
+
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Set;
+
+public class MapDemo {
+		
+		
+		public static void main(String[] args) {
+			
+			Map<Integer, String> map = new HashMap<>();
+			
+			map.put(101, "raju");
+			map.put(102, "raja");
+			map.put(103, "ranu");
+			map.put(104, "rajan");
+			
+			System.out.println("=======One===========");
+			
+			Set<Entry<Integer,String>> entrySet = map.entrySet();
+			Iterator<Entry<Integer, String>> iterator = entrySet.iterator();
+			while(iterator.hasNext()) {
+				
+				Entry<Integer, String> entry = iterator.next();
+				
+				System.out.println(entry.getKey()+"--->"+entry.getValue());
+			}
+			System.out.println("--> we can also use for each loop instead of using Iterator --------->");
+			
+			for(Entry<Integer, String> entry : entrySet) {
+				
+				System.out.println(entry.getKey()+"<--->"+entry.getValue());
+			}
+			
+			
+			
+		System.out.println("===========two===========");	
+			Set<Integer> keySet = map.keySet();
+			for (Integer key: keySet) {
+				
+				System.out.println(key);
+				System.out.print(map.get(key));
+			}
+			
+			System.out.println("============Map size================");
+			System.out.println("Map size :: "+map.size());
+			
+			System.out.println("================getting the value from map as per requirement ========");
+			System.out.println(map.get(102));//raja
+			
+			System.out.println("===========getting the values from map=============");
+			Collection<String> values = map.values();
+			for(String v : values) {
+				
+				System.out.println(v);
+			
+				//map.values-->  to get only values from the key
+			
+			}
+			
+			System.out.println("=====checking the value is available or not ==========");
+			System.out.println(map.containsKey(101));
+			System.out.println(map.containsKey(103));
+			System.out.println(map.isEmpty());
+			
+			System.out.println("===============getting the full map values ================");
+			System.out.println(map);
+			
+			
+		}
+	
+	}
+	
+	
+OUTPUT:
+=======
+
+=======One===========
+101--->raju
+102--->raja
+103--->ranu
+104--->rajan
+--> we can also use for each loop instead of using Iterator --------->
+101<--->raju
+102<--->raja
+103<--->ranu
+104<--->rajan
+===========two===========
+101
+raju102
+raja103
+ranu104
+rajan============Map size================
+Map size :: 4
+================getting the value from map as per requirement ========
+raja
+===========getting the values from map=============
+raju
+raja
+ranu
+rajan
+=====checking the value is available or not ==========
+true
+true
+false
+===============getting the full map values ================
+{101=raju, 102=raja, 103=ranu, 104=rajan}
+
+
+
+
+
+                                          
+                                          =======================================
+                                          Example 2:
+                                          
+                                          key is Integer and value is student
+                                          ======================================
+
+Student.java
+============
+
+package Collections;
+
+public class Student {
+	
+	int id;
+	String name;
+	
+	public Student(int id, String name) {
+
+	   this.id=id;
+	   this.name=name;
+		
+	}
+	
+	public String toString() {
+		
+		return id+"-->"+name;
+	}
+
+}
+
+
+StudentMapDemo.java
+====================
+
+package Collections;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Set;
+
+public class StudentMapDemo {
+	
+	public static void main(String[] args) {
+		
+		
+		Student s1 = new Student(101, "john");
+		Student s2 = new Student(102, "johnson");
+		Student s3 = new Student(103, "johney");
+		
+		Map<Integer, Student> map = new HashMap<Integer, Student>();
+		map.put(1, s1);
+		map.put(2, s2);
+		map.put(3, s3);
+		
+		System.out.println("=====getting the value by using for-each loop ====");
+		Set<Integer> keySet = map.keySet();
+		for (Integer key : keySet) {
+			
+			System.out.println(map.get(key));
+		}
+		
+		System.out.println("==by using entrySet=====");
+		
+		Set<Entry<Integer,Student>> entrySet = map.entrySet();
+		
+		for(Entry<Integer,Student> entry : entrySet) {
+			
+			System.out.println(entry.getKey());
+			System.out.println("=");
+			System.out.println(entry.getValue());
+		}
+		
+	}
+
+}
+
+
+
+Output:
+=======
+
+=====getting the value by using for-each loop ====
+101-->john
+102-->johnson
+103-->johney
+==by using entrySet=====
+1
+=
+101-->john
+2
+=
+102-->johnson
+3
+=
+103-->johney
+
+
+
+      
+
+
+
+
+
+
+
+
+
