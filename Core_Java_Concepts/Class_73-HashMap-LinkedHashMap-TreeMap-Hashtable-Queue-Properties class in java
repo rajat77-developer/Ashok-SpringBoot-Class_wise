@@ -178,7 +178,86 @@ OUTPUT:
 [one, two]
 
 
+=====================================================================
+				Properties class in java
+=====================================================================
 
+-> It is a predefiend class available in java.util package...
+-> Properties class extending properties from HashTable class.
+-> Properties class is used to avoid hardcoding in the project.
+
+-> Hardcoding means fixing values in the program..(Ex: database properties )
+
+=========
+Use-Case
+=========
+
+-> If java applcation wants to communicate with database then we need to configure database credentials in java program.
+-> If we hardcode database credentials in java program then project maintenence will become difficult why because in future if databse credentials
+   modified then we need to modified our java program also. 
+-> If java program is modified then we need to recompile and re-execute our program/project which will take lot of time and it may break existing code.
+-> To overcome above problems we should not do hardcoding.
+-> To avoid hardcoding in java properties we will have java.util.Properties class.
+-> Properties file contains data in key-value format.
+-> Properties class is used to read the data from properties file.
+Ex: 
+
+ uname= sonu
+ pwd = sonu@123
+
+Note: Properties file extension will be .properties.....
+
+
+--> Create database.properties file with below data in project folder.
+
+--> Create below java class to read data from properties file
+
+
+Program
+========
+
+database.properties
+-------------------
+uname=sonu
+pwd=sonu@123
+
+
+DatabaseApp.java
+================
+
+package in.sonu;
+
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.util.Properties;
+
+public class DatabaseApp {
+
+	
+	public static void main(String[] args) throws IOException {
+		
+		
+		FileInputStream fis = new FileInputStream("database.properties");
+		
+		Properties p = new Properties();
+		
+		p.load(fis);
+		
+		String uname = p.getProperty("uname");
+		String pwd = p.getProperty("pwd");
+	  System.out.println("user name is ::: "+uname);
+	  System.out.println("pwd is ::::"+pwd);
+	  
+	  fis.close();
+	
+	}
+}
+
+
+OutPut:
+
+user name is ::: sonu
+pwd is ::::sonu@123
 
 
 
