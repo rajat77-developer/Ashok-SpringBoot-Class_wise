@@ -1,0 +1,187 @@
+                                          ========
+                                          HashMap
+                                          ========
+
+-> It is implementation class for Map interface.
+-> Used to store data in key-value format.
+-> Default capacity is 16.
+-> Load factor 0.75
+-> Underlaying data structure is hashtable.
+-> Insertion order will not be maintained by HashMap.
+                                        ==============
+                                        LinkedHashMap
+                                        ==============
+-> Implementation class for Map interface.
+-> Maintains insertion order.
+-> Data structure is hashtable + double linked List
+                                          
+                                          =================
+                                               TreeMap
+                                          =================
+-> Implementation class for Map interface.
+-> It maintains natural sorting order for keys.
+-> Internal data structure for Tree map is binary tree.
+
+
+Example of TreeMap :
+-------------------
+package Collections;
+
+import java.util.TreeMap;
+
+public class TreeMapDemo {
+	
+	
+	public static void main(String[] args) {
+		
+		
+		TreeMap<String, Integer> tm = new TreeMap<>();
+		
+		tm.put("john", 1);
+		tm.put("jonty", 2);
+		tm.put("johney", 3);
+		
+		
+		
+		System.out.println(tm);
+	}
+
+}
+
+
+Output:
+
+{john=1, johney=3, jonty=2}
+
+                                                                              ==========
+                                                                              Hashtable
+                                                                              ==========
+            
+            -> It is implementation class for Map interface.
+            -> Default capacity is 11.
+            -> load factor 0.75
+            -> Key-value format to store the data
+            -> Hashtable is legacy class(jdk 1.0)
+            -> Hashtable is synchronized.
+            -> If thread safety is not required then use HashMap instead of Hashtable.
+            -> If thread safety is important then go for ConcurrentHashMap instead of Hashtable.
+
+
+
+
+                                              ================
+                                                  Queue
+                                              ===============
+
+-> It is extending properties from Collection interface.
+-> It is used to store group of objects.
+-> Internal Data Structure is FIFO(First In First Out).
+-> It is ordered list of objects.
+-> Insertion will happen at end of the collection.
+-> Removal will happen at beginning of the collection.
+
+Example:
+==========
+package Collections;
+
+import java.util.Iterator;
+import java.util.PriorityQueue;
+
+public class QueueDemo {
+
+	
+	public static void main(String[] args) {
+		
+		
+		
+		PriorityQueue<String> pq = new PriorityQueue<>();
+		
+		pq.add("john");
+		pq.add("mohn");
+		pq.add("hohn");
+		pq.add("kohn");
+		pq.add("sohn");
+		
+		System.out.println(pq);
+		
+		System.out.println(pq.element());
+		System.out.println(pq.peek());
+		
+		
+		Iterator<String> iterator = pq.iterator();
+	
+		while(iterator.hasNext()) {
+			
+			System.out.println(iterator.next());
+		}
+	
+		
+		pq.remove();
+		pq.poll();
+	
+	}
+}
+
+
+OUTPUT:
+======
+
+[hohn, kohn, john, mohn, sohn]
+hohn
+hohn
+hohn
+kohn
+john
+mohn
+sohn
+
+
+===============================
+java program with array dequeue
+==============================
+
+package Collections;
+
+import java.util.ArrayDeque;
+
+public class ArrayDequeDemo {
+	
+	public static void main(String[] args) {
+		
+		
+		ArrayDeque<String> ad = new ArrayDeque<>();
+		
+		ad.add("one");
+		ad.add("two");
+		ad.add("three");
+		ad.addFirst("sonu");
+		
+		
+		
+		System.out.println(ad);
+		
+		ad.pollFirst();
+		System.out.println(ad);
+		ad.pollLast();
+		System.out.println(ad);
+	}
+
+}
+
+
+
+OUTPUT:
+=======
+
+[sonu, one, two, three]
+[one, two, three]
+[one, two]
+
+
+
+
+
+
+
+
+
