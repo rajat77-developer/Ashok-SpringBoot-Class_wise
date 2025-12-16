@@ -1,0 +1,106 @@
+                                ====================================
+                                Fail First and Fail Safe Collections
+                                ====================================
+-> Collections are devided into 2 types
+
+  1. Fail first Collection
+  2. Fail safe Collecction
+
+--> Fail Fast collections will throw error immediately when we modify collection object while traversing the collection.
+    Ex: ArraayList, LinkedList, Vector, HashSet, LHS etc.........
+    Note: Fail first collections will throw concurrent modification exception when collection is modified.
+
+--> Fail Safe collections will not throw any error even if we modify collection object data(Add/ Remove) while traversing .
+    Ex: CopyOnWriteArrayList, ConcurrentHashMap etc.......
+
+
+Q. What is the difference between HashMap and IdentityHashMap ?
+
+
+==> HashMap will use equals () method to compare content of keys to find  duplicate keys.
+==> identityHashMap will use == operator to compare address of keys to find duplicate keys.
+
+
+package CollectionsFailFirst;
+
+import java.util.HashMap;
+import java.util.IdentityHashMap;
+
+  public class DemoHashMap2 {
+
+	public static void main(String[] args) {
+
+		HashMap<String, Integer > hs = new HashMap<>();
+
+		//HashMap will compare content of keys to find duplicate keys (equals())
+		
+    hs.put( "john", 100);//1 entry added
+		hs.put( "sonu", 101);//1 entry added
+		hs.put( "monu", 102);//1 entry added
+		hs.put( "Ranu", 103);
+		
+		hs.put(new String("john"), 104);//this will replace first entry value because key is duplicate(==) 
+
+		System.out.println("size :::::" + hs.size());
+		System.out.println(hs);
+		
+		
+		System.out.println("==================================");
+		
+		
+		IdentityHashMap< String, Integer> ihm = new IdentityHashMap<>();
+
+    //IdentityHashMap will compare address of keys to find duplicate keys (==)
+		
+    ihm.put( "john", 101);// 1 entry added(scp)
+		ihm.put( "raju", 103);//1 entry added
+		ihm.put( "saul", 102);//1 entry added
+		ihm.put( "maul", 104);
+		ihm.put( new String("john"), 105);//it will replace first entry value 
+		ihm.put( new String("john"), 106);
+
+		System.out.println("size :::::"+ihm.size());
+		System.out.println(ihm);
+
+	}
+
+}
+
+
+==============================================================================================
+          Q. What is the difference between HashMap and WeakHashMap.
+==============================================================================================
+
+=> HashMap keys will have strong reference that means they will maintain a reference hence they are not eligible for garabge collector.
+=> WeakHashMap keys will have weak reference that means they are eligible for garbage collection.
+--> GC will dominate WeakHashMap....
+
+package CollectionsFailFirst;
+
+import java.util.WeakHashMap;
+
+public class WeakHashMapDemo {
+
+	
+	public static void main(String[] args) {
+		
+		
+		WeakHashMap<Integer, String> whm = new WeakHashMap<>();
+		
+		whm.put(1, "hi");
+		whm.put(2, "hello");
+		whm.put(3, "hlw");
+		
+		System.out.println(whm);
+		
+		
+	}
+}
+
+
+
+
+
+
+
+
