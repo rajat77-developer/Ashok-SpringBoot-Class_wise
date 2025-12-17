@@ -1,0 +1,181 @@
+                                                          =====================
+                                                           Java 1.8 Features
+                                                          ====================
+        
+        -> java 1.8 introduced a lot of new features.
+        -> java 8 changed java programming style.
+
+=====================
+Main aim of java 1.8v
+=====================
+
+-> Simplyfying java programming
+-> Enable functional programming
+-> Write more readable and consice code 
+
+
+------------------------
+java 8 features
+-----------------------
+1. interface changes
+    
+     1.1 Default methods
+     1.2 Static methods
+
+2. Functional Interface
+      
+      2.1 Predict
+      2.2 Consumer
+      2.3 Supplier
+      2.4 Function
+
+3. Lambda Expression
+4. Method reference and constructor reference 
+5. **************Stream API ********************
+
+          ==list of emply available in collection
+          1.Get  emply whose salary is >=10000;
+          2. Get emply whose salary is <=30000 and working in Delhi location
+          3. Get emply email whose salary is >=100000 and working in hyd location 
+          4. Get emply whose name starts with "A"
+          
+6. Optional class (to avoid null pointer exception)
+7. Spliterator
+8. StringJoiner
+9. Collections Framework changes
+10. Data and time API
+
+
+
+
+
+
+
+
+Start topic wise---->
+
+
+
+                                                              
+                                                              =====================
+                                                              1. interface changes
+                                                              =====================
+
+--> Interface means collection of abstract methods.
+Note: The method which doesnot contain any body is called as abstract method.
+
+-> A class can implements interface using "implements".
+
+-> When a class is implementing interface its mandatory that class should implement all abstract methods of that interface otherwise class can not be compile.
+-> Here I am taking one interface with one abstract method. All the classes which are implementing that interface should override interface methods(s).
+
+
+interface Vehicle{
+public abstract void startVehicle();
+}
+
+class Car implements Vehicle{
+
+public void startVehicle(){
+
+//logic to start car
+   }
+}
+
+class Bus implements Vehicle{
+public void startVehicle(){
+
+//logic to start bus
+   }
+  
+}
+class Bike implements car{
+
+public void startVehicle(){
+
+//logic to start bike
+   }
+
+}
+
+
+
+=> if we add new method in interface then Car, Bike and Bus will fail at compile time.
+=> To overcome above problem we will use Default and Static methods.
+
+1. interface can have concreate method from 1.8v.....
+2. Interface concreate method should be default or static.....
+3. Default methods we can override in impl classes.....
+4. interface static methods we can't override in impl classes........
+5. We can write multiple default and static methods in interface.....
+6. Default and Static method introduced to provide backward compatability.......
+
+Ex: forEach() method added in java.util.Iterable interface as default method in 1.8v.......
+
+
+
+Below is the example:
+=====================
+
+package DefaultInterfaceDemo;
+
+/*
+ * 
+ *   This program is based on Default and Static methods in interface changes
+ * 
+ * 
+ * 
+ * 
+ */
+
+
+interface Vehicle {
+	
+	public void start();
+	//this can be override 
+	public default void clean(){
+		System.out.println("my car is cleaning....");
+	}
+	
+	//we will go for static method if we don't want any one do the modification to my method like override 
+	public static void stop(){
+		System.out.println("my car is cleaned....");
+	}
+}
+
+public class Car  implements Vehicle{
+
+	@Override
+	public void start() {
+			System.out.println("car start");
+	}	
+	
+	@Override
+	public void clean() {
+		System.out.println("my clean method................");
+	}
+	
+	public static void main(String[] args) {
+		
+		Car c = new Car();
+		
+		c.start();
+		
+		c.clean();
+		
+		//we will call static method in this way 
+		Vehicle.stop();
+	}
+
+}
+
+
+
+
+OUTPUT:
+=======
+
+car start
+my clean method................
+my car is cleaned....
+
