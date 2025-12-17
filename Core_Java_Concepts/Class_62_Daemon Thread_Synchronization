@@ -1,0 +1,211 @@
+===================
+Daemon Thread
+===================
+
+=> We have 3 types of thread in java.
+1.Default thread by JVM(main thread)
+2.User Defined thread(thread class, Runnable interface, collable interface)
+3.Daemon thread
+
+--> Thread which runs in the background is called Daemon thread. Daemon Threads also called as low priority threads.
+Ex: Garbage collector is daemon thread.
+
+
+====> We can make our thread as a daemon thread using setDaemon() method.
+
+
+//java program to make thread as Daemon..
+
+
+package ThreadingDefaultClass;
+public class DaemonThreadDemo implements Runnable {
+
+	 @Override
+	public void run() {
+
+		 //Thread currentThread = Thread.currentThread();
+		 
+		 if(Thread.currentThread().isDaemon()) {
+			 
+			 System.out.println("Daemon thread executed......");
+		 }else {
+			 
+			 System.out.println("Normal thread executed......");
+		 }
+		 
+	}
+	 
+	 public static void main(String[] args) {
+		
+		 DaemonThreadDemo d = new DaemonThreadDemo();
+		 Thread t1 = new Thread(d);
+		 t1.setDaemon(true);
+		 t1.start();
+	}
+}
+
+
+==> When jvm reaches end of main method , it will terminate our program. if jvm founds Daemon thread running, it terminates that Daemon thread and then it will shutdown the program.
+==> JVM will not care about Daemon threads running status to stop the program execution.
+
+
+                                                                  
+                                                                  ===========================
+                                                                         synchronization
+                                                                  ===========================
+
+String ---> Immutable class
+StringBuffer --> Mutable class and synchronized class(Thread safe class)
+StringBuilder -- > Mutable class and not synchronized class (Not thread safe class)
+
+synchronized means thread safe ==> Only one thread can access the object/resource at a time.
+not synchronized means not thread safe ==> Multiple threads can access same resource/ object at a time..
+
+Note: if multiple threads access the same object at a time then there is a chance of getting data inconsistency problem.
+
+Public class MovieTicketBooking{
+
+
+    int available Tickets = 100;
+    public void run(){
+
+      if(available Tickets > 0){
+
+        //logic to book ticket
+          --  available Tickets
+      }
+
+pbsm(){
+
+      Thread t1 = new Thread();
+      Thread t2 = new Thread();
+      Thread t3 = new Thread();
+      
+      t1() to t20--> start
+
+
+}
+    }
+
+}
+
+
+
+
+
+
+=> In the program, multiple threads are trying to book ticket at a time.
+Note: If multiple threads access the same object at a time then there is a chance of getting data inconsistency problem.
+=> To avoid data inconsistency problem, we need to use Synchronization concept.
+=> Synchronization means allowing only one thread to execute our resource/ object/ logic at a time.
+
+Note: By using Synchronization we can achieve Thread safety but it will slow down our execution process.
+
+=======================================================
+         How to achieve Synchronization ? 
+=======================================================
+--> using "Synchronized" keyword we can implement Synchronization.
+--> Synchronized we can use at two places.
+1. At method level 
+2. At block level
+
+=================================
+  Syntax for Synchronized block
+=================================
+
+public void m1(){
+
+//pre-logic
+
+Synchronized(object ) {
+
+        //imp bussiness logic
+
+    }
+
+         //post logic
+
+}
+
+=========================================
+    Syntax for Synchronized Method
+=========================================
+
+public Synchronized void m1(){
+
+        //imp bussiness logic
+
+    }
+
+
+
+
+===========================================================================================================
+
+package ThreadingDefaultClass;
+
+public class SynchronizationDemo implements Runnable {
+
+
+	public synchronized void  printNums(){
+		
+		for(int i=1; i <= 10;i ++) {
+			
+			System.out.println(Thread.currentThread().getName()+"-->"+i);
+			
+			try{Thread.sleep(1000);
+		}catch(Exception e){
+			
+			e.printStackTrace();
+			}
+		}
+		
+	}
+		
+	
+	public void run() {
+      
+		
+		printNums();
+	}
+
+
+public static void main(String[] args) {
+	
+	SynchronizationDemo d = new SynchronizationDemo();
+	
+	Thread t1 = new Thread(d);
+	t1.setName("Thread..1");
+	t1.start();
+	
+	Thread t2 = new Thread(d);
+	t1.setName("Thread..2");
+	t2.start();
+}
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Note: in the above program we are starting 2 threads, two threads will access printNum() method to print the numbers from 1 to 10.
+
+-> If printNums() method having synchronized keyword then two threads will execute the method sequencially one after other.
+-> If we remove synchronied keyword from the printNum() method then two threads will access that method at a time.
+Note: We can see the difference.....
+
+
+
+
+
+
