@@ -1,0 +1,377 @@
+================
+LambdaExpression
+================
+
+-> introduced in java 1.8v....
+-> java is called as Object Oriented Programming language. Everything will be represented using Classes and Objects.
+-> From 1.8v onwards java is also called as Functional Programming language.
+-> In OOP language classes and objects are main entities. we need to write methods() inside the class only.
+-> Functional programming means everything will be represented in the form functions. Functions can exist outside of the class. Functions can be stored into a reference variabel.
+   A function can be passed as a parameter to other methods.
+-> Lambda Expressions introduced in java to enable Functional programming.
+                                                                
+                                                                ++++++++++++++++++++
+                                                                 What is Lambda  ? 
+                                                                ++++++++++++++++++++
+
+--> Lambda is an anonymous function.
+            --No name
+            --No return type
+            --No modifier
+
+Ex:1 -- > 
+=========
+                                      
+                                      Normal in java
+                                      ---------------
+                                         public void m1(){
+                                            s.o.p("hi");
+                                         }
+                                      
+                                      By using Lambda
+                                      ---------------
+                                      
+                                      () -> {s.o.p("hi")};
+                                      
+                                      Note: When we have single line in body then curly braces are optional..
+                                      
+                                      () -> s.o.p("hi");
+
+
+Ex: 2 --> 
+==========
+
+
+                                      public void add(int a, int b){
+                                      
+                                      s.o.p(a+b);
+                                      }
+                                      
+                                      
+                                      Lambda way to write this code --->
+                                      ==================================
+                                      (int a, int b) -> {s.o.p(a+b)};
+                                      
+                                              or 
+                                      (int a, int b) -> s.o.p(a+b)
+                                      
+                                             or
+                                      (a,b) -> s.o.p(a+b); 
+
+Ex: 3 --> 
+=========
+
+                                                      public int getLegth(String name){
+                                                      
+                                                      retrun name.length();
+                                                      
+                                                      }
+                                                      
+                                                      
+                                                      
+                                                      Lambda way to write this code ---->
+                                                      ===================================
+
+                                                      (String name) -> {return name.lenght()};
+                                                      
+                                                                    or
+                                                      
+                                                      (name) -> return name.lenght();
+                                                      
+                                                                   or
+                                                      
+                                                      name -> return name.lenght();
+                                                      
+                                                                  or
+                                                      
+                                                      name -> name.length();
+
+Ex : 4 -->
+==========
+
+public Double getEmpSalary (Employee emp){
+
+ return emp.getSalary();
+
+}
+
+
+Lambda ways to write this code
+==============================
+
+(Employee emp ) -> {return emp.getSalary()};
+
+(emp ) -> return emp.getSalary();
+
+emp ->  return emp.getSalary();
+
+emp -> emp.getSalary();
+                                                
+                           ========================================================================================================
+                                                                     Functional Interface
+                           ========================================================================================================
+
+
+-> The interface which contains only one abstract method is called as Functional Interface.
+-> Functional interfaces are used to invoke Lambda expressions.
+
+Runnable ---> run() method
+Callable ---> call() method
+Comparable --> compareTo ()
+
+-> To represent one interface as Functional Interface we will use @FunctionalInterface annotation...
+
+@FunctionalInterface
+public interface Myinterface{
+
+public void m1();
+ 
+ }
+
+Note: When we write "@FunctionalInterface" then our compiler will check interface contains only one abstract method or not.......
+
+Program without functional interface
+====================================
+package LambdaExpressionDemo;
+
+
+interface Myinterface{
+	
+	public void m1();
+	
+	
+}
+public class Demo implements Myinterface {
+	@Override
+	public void m1() {
+		System.out.println("m1 from abstract method ");
+		
+	}
+	
+	public static void main(String[] args) {
+		
+		Demo d = new Demo();
+		d.m1();
+		
+	}
+}
+
+
+with Functional interface
+=========================
+
+package LambdaExpressionDemo;
+
+@FunctionalInterface
+interface one{
+	
+	public void m1();
+}
+public class DemoWithLambda {
+
+	
+	public static void main(String[] args) {
+		
+		
+		one m=() -> System.out.println("m1 is called");
+		m.m1();
+	}
+}
+
+
+
+
+
+
+==> In java 8v several predefined Functional interface got introduced they are 
+      1. Predicate
+      2. Consumer
+      3. Supplier
+      4. Function
+
+==> The above interfaces are provided in java.util.function package.
+
+
+
+                                                   ============
+                                                    Predicate
+                                                   =============
+=> It is predefined Function Interface.
+=> It is used to check condition and returns true or false value.
+=> Predicate interface having only one abstract method that is test (T t)...
+
+interface Predicate{
+
+boolean test(T t);
+
+}
+
+Example:1
+=========
+
+package LambdaExpressionDemo;
+
+import java.util.function.Predicate;
+
+public class PredicateDemo {
+	
+	
+	
+	/*
+	
+     //method without lambda
+	
+	public boolean test(int i ) {
+		
+		if (i > 10) {
+			
+			return true;
+		}else {
+			return false;
+		}
+	}
+
+   */
+	
+	public static void main(String[] args) {
+	
+		
+		Predicate<Integer> p = i-> i > 10;
+		  System.out.println(p.test(11)); 
+         System.out.println(p.test(5));
+         System.out.println(p.test(8));
+         System.out.println(p.test(100));
+		
+	}
+}
+
+
+
+
+
+
+
+
+Task: Declare names in an array and print names which are starting with "A" using lambda functions.
+
+String[] names={"Anushka", "Anuradha", "roshni", "rohini", "mohini"};
+
+
+Program:
+========
+
+
+package LambdaExpressionDemo;
+
+import java.util.function.Predicate;
+
+public class PredicateDemoString {
+	
+	public static void main(String[] args) {
+		
+		String[] names = {"Anushka", "Anuradha", "roshni", "rohini", "mohini"};
+			
+		
+		Predicate<String> P = name -> name.charAt(0) == 'A';
+		
+		for(String name : names) {
+			
+			if(P.test(name)) {
+				
+				System.out.println(name);
+			}
+		}
+	}
+
+}
+
+
+OUPUT:
+======
+
+Anushka
+Anuradha
+
+
+
+
+
+
+
+
+
+
+
+Scenario cases for validation
+=============================
+
+case:1
+------
+                  
+                  @FunctionalInterface
+                  public interface MyInterface{
+                  
+                  public void m1();
+                  public void m2();
+                  
+                  }
+
+Note: Will get complite time error, because there are 2 abstract method inside the interface...
+
+
+case: 2
+-------
+
+                  @FunctionalInterface
+                  public interface MyInterface{
+                  
+                  
+                  }
+                  
+                  Note: There is no abstract method 
+
+case: 3
+                  -------
+                  @FunctionalInterface
+                  interface   Parent{
+                  
+                   public void m1();
+                  }
+                  
+                  @FunctionalInterface
+                  class child extends parent{
+                  
+                  }
+                  
+                  
+                  Note: Valid because of only one abstract method in my interface and that i extend it in my child class....
+case: 4
+
+                  @FucntionalInterface
+                  public interface Parent{
+                  
+                  public void m1();
+                  }
+                  
+                  @Functionalinterface
+                  public interface Child extends Parent{
+                  
+                  public void m2();
+                  }
+
+                  Note: Invalid, extending the different method.
+Case: 5 
+               
+                @FunctionalInterface
+               public interface Parent{
+               
+               public void m1();
+               }
+               
+               public interface Child extends Parent{
+               
+               public void m2();
+               public void m3();
+               }
+               
+               Note: This is valid because i have not added "@FunctionalInterface" in the child class.
