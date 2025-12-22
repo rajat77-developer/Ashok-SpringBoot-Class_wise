@@ -1,0 +1,361 @@
+======================================================================================
+Task-2: Take list of persons and print persons whose age is >=using Lambda Expression 
+======================================================================================
+
+package LambdaExpressionDemo;
+
+import java.lang.reflect.Array;
+import java.util.Arrays;
+import java.util.List;
+import java.util.function.Predicate;
+
+class Person {
+
+	String name;
+	int age;
+
+	Person(String name, int age) {
+
+		this.name = name;
+		this.age = age;
+
+	}
+
+}
+
+public class PredicateDemoTask2 {
+
+	public static void main(String[] args) {
+
+		Person p1 = new Person("john", 25);
+		Person p2 = new Person("rani", 35);
+		Person p3 = new Person("rahul", 15);
+		Person p4 = new Person("raja", 95);
+
+		// converting these objects into a collection.
+
+		List<Person> persons = Arrays.asList(p1, p2, p3, p4);
+		
+		Predicate<Person> predicate = p -> p.age >=18;
+		
+		for(Person person : persons) {
+			if(predicate.test(person)) {
+				
+				System.out.println(person.name);
+			}
+		}
+
+	}
+
+}
+
+
+
+
+
+OUTPUT:
+
+john
+rani
+raja
+
+                      
+                          ===========================================================
+                                            Predicate Joining
+                          ===========================================================
+--> To combine multiple predicates we will use Predicate joining.
+and()  method
+or()   method
+
+Task1: Print emp names who are working in HYD location in DB team.
+==================================================================
+
+package LambdaExpressionDemo;
+
+import java.util.Arrays;
+import java.util.List;
+import java.util.function.Predicate;
+
+class Employee {
+
+	String name;
+	String location;
+	String dept;
+
+	Employee(String name, String location, String dept) {
+
+		this.name = name;
+		this.location = location;
+		this.dept = dept;
+
+	}
+
+}
+
+public class PredicateJoinDemo {
+
+	public static void main(String[] args) {
+
+		Employee e1 = new Employee("john", "chennai", "devops");
+		Employee e2 = new Employee("johney", "mumbai", "databse");
+		Employee e3 = new Employee("johntey", "pune", "developer");
+		Employee e4 = new Employee("aojo", "pune", "developer");
+		Employee e5 = new Employee("johnson", "bangalore", "testing");
+
+		List<Employee> emps = Arrays.asList(e1, e2, e3, e4);
+
+		Predicate<Employee> p1 = (e) -> e.location.equals("pune");
+		Predicate<Employee> p2 = (e) -> e.dept.equals("developer");
+		Predicate<Employee> p3 = (e) -> e.name.startsWith("a");
+		Predicate<Employee> p = p1.and(p2).and(p3);
+
+		for (Employee e : emps) {
+
+			if (p.test(e)) {
+				System.out.println(e.name);
+
+			}
+		}
+
+	}
+
+}
+
+
+OUTPUT:
+=======
+
+aojo
+
+
+
+                              ================================================================
+                                                Supplier Functional Interface
+                              ================================================================
+
+--> Supplier is a predefined functional interface introduced in java 1.8v......
+--> It contains only one abstract method and that is get() method....
+--> Supplier interface will not take any input, it will only returns the value.........
+
+Ex:  OTP generation
+
+
+package LambdaExpressionDemo;
+
+import java.util.function.Supplier;
+
+public class SupplierDemo {
+
+	public static void main(String[] args) {
+		
+		Supplier<String> s = () -> {
+			
+			String otp = " ";
+		for(int i =1; i<=6; i ++) {
+			
+			otp = otp +(int) (Math.random() * 10);
+		}
+		
+			return otp;
+		};
+		
+		System.out.println(s.get());
+		System.out.println(s.get());
+		System.out.println(s.get());
+		System.out.println(s.get());
+		System.out.println(s.get());
+	}
+}
+
+
+OUTPUT:
+=======
+
+ 336501
+ 599302
+ 916342
+ 447063
+ 228480
+
+
+                      =================================================================
+                                      Consumer functional interface
+                      =================================================================
+
+-> Consumer is predefined functional interface.
+-> It contains one abstract method i.e accept(T t)....
+-> Consumer will accept input but it won't return anything......
+
+Note: In java 8v forEach() method got introduced. forEach(Consumer consumer)method will take Consumer as parameter..
+
+
+package LambdaExpressionDemo;
+
+import java.util.Arrays;
+import java.util.List;
+import java.util.function.Consumer;
+
+public class ConsumerDemo {
+
+	public static void main(String[] args) {
+
+		Consumer<String> c = (name) -> System.out.println(name + ", Good morning");
+		c.accept("sonu");
+		c.accept("monu");
+		c.accept("nonu");
+		c.accept("honu");
+		c.accept("ronu");
+
+		List<Integer> numbers = Arrays.asList(10, 20, 30, 40);
+		
+		//how we call collections 
+		//for loop
+		//for each loop
+		//iterator
+		//list iterator 
+
+		numbers.forEach(i -> System.out.println(i));
+
+	}
+
+}
+
+
+OUTPUT:
+======
+
+sonu, Good morning
+monu, Good morning
+nonu, Good morning
+honu, Good morning
+ronu, Good morning
+10
+20
+30
+40
+
+===========================================================================
+TASK2: Retrive student record based on student id and return that record
+===========================================================================
+
+prediccate --> take inputs --> return true or false
+supplier --> will not take any input --> returns output
+consumer --> will take input ---> will not return anything
+
+so here another concept comes 
+
+function ---> will take input ---> will return output
+
+              
+              ==========================================================================
+                                          function functional interface
+              ==========================================================================
+--> it is predefined internal interface...
+--> Functional interface having one abstract method  i.e   apply (T r)
+
+interface Function<R, T>{
+
+R apply(T t)
+}
+--> It takes input and it returns output
+
+
+Example
+========
+
+package LambdaExpressionDemo;
+
+import java.util.function.Function;
+
+public class FunctionDemo {
+
+	
+	
+		public static void main(String[] args) {
+			
+			
+			Function<String, Integer> f = (name) -> name.length();
+			
+			System.out.println(f.apply("sonu"));
+			System.out.println(f.apply("monu"));
+			System.out.println(f.apply("honu"));
+			
+			
+		}
+	
+}
+
+
+OUPUT:
+======
+
+4
+4
+4
+
+
+
+
+
+==========================================================================================================
+so that we have learned
+
+predicate & BiPredicate
+consumer & Biconsumer
+supplier
+Function and Bifunction
+
+
+
+
+if u want two inputs then we will go with Bipredicate
+BiPredicate example: 
+======================
+
+
+package LambdaExpressionDemo;
+
+import java.util.function.BiPredicate;
+import java.util.function.Predicate;
+
+public class PredicateDemo {
+	
+	
+	
+	/*
+	
+     //method without lambda
+	
+	public boolean test(int i ) {
+		
+		if (i > 10) {
+			
+			return true;
+		}else {
+			return false;
+		}
+	}
+
+   */
+	
+	public static void main(String[] args) {
+	
+		
+		Predicate<Integer> p = i-> i > 10;
+		  System.out.println(p.test(11));  
+		  System.out.println(p.test(9));
+		  
+		  System.out.println("========================================");
+		  
+		  BiPredicate<Integer, Integer> bip = (i, j) -> (i + j) >=20;
+		  
+		  System.out.println(bip.test(2, 3));
+		  System.out.println(bip.test(16, 10));
+		
+	}
+}
+
+
+
+
+
