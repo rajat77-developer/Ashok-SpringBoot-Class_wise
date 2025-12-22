@@ -238,13 +238,13 @@ ronu, Good morning
 TASK2: Retrive student record based on student id and return that record
 ===========================================================================
 
-prediccate --> take inputs --> return true or false
-supplier --> will not take any input --> returns output
-consumer --> will take input ---> will not return anything
+prediccate --> take inputs --> return true or false --> test()
+supplier --> will not take any input --> returns output --> get()
+consumer --> will take input ---> will not return anything --> accept()
 
 so here another concept comes 
 
-function ---> will take input ---> will return output
+function ---> will take input ---> will return output ==> apply()
 
               
               ==========================================================================
