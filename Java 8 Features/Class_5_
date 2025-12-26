@@ -1,0 +1,299 @@
+                                  =================================
+                                        StringJoiner
+                                  =================================
+
+=> It is introduced in java 1.8v....
+=> It is used to join more than one String with specified delimeter..
+=> We can concate prefix and suffix while joining strings using StringJoiner...
+
+StringJoiner sj = new StringJoiner(CharSequence delim);
+StringJoiner sj = new StringJoiner(CharSequence delim, CharSequence prefix, CharSequence suffix);
+
+these are two constructor available for StringJoiner..............
+
+Example:
+========
+
+package LambdaExpressionDemo;
+
+import java.util.StringJoiner;
+
+public class StringJonierDemo {
+	
+	public static void main(String[] args) {
+		
+		StringJoiner sj = new StringJoiner("-");
+		
+		sj.add("Sonu");
+		sj.add("is");
+		sj.add("Rajat");
+		
+		
+		System.out.println(sj);
+	}
+
+}
+
+
+OUTPUT:
+=======
+
+Sonu-is-Rajat
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+when you perform any operation directly on any object that time there is a chance of getting nullpointerexception ..
+like below is a example;;;;
+
+
+
+User.java
+========
+
+package OptionalClassConcept;
+
+public class User {
+
+	public String getUsernameById(Integer Id) {
+
+		if (Id == 100) {
+
+			return "Sonu";
+		} else if (Id == 101) {
+
+			return "Rajat";
+		} else if (Id == 102) {
+
+			return "Chua";
+		} else {
+
+			return null;
+		}
+	}
+}
+
+
+
+MsgService.java
+===============
+
+package OptionalClassConcept;
+
+import java.util.Scanner;
+
+public class MsgService {
+
+	public static void main(String[] args) {
+
+		Scanner sn = new Scanner(System.in);
+
+		System.out.println("Enter user ID");
+		int userId = sn.nextInt();
+
+		User u = new User();
+
+		String username = u.getUsernameById(userId);
+
+		String msg = username.toUpperCase() + "---->Hello";
+
+		System.out.println(msg);
+
+	}
+
+}
+
+
+
+//Note":
+//when you enter a wrong id or which is not in the data , in that time we will get below output
+
+OUTPUT:
+=======
+Enter user ID
+250
+Exception in thread "main" java.lang.NullPointerException: Cannot invoke "String.toUpperCase()" because "username" is null
+	at OptionalClassConcept.MsgService.main(MsgService.java:18)
+
+
+
+Now to resolve this , we will check the input of the user whether it is null or not by using "if else "
+
+
+Example:
+========
+
+package OptionalClassConcept;
+
+import java.util.Scanner;
+
+public class MsgService {
+
+	public static void main(String[] args) {
+
+		Scanner sn = new Scanner(System.in);
+
+		System.out.println("Enter user ID");
+		int userId = sn.nextInt();
+
+		User u = new User();
+
+		String username = u.getUsernameById(userId);
+
+		if(username != null) {
+			
+
+			String msg = username.toUpperCase() + "---->Hello";
+
+			System.out.println(msg);
+		}else {
+			
+			System.out.println("Invalid Id");
+		}
+
+	}
+
+}
+
+
+OUTPUT:
+=======
+
+Enter user ID
+250
+Invalid Id
+
+
+
+==================================
+        Optional Class 
+==================================
+
+=> To overcome all of these nullpointerexception error we have a solution that introduced in java 1.8v.......
+=> Optional class is used to avoid NullPointerExceptions in the program...........
+
+
+Q. What is NullPointerException( NPE )?
+
+Ans. When we perform some operation on null value then we will get NullPointerException..
+
+   String s = null;
+   s.length ();//NPE
+
+==> To avoid NullPointerException we have to implement null check before performing operation on the object like below ...
+
+   String s = null;
+   if(s!= null){
+
+    system.out.println(s.length());
+   }
+
+Note: In project there is no guarantee that every programmer will implement null checks.if anybody forget to implement null check then program will run into NullPointerException .
+
+To avoid this problem we need to use Optional class like below 
+
+
+User.java
+=========
+package OptionalClassConcept;
+
+import java.util.Optional;
+
+public class User {
+
+public Optional<String> getUsername(Integer id){
+	
+	String name = null;
+	if(id == 100) {
+		
+		name = "Raju";
+	}else if(id == 101) {
+		
+		name = "Ranu";
+	}else if(id == 103) {
+		
+		name = "Rani";
+	}
+	
+	return Optional.ofNullable(name);
+    }
+}
+
+
+MsgService.java
+================
+
+package OptionalClassConcept;
+
+import java.util.Optional;
+import java.util.Scanner;
+
+public class MsgService {
+
+	public static void main(String[] args) {
+
+		Scanner sn = new Scanner(System.in);
+
+		System.out.println("Enter user ID");
+		int userId = sn.nextInt();
+
+		User u = new User();
+
+		Optional<String> username = u.getUsername(userId);
+
+		
+		if(username.isPresent()) {
+			
+			String name= username.get();
+			System.out.println(name.toUpperCase() + ", Hello ");
+		}else {
+			
+			System.out.println("No data found ");
+		}
+	}
+
+}
+
+
+
+OUTPUT:
+=======
+
+Enter user ID
+205
+No data found 
+
+
+
+
+
+
+
+=============================================================================================================================
+
+                                                DATE AND TIME API CHANGES
+
+==============================================================================================================================
+
+
+
