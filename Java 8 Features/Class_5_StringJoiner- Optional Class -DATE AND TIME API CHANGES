@@ -42,27 +42,6 @@ Sonu-is-Rajat
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 when you perform any operation directly on any object that time there is a chance of getting nullpointerexception ..
 like below is a example;;;;
 
@@ -294,6 +273,144 @@ No data found
                                                 DATE AND TIME API CHANGES
 
 ==============================================================================================================================
+==> In java we have 2 classes to represent to data 
+
+1. java.util.Date
+2. java.sql.Date
+
+When we are performing database operations then we will use java.sql.Date class
+
+Date d = new Date();
+system.out.println(d);
+
+Note: When we create Object for Date class, it will represent both Date and Time.
+
+=> if we want to get only date or only time then we need to format it using SimpleDateFormat class.	
+
+
+		===============================
+			java.text.SimpleDateFormat
+		===============================
+=> SimpleDataFormat is a predefined class in java.text package..
+=> This class provided methods to perform Data conversions...
+
+   Date to String conversion 	===> 	String format (Date d)
+   String to Date conversion    ===>    Date parse (String str)
+
+Example: 
+--------
+
+
+package TimeFormat;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+public class DateDemo {
+	
+	
+	public static void main(String[] args) throws Exception {
+		
+		
+		Date date = new Date();
+		System.out.println(date);
+		
+		
+		//converting date to string
+		
+		SimpleDateFormat sdf1 = new SimpleDateFormat("dd/MM/yyyy");
+		String format1 = sdf1.format(date);
+		System.out.println(format1);
+		
+		SimpleDateFormat sdf2 = new SimpleDateFormat("MM/dd/yyyy");
+		String format2 = sdf2.format(date);
+		System.out.println(format2);
+		
+		//Convert string to date
+		
+		SimpleDateFormat sdf3 = new SimpleDateFormat("yyyy-MM-dd");
+		Date parseDate  = sdf3.parse("2025-12-26");
+		System.out.println(parseDate);
+	}
+
+}
+
+
+============================================================================================================
+==> To overcome the problem of java.util.Date class java 1.8v introduced Date API changes..
+==> in Java 1.8v , new classes got introduced to deal with Date and Time functionalities...
+
+1. java.time.LocalDate(it will deal  only with date)
+2. java.time.LocalTime (it will deal  only with time)
+3. java.time.LocalDateTime (it will deal with both date and time)
 
 
 
+Example with all concept with date and time 
+===========================================
+
+
+package TimeFormat;
+
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.Period;
+import java.util.*;
+
+public class NewDateDemo {
+
+	public static void main(String[] args) {
+
+		LocalDate date = LocalDate.now();
+		System.out.println(date);
+
+		date = date.plusDays(3);
+
+		System.out.println(date);
+
+		date = date.plusMonths(1);
+		System.out.println(date);
+
+		date = date.plusYears(2);
+		System.out.println(date);
+
+		boolean leapYear = LocalDate.parse("2020-12-22").isLeapYear();
+
+		System.out.println("Leap Year ::" + leapYear);
+
+		boolean before = LocalDate.parse("2021-12-22").isBefore(LocalDate.parse("2022-12-22"));
+
+		System.out.println("before date :::" + before);
+		
+		
+		LocalTime time = LocalTime.now();
+        System.out.println(time);
+        
+        time = time.plusHours(2);
+	   System.out.println(time);
+	   
+	   LocalDateTime datetime = LocalDateTime.now();
+	   System.out.println(datetime);
+	      
+	   Period between = Period.between(LocalDate.parse("1991-12-22"), LocalDate.now());
+	   System.out.println(between.getYears());
+		
+	}
+
+}
+
+
+OUTPUT:
+=======
+
+2025-12-26
+2025-12-29
+2026-01-29
+2028-01-29
+Leap Year ::true
+before date :::true
+23:47:12.426872600
+01:47:12.426872600
+2025-12-26T23:47:12.426872600
+34
