@@ -1,0 +1,609 @@
+                                      ====================
+                                        Mapping Operation
+                                      ====================
+
+=> Mapping operations are belongs to intermediate operations in the Stream Api.
+=> Mapping Operations are used to transform the stream elements and return transformed elements as new Stream..
+
+Ex: Stream map (Function fnction)
+
+============================
+Example:1    map() method
+============================
+
+package StreamAPIpkg;
+
+import java.util.Arrays;
+import java.util.List;
+
+public class MapDemo {
+
+	
+	public static void main(String[] args) {
+		
+		List<String> names = Arrays.asList("sony", "sonu", "rohit", "raju");
+		
+		/*
+		//Legacy method
+		
+		for(String name : names) {
+			
+			System.out.println(name.toUpperCase());
+		}
+		*/
+		
+		names.stream().map(name -> name.toUpperCase()).forEach(n -> System.out.println(n));
+
+    names.stream().mapToInt(name -> name.length()).forEach(n -> System.out.println(n));
+
+	}
+}
+
+
+
+OUTPUT:
+========
+SONY
+SONU
+ROHIT
+RAJU
+4
+4
+5
+4
+
+==================================================================================
+Example: 2 -> map() method using to filter the name starting with "r" with length
+==================================================================================
+
+package StreamAPIpkg;
+
+import java.util.Arrays;
+import java.util.List;
+
+public class MapDemoOperation {
+	
+	public static void main(String[] args) {
+		
+		
+		List<String> names = Arrays.asList("sonu", "monu", "honu", "rohit" , "raju");
+		
+		/*
+		 * 
+		 *   print name with its length which are starting with "r" using Stream API
+		 *   rohit - 5
+		 *   raju  - 4
+		 * 	
+		 * 
+		 * 
+		 * */
+		
+		names.stream()
+		 .filter(name -> name.startsWith("r"))
+		 .map(name -> name + "-" + name.length())
+		 .forEach(name -> System.out.println(name));
+	}
+
+}
+
+
+
+
+OUTPUT:
+=======
+
+rohit-5
+raju-4
+
+
+
+
+                                  ========================
+                                  Example: 3  map() method
+                                  ========================
+
+class Employee(){
+
+String name;
+int age;
+double salary;
+}
+
+Task: Get employee name and emp age whose salary is >= 50,000...
+
+
+package StreamAPIpkg;
+
+import java.util.stream.Stream;
+
+public class EmployeeDemo {
+	
+	public static void main(String[] args) {
+		
+		Employee e1 = new Employee("john", 45, 55000.00);
+		Employee e2 = new Employee("josh", 48, 45000.00);
+		Employee e3 = new Employee("jeba", 46, 58000.00);
+		Employee e4 = new Employee("jeta", 43, 35000.00);
+		
+		
+		Stream<Employee> s = Stream.of(e1, e2, e3, e4);
+		
+		/*s.filter(e -> e.salary >= 50000)
+		.map(e -> e.name+ " - "+e.age)
+		.forEach(e -> System.out.println(e));
+		*/
+		
+		s.filter(e -> e.salary >= 50000.00)
+		.forEach(e -> System.out.println(e.name+"->"+e.age));
+	}
+
+	
+}
+
+
+
+
+class Employee{
+	
+	String name;
+	int age;
+	double salary;
+	
+	
+	
+	//to represent data  i am taking one constructor 
+	public Employee(String name, int age, double salary) {
+
+		this.name=name;
+		this.age=age;
+		this.salary=salary;
+	
+	}
+}
+
+
+OUTPUT:
+=======
+
+john->45
+jeba->46
+
+
+
+
+
+                                ===========================================
+                                 Q. What is flatMap(Function f) method ?
+                                ===========================================
+==> it is used to flaten list of streams into single stream....
+
+package StreamAPIpkg;
+
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Stream;
+
+public class flatMapDemo {
+
+	
+	public static void main(String[] args) {
+		
+		List<String> javacourses = Arrays.asList("core java", "adv java", "spring boot");
+		List<String> uicourses   = Arrays.asList("html", "css", "bs", "js");
+		
+		
+		List<List<String>> courses = Arrays.asList(javacourses, uicourses);
+		
+		System.out.println("====without using flatmap==========");
+		
+		courses.stream().forEach(c -> System.out.println(c));
+		
+		
+		System.out.println("=======using Flatmap()===============");
+		//using flatmap
+		
+		Stream<String> fm = courses.stream().flatMap(s -> s.stream());
+		fm.forEach(c -> System.out.println(c));
+	}
+}
+
+
+
+
+======
+OUTPUT:
+======
+
+====without using flatmap==========
+
+[core java, adv java, spring boot]
+[html, css, bs, js]
+
+=======using Flatmap()===============
+core java
+adv java
+spring boot
+html
+css
+bs
+js
+
+
+
+
+                                ============================================================
+                                        Slicing Operations with stream
+                                ============================================================
+=> distinct() --> To get unique elements from the stream..
+=> limit(long maxSize) --> Get elements from the stream based on given size..
+=> skip(long l) --> It is used to skip given number of elements from starting position of the stream...
+
+Note: All the above three methods are comes under intermediate operational methods. They will perform operation and returns new stream.
+
+
+example:
+========
+
+
+package StreamAPIpkg;
+
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Stream;
+
+public class flatMapDemo {
+
+	
+	public static void main(String[] args) {
+		
+		List<String> javacourses = Arrays.asList("core java", "adv java", "spring boot", "microservices");
+		
+		
+		javacourses.stream().limit(3).forEach(c -> System.out.println(c));
+		
+		
+		System.out.println("==========");
+		
+		javacourses.stream().skip(2).forEach(c -> System.out.println(c));
+		
+		System.out.println("==========");
+		
+		List<String> names = Arrays.asList("raja", "rani", "raja", "rani", "gopal");
+		
+		names.stream().distinct().forEach(c -> System.out.println(c));
+		
+	}
+}
+
+
+OUTPUT:
+=======
+
+core java
+adv java
+spring boot
+==========
+spring boot
+microservices
+==========
+raja
+rani
+gopal
+
+
+
+
+
+
+                                    =============================================
+                                    Matching Operations with Stream
+                                    =============================================
+
+1. boolean anyMathc(Predicate p)
+2. boolean allMatch(Predicate p)
+3. boolean noneMatch(Predicate p)
+
+
+Note: The above three methods are belongs to   Termnnal operation because they will do operations and they will return result directly(they won't return stream).
+
+=> The above methods are used to check the given condition and returns true and false value based on condition.
+
+
+Example for all 3 Matching Operations
+=====================================
+
+
+package StreamAPIpkg;
+
+import java.util.Arrays;
+import java.util.List;
+
+public class matchingCoceptDemo {
+
+	
+	
+	public static void main(String[] args) {
+		
+		Person p1 = new Person("john", "india");
+		Person p2 = new Person("mohn", "canada");
+		Person p3 = new Person("kohn", "bhutan");
+		Person p4 = new Person("sohn", "india");
+		Person p5 = new Person("horn", "india");
+		
+		
+		List<Person> persons = Arrays.asList(p1,p2,p3,p4,p5);
+		
+		boolean status1 = persons.stream().anyMatch(p -> p.country.equals("india"));
+		System.out.println("Any Indian Available ::" + status1);
+		
+		
+		boolean status2 = persons.stream().anyMatch(p -> p.country.equals("canada"));
+		System.out.println("Any canadian Available :: "+status2);
+		
+		boolean status3 = persons.stream().allMatch(p -> p.country.equals("austrelia"));
+		System.out.println("Any austrelian Available :: "+status3);
+		
+		
+		boolean status4 = persons.stream().noneMatch(p -> p.country.equals("maxico"));
+		System.out.println("Any maxician available  :: " + status4);
+		
+	}
+}
+
+
+class Person{
+	
+	String name;
+	String country;
+	
+	public Person(String name, String country) {
+
+	
+		this.name=name;
+		this.country=country;
+	
+	}
+
+
+
+OUTPUT:
+=======
+
+Any Indian Available ::true
+Any canadian Available :: true
+Any austrelian Available :: false
+Any maxician available  :: true
+
+
+                                                            
+                                                            ==================================================
+                                                                   Collectors with Stream
+                                                            ==================================================
+
+=> Collectors are used to collect data from stream....
+
+
+Example:
+========
+
+
+package StreamAPIpkg;
+
+import java.util.Arrays;
+import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
+
+public class matchingCoceptDemo {
+
+	
+	
+	public static void main(String[] args) {
+		
+		Person p1 = new Person("john", "india");
+		Person p2 = new Person("mohn", "canada");
+		Person p3 = new Person("kohn", "bhutan");
+		Person p4 = new Person("sohn", "india");
+		Person p5 = new Person("horn", "india");
+		
+		
+		List<Person> persons = Arrays.asList(p1,p2,p3,p4,p5);
+		
+		List<Person> indians = persons.stream()
+				               .filter(p -> p.country.equals("india"))
+				               .collect(Collectors.toList());
+		
+		indians.forEach(c -> System.out.println(c));
+		
+	}
+}
+
+
+class Person{
+	
+	String name;
+	String country;
+	
+	public Person(String name, String country) {
+
+	
+		this.name=name;
+		this.country=country;
+	
+	}
+	
+	@Override
+	public String toString() {
+		return "Person [name=" + name + ", country=" + country + "]";
+	}
+}
+
+
+
+
+OUTPUT:
+======
+
+Person [name=john, country=india]
+Person [name=sohn, country=india]
+Person [name=horn, country=india]
+
+
+                      
+                      ======================================================================================================
+                      Example: 2 ====> collecct name of persons who are belongs to   india and store into names collections 
+                      ======================================================================================================
+
+package StreamAPIpkg;
+
+import java.util.Arrays;
+import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
+
+public class matchingCoceptDemo {
+
+	
+	
+	public static void main(String[] args) {
+		
+		Person p1 = new Person("john", "india");
+		Person p2 = new Person("mohn", "canada");
+		Person p3 = new Person("kohn", "bhutan");
+		Person p4 = new Person("sohn", "india");
+		Person p5 = new Person("horn", "india");
+		
+		
+		List<Person> persons = Arrays.asList(p1,p2,p3,p4,p5);
+		
+		List<String> names = persons.stream()
+				               .filter(p -> p.country.equals("india"))
+				               .map( p -> p.name)
+				               .collect(Collectors.toList());
+		
+		System.out.println(names);
+		
+	}
+}
+
+
+class Person{
+	
+	String name;
+	String country;
+	
+	public Person(String name, String country) {
+
+	
+		this.name=name;
+		this.country=country;
+	
+	}
+	
+	@Override
+	public String toString() {
+		return "Person [name=" + name + ", country=" + country + "]";
+	}
+}
+
+
+
+OUTPUT:
+=======
+
+[john, sohn, horn]
+
+
+                                          
+                                                            =====================
+                                                            Diagram point of view
+                                                            =====================
+                                          
+                                          
+                                          =====================================================================
+                                          Set-1:: intermediate operations(will return streams)
+                                          =====================================================================
+                                          
+                                          Filters ==== >filter()
+                                          mapping ====> map() & flatMap()
+                                          slicing =====> distinct() & limit() & skip()
+                                          
+                                          
+                                          =====================================================================
+                                          Set-2 :: Terminal OPerations (will return results)
+                                          =====================================================================
+                                          
+                                          Finding ===> findFirst() & findAny()
+                                          Matching ==> anyMatch()  & allMatch() & noneMatch()
+                                          Collection ==>   collect()
+                                          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
