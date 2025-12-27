@@ -1,0 +1,269 @@
+Requirement
+===========
+Write a java program to get MAX, MIN, AVG salary from given employees data using Stream API..
+
+Program:
+========
+
+package Requirement;
+
+import java.util.Arrays;
+import java.util.Comparator;
+import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
+
+public class FirstDemo {
+	
+	
+	public static void main(String[] args) {
+		
+		
+		Employee e1 = new Employee(1, "ram", 20000.00);
+		Employee e2 = new Employee(2, "rom", 30000.00);
+		Employee e3 = new Employee(3, "rok", 40000.00);
+		Employee e4 = new Employee(4, "ask", 50000.00);
+		Employee e5 = new Employee(5, "dam", 60000.00);
+		Employee e6 = new Employee(6, "fuk", 70000.00);
+		
+		List<Employee> list = Arrays.asList(e1,e2,e3,e4,e5,e6);
+		
+		//logic to get maximum salary
+		Optional<Employee> max = list.stream().collect(Collectors.maxBy(Comparator.comparing(e -> e.salary)));
+		System.out.println("Max salary ::"+ max.get().salary);
+		
+		//logic to get minimum salary
+		Optional<Employee> min = list.stream().collect(Collectors.minBy(Comparator.comparing(e -> e.salary)));
+		System.out.println("Min salary ::" +min.get().salary );
+		
+		//logic to get Average salary
+		Double avgSalary = list.stream().collect(Collectors.averagingDouble(e -> e.salary));
+		
+		System.out.println("Avg Salary is :: "+avgSalary);
+	}
+
+}
+
+
+class Employee{
+	
+	int id;
+	String name;
+	double salary;
+	
+	public Employee(int id, String name, double salary) {
+	
+	this.id=id;
+	this.name=name;
+	this.salary=salary;
+	
+	
+	}
+}
+
+
+
+
+OUTPUT:
+=======
+
+Max salary ::70000.0
+Min salary ::20000.0
+Avg Salary is :: 45000.0
+
+
+                          =========================================================================================
+                                                      Group by using Stream
+                          =========================================================================================
+
+==> Group by is used categorized the data/ Grouping the data...
+==> When we use grouping () function with stream it will group the data as Key-Value(s) pair and it will return Map object..
+
+-> In below example employees will be grouped based on country.
+
+=======
+Example:
+========
+
+package Requirement;
+
+import java.util.Arrays;
+import java.util.Comparator;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
+import java.util.stream.Collectors;
+
+public class FirstDemo {
+	
+	
+	public static void main(String[] args) {
+		
+		
+		Employee e1 = new Employee(1, "ram", 20000.00, "india");
+		Employee e2 = new Employee(2, "rom", 30000.00, "usa");
+		Employee e3 = new Employee(3, "rok", 40000.00, "china");
+		Employee e4 = new Employee(4, "ask", 50000.00, "europe");
+		Employee e5 = new Employee(5, "dam", 60000.00, "russia");
+		Employee e6 = new Employee(6, "fuk", 70000.00, "india");
+		
+		List<Employee> list = Arrays.asList(e1,e2,e3,e4,e5,e6);
+
+Map<String, List<Employee>> data = list.stream()
+						.collect(Collectors.groupingBy(e -> e.country));
+		
+		System.out.println(data);
+	}
+
+}
+
+
+class Employee{
+	
+	int id;
+	String name;
+	double salary;
+	String country;
+	
+	public Employee(int id, String name, double salary, String country) {
+	
+	this.id=id;
+	this.name=name;
+	this.salary=salary;
+	this.country=country;
+	
+	
+	}
+	
+	@Override
+	public String toString() {
+		return "Employee [id=" + id + ", name=" + name + ", salary=" + salary + ", country=" + country + "]";
+	}
+	
+	
+}
+
+
+
+
+OUTPUT:
+=======
+
+{usa=[Employee [id=2, name=rom, salary=30000.0, country=usa]], russia=[Employee [id=5, name=dam, salary=60000.0, country=russia]], china=[Employee [id=3, name=rok, salary=40000.0, country=china]], india=[Employee [id=1, name=ram, salary=20000.0, country=india], Employee [id=6, name=fuk, salary=70000.0, country=india]], europe=[Employee [id=4, name=ask, salary=50000.0, country=europe]]}
+
+
+
+
+
+
+
+                                            
+                                            ==========================================
+                                                            Parallel Streams
+                                            ==========================================
+
+
+==> Generally Streams will execute in sequence order..
+==> To improve execution process of the stream we can use parallel streams..
+==> Paraallel Stream introduced to improve performance of the program...
+
+package Requirement;
+
+import java.util.stream.Stream;
+
+public class ParallelDemo {
+
+	
+	public static void main(String[] args) {
+		
+		
+		System.out.println("======Serial Stream ===========");
+		
+		Stream<Integer> si = Stream.of(1,2,3,4,5);
+		
+		si.forEach(n -> System.out.println(n+"::"+Thread.currentThread()));
+		
+		
+		System.out.println("========Parallel Stream===========");
+		
+		Stream<Integer> ps = Stream.of(1,2,3,4,5);
+		ps.parallel().forEach(n -> System.out.println( n +"::"+ Thread.currentThread()));
+		
+		
+		
+		
+	}
+}
+
+
+
+OUTPUT:
+=======
+
+======Serial Stream ===========
+1::Thread[#1,main,5,main]
+2::Thread[#1,main,5,main]
+3::Thread[#1,main,5,main]
+4::Thread[#1,main,5,main]
+5::Thread[#1,main,5,main]
+========Parallel Stream===========
+3::Thread[#1,main,5,main]
+5::Thread[#1,main,5,main]
+4::Thread[#1,main,5,main]
+2::Thread[#21,ForkJoinPool.commonPool-worker-1,5,main]
+1::Thread[#22,ForkJoinPool.commonPool-worker-2,5,main]
+
+
+
+
+                                          
+                                          =======================================
+                                               java spliterator
+                                          =======================================
+
+==> Like Iterator and ListIterator , Spliterator is one of the Java Iterator..
+==> spliterator is introduced in java 1.8v..
+==> spliterator is an interface in collection api..
+==> spliterator supports parallel programming..
+==> spliterator we can use to traverse both Collections and Streams..
+==> spliterator can't be used with map implementation classes....
+
+
+Example:
+========
+
+package Requirement;
+
+import java.util.Arrays;
+import java.util.List;
+import java.util.Spliterator;
+
+public class SplIteratorDemo {
+
+	
+	
+	public static void main(String[] args) {
+		
+		
+		List<String> names = Arrays.asList("sachin", "machin", "kachin");
+		
+		Spliterator<String> spliterator = names.stream().spliterator();
+		spliterator.forEachRemaining(n -> System.out.println(n));
+	
+	
+	}
+}
+
+
+Output:
+=======
+
+sachin
+machin
+kachin
+
+
+
+
+
+
