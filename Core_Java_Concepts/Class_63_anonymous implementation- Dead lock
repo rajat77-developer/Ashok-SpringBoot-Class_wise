@@ -1,0 +1,208 @@
+                              ===================================================
+                              working with Threads using anonymous implementation
+                              ===================================================
+===> Most of the industries use this approach to create a thread..
+
+
+package Class63;
+
+import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
+public class ThreadDemo {
+
+	public static void main(String[] args) {
+
+		Thread t1 = new Thread() {
+
+			public void run() {
+
+				System.out.println("run() method logic one ");
+
+			}
+		};
+		t1.start();
+
+		Runnable r = new Runnable() {
+
+			@Override
+			public void run() {
+
+				System.out.println("this is run() method logic-2");
+			}
+		};
+		
+		Thread t2 = new Thread(r);
+		t2.start();
+
+		
+		//Below is called anonymous approach to create thread 
+		
+		Callable c = new Callable() {
+
+			@Override
+			public Object call() throws Exception {
+
+				System.out.println("call() method logic - 3");
+				return null;
+			}
+
+		};
+
+		ExecutorService exService = Executors.newFixedThreadPool(1);
+		exService.submit(c);
+
+	}
+}
+
+
+
+OUTPUT:
+=======
+
+run() method logic one 
+this is run() method logic-2
+call() method logic - 3
+
+
+============================================
+below is the old approach to create a thread
+============================================
+
+package Class63;
+
+public class Demo extends Thread {
+	
+	@Override
+	public void run() {
+
+		System.out.println("this is thread logic");
+	
+	}
+	
+	
+	public static void main(String[] args) {
+		
+		
+		Demo d = new Demo();
+		Thread t = new Thread(d);
+		
+		t.start();
+	}
+	
+
+}
+
+
+OUTPUT:
+=======
+this is thread logic
+
+                                                    
+                                                    ++++++++++++++++++++++++++++++++++++++++++++++
+                                                                 Dead lock
+                                                    +++++++++++++++++++++++++++++++++++++++++++++
+
+=> DeadLock means ambiguity problem among the threads.
+=> If 2 threads are waiting for each other to release the resource is called as dead lock.
+=> Once we get into dead lock situation then we can't do anything ...
+
+Ex: 
+===
+
+Thread 1 holding resource -1 and waiting for resource 2
+
+thread 2 holding resource -2 and waiting for resource 1
+
+Note: Thread 1 will not release resource -1 hence thread -2 will be waiting state forever for resource - 1 
+
+
+// Java program which gives deadLock..
+
+
+package Class63;
+
+public class DeadLock {
+	
+	public static void main(String[] args) {
+		
+		
+		String s1 = "Hi";
+		String s2 = "Hello";
+		
+		
+		Thread t1 = new Thread() {
+			
+			
+			@Override
+			public void run() {
+			
+				synchronized (s1) {
+					
+					System.out.println("thread-1 lcoked resource - 1");
+				
+				}
+				
+				try {
+					Thread.sleep(1000);
+				} catch (InterruptedException e) {
+					
+					e.printStackTrace();
+				}
+				
+				synchronized (s2) {
+					
+					System.out.println("thread 1 is waiting for resource 2");
+					
+				}
+			
+			}
+		};
+		
+		Thread t2 = new Thread() {
+			
+			@Override
+			public void run() {
+			
+			synchronized (s2) {
+				
+				System.out.println("thread-2 locked resource - 2 ");
+				
+			}
+			
+			try {
+				Thread.sleep(1000);
+			} catch (InterruptedException e) {
+				
+				e.printStackTrace();
+			}
+			
+			synchronized (s1) {
+				
+			System.out.println("thread -2 waiting for resource -1 ");
+			
+			}
+			
+			}
+		};
+		
+		t1.start();
+		t2.start();
+	}
+
+}
+
+
+
+OUTPUT:
+=======
+
+thread-2 locked resource - 2 
+thread-1 lcoked resource - 1
+thread 1 is waiting for resource 2
+thread -2 waiting for resource -1 
+
+
+
+
