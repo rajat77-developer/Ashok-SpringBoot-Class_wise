@@ -203,6 +203,186 @@ thread-1 lcoked resource - 1
 thread 1 is waiting for resource 2
 thread -2 waiting for resource -1 
 
+										++++++++++++++++++++++++++++++++++++++++
+												   join() method
+										++++++++++++++++++++++++++++++++++++++++
+
+==> join () method is used to hold second thread execution until first thread execution got completed...
+
+Example:
+=======
+
+package Class63;
+
+public class TwoThread {
+
+	public static void main(String[] args) throws Exception {
+
+		Thread t1 = new Thread() {
+
+			public void run() {
+
+				for (int i = 1; i <= 5; i++) {
+
+					System.out.println(Thread.currentThread().getName() + "--->" + i);
+					
+					try {
+						Thread.sleep(1000);
+					} catch (InterruptedException e) {
+						e.printStackTrace();
+					}
+				}
+			}
+		};
+
+		t1.setName("Thread--1");
+		
+		
+		
+		Thread t2 = new Thread() {
+
+			public void run() {
+
+				for (int i = 1; i <= 5; i++) {
+
+					System.out.println(Thread.currentThread().getName() + "--->" + i);
+					
+					try {
+						Thread.sleep(1000);
+					} catch (InterruptedException e) {
+						e.printStackTrace();
+					}
+				}	
+			}
+		};
+		t2.setName("Thread--2");
+		
+		t1.start();	
+		t1.join();
+		t2.start();
+	}
+}
+
+OutPut:
+=======
+					Thread--1--->1
+					Thread--1--->2
+					Thread--1--->3
+					Thread--1--->4
+					Thread--1--->5
+					Thread--2--->1
+					Thread--2--->2
+					Thread--2--->3
+					Thread--2--->4
+					Thread--2--->5
+
+											+++++++++++++++++++++++++++++++++++
+											     yeild() method
+											+++++++++++++++++++++++++++++++++++
+
+
+==> yield() method is used to give chance for other thread which is in the program.....
+
+package Class63;
+
+public class TwoThread {
+
+	public static void main(String[] args) throws Exception {
+
+		Thread t1 = new Thread() {
+
+			public void run() {
+
+				for (int i = 1; i <= 5; i++) {
+
+					System.out.println(Thread.currentThread().getName() + "--->" + i);
+					
+					try {
+						Thread.sleep(1000);
+						Thread.yield();
+					} catch (InterruptedException e) {
+						e.printStackTrace();
+					}
+				}
+				
+				
+
+			}
+		};
+
+		t1.setName("Thread--1");
+		
+		
+		
+		Thread t2 = new Thread() {
+
+			public void run() {
+
+				for (int i = 1; i <= 5; i++) {
+
+					System.out.println(Thread.currentThread().getName() + "--->" + i);
+					
+					try {
+						Thread.sleep(1000);
+						Thread.yield();
+					} catch (InterruptedException e) {
+						e.printStackTrace();
+					}
+				}
+				
+				
+
+			}
+		};
+		t2.setName("Thread--2");
+		
+		t1.start();	
+		t2.start();
+	}
+}
+
+OUTPUT:
+=======
+
+				Thread--2--->1
+				Thread--1--->1
+				Thread--2--->2
+				Thread--1--->2
+				Thread--2--->3
+				Thread--1--->3
+				Thread--2--->4
+				Thread--1--->4
+				Thread--1--->5
+				Thread--2--->5
+
+
+								=====================================================================
+												Inter thread communication
+								=====================================================================
+==> It is used to established communication among the threads...
+==> To achieve inter thread communication we have below 3 methods in the object class
+			
+			1.wait()
+			2.notify()
+			3.notifyAll()
+
+Q. Why these three methods available in Object class, why not in ThreadClass ?
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
