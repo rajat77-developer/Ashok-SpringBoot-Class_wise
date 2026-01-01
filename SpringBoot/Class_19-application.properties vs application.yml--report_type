@@ -1,0 +1,53 @@
+==============================================================================
+                application.properties vs application.yml
+==============================================================================
+
+==> application.properties and  application.yml files are used to manage configuration properties in the application..
+
+   Ex: data source properties, stmp properties and application messages etc....
+
+==> properties file is used to configure properties in linear structure..
+
+Ex: 
+
+spring.datasource.username=ashokit
+spring.datasource.password=ashokit@123
+spring.datasource.url=jdbc://mysql:localhost:3306/db
+spring.datasource.driver-class-name=com.mysql.jdbc.Driver
+
+==> YML/YAML file is used to configure properties in hierarichal structure..
+ex: 
+
+   spring:
+  datasource:
+    name: null
+    password: null
+    driver-class-name: null
+  main:
+    banner-mode: off
+  application:
+    name: aap
+  
+==> properties file is used only in java language..
+==> yml files used by several programming languages..
+
+Note:   Indent spaces are very important in YML files..
+
+==> In properties, for every profile separate properties file should be created.
+    
+    application_dev.properties
+    application_qa.properties
+    application_prod.properties
+==> in YML, multiple profiles can be configured in single YML file(three--will be used to separate profile )..
+
+Note: spring boot supports both properties and yml files.
+Recommmended to use ==> .yml file 
+
+
+
+
+
+
+
+
+
