@@ -368,6 +368,13 @@ OUTPUT:
 
 Q. Why these three methods available in Object class, why not in ThreadClass ?
 
+Answer: If these methods available in Thread class then we have to extend Thread class. In future we can't extend from any other 
+        java class because java is against for Multiple inheritance.
+
+  		--> If these methods available in Runnable interface then everybody should implement these method even if they don't need 
+ 			inter thread communication..
+        --> To overcome all these problems , java kept these methods in object class so that every class will have access for these methods..
+
 
 
 
