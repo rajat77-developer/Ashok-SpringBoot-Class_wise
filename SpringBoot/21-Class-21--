@@ -1,0 +1,63 @@
+                      ===================================================================
+                            First allpication development Using Spring Data JPA
+                      ===================================================================
+                      
+1. Create spring starter project with below dependencies 
+          
+          1.spring-boot-starter-data-jpa
+          2.mysql-connector/driver
+
+2. Create entity class and map with DB table using annotations .. 
+3. Create repository interface to perform CRUD operations ..
+4. Configure data source properties in application.yml file ..
+5. Run the application and test the functionality..
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
