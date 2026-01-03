@@ -1,0 +1,101 @@
+                                =========================================
+                                            Spring data jpa
+                                =========================================
+
+==> Application cotains several layers..
+    
+    1.Presentation layer(jsp/Thymeleaf/angular/react js/ Vue js)
+    2.Web layer(Servlets/Structs,Spring web mvc)
+    3.Persistence layer(JDBC/Spring JDBC/ spring ORM/ Spring data jpa)
+
+==> Spring data jpa is used to develop Persistance layer in the application..
+==> Spring data jpa providing ready made methods to perform crud operation in db table..
+
+==> Data JPA providing ready made methods using interfaces like below
+      
+      1. CrudRepository
+      2. JpaRepository
+
+  Note:  JpaRepository = CrudRepository + Pagination Methods + Sorting Methods
+
+                                ========================================
+                                        Spring Data JPA Terminology
+                                ========================================
+
+1. Data Source Object :
+----------------------
+==> It represents database connections.
+Note: Data source properties we can configure in "application.properties" or "application.yml" file.
+
+2. Entity class :
+-----------------
+
+The class which is mapped with database table.
+
+      @Entity
+      @Table
+      @Id
+      @Column
+
+3. Repository interface :
+-------------------------
+==> For every table we will create one repository interface to perform crud operations..
+
+public interface StudentRepository extends CrudRepository<StudentEntity, Integer>{
+
+
+}
+
+Note: For our repository interface, implementation will be provided in the runtime using Proxy Class.
+Note: By using StudentRepository we can perform CRUD operations in STUDENT_TABLE..
+
+4. Repository methods:
+----------------------
+
+Ready made methods provided by DATA JPA to perform CRUD operations..
+
+1. save(Entity)   --> to save single record..
+2. saveAll(Iterable<Entity>i) --> To save multiple records at a single time..
+
+Note: Above two methods are called as "UPSERT" methods..............UPSERT means (UPDATE + INSERT )
+3. findById(ID id )  -->  to retrive single record by using primary key..
+4. findAllById(Iterable<Entity> i )  --> to retrive multuiple records by using primary key ...
+5. findAll()   --> It is used to find all the records from the table...
+6. count()   ---> I want to check total number of records in the table at that time we will go for count() method
+7. existById(ID id) --> I want ot check the given record is present in table or not, if the record is present then it will give "true"
+                         or if not available then it will give "false " as output..
+
+8. deleteById(ID id)  -- >want to delete single id record  from the table
+9. deleteAllById(ID id)-> want to delete multiple record from the table
+10. deleteAll()       --> want to delete all the records from the table
+
+5. ORM Properties:
+==================
+
+==> To automate some configuration
+
+1. auto_ddl : Dynamic schema Generation
+2. show_sql : Display generated queries on the screen
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
