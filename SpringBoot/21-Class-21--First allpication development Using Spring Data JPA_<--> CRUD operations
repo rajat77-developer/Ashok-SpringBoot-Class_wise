@@ -1,0 +1,429 @@
+                      ===================================================================
+                            First allpication development Using Spring Data JPA
+                      ===================================================================
+                      
+1. Create spring starter project with below dependencies 
+          
+          1.spring-boot-starter-data-jpa
+          2.mysql-connector/driver
+
+2. Create entity class and map with DB table using annotations .. 
+3. Create repository interface to perform CRUD operations ..
+4. Configure data source properties in application.yml file ..
+5. Run the application and test the functionality..
+
+
+so here is the first program to insert the data into my db:
+
+========
+Example:
+========
+
+package com.example.demo;
+
+            application.java
+            ================
+
+
+
+package com.example.demo;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ConfigurableApplicationContext;
+
+import com.example.demo.entity.Student;
+import com.example.demo.repository.StudentRepository;
+
+@SpringBootApplication
+public class Application {
+
+    private final StudentRepository studentRepository;
+
+    Application(StudentRepository studentRepository) {
+        this.studentRepository = studentRepository;
+    }
+
+	public static void main(String[] args) {
+		ConfigurableApplicationContext context = SpringApplication.run(Application.class, args);
+		
+			
+	   StudentRepository studentRepository = context.getBean(StudentRepository.class);
+	   
+	   //System.out.println(studentRepository.getClass().getName());
+	
+	   Student s = new Student ();
+	   s.setId(2);
+	   s.setName("Rahul");
+	   s.setRank(12l);
+	   s.setGender("male");
+	   studentRepository.save(s);
+	   
+	   System.out.println("Record inserted.....");	
+	
+	}
+
+}
+
+
+---------------------------------------------------------------------
+
+
+--> com.example.demo.entity
+
+              ============
+              Student.java
+              =============
+
+
+package com.example.demo.entity;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name = "STUDENT_DTLS")
+public class Student {
+
+	
+	@Id
+	
+	@Column(name = "student_id")
+	private Integer id;
+	
+	@Column(name = "student_name")
+	private String name;
+	
+	@Column(name = "student_rank")
+	private Long rank;
+	
+	@Column(name = "student_gender")
+	private String gender;	
+	
+	public Integer getId() {
+		return id;
+	}
+	public void setId(Integer id) {
+		this.id = id;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public Long getRank() {
+		return rank;
+	}
+	public void setRank(Long rank) {
+		this.rank = rank;
+	}
+	public String getGender() {
+		return gender;
+	}
+	public void setGender(String gender) {
+		this.gender = gender;
+	}
+	
+	
+	
+}
+
+--------------------------------------------------------------------------------------------------------------
+
+-->   com.example.demo.repository;
+                    
+                    =======================
+                    StudentRepository.java
+                    =======================
+
+package com.example.demo.repository;
+
+import org.springframework.data.repository.CrudRepository;
+import com.example.demo.entity.Student;
+
+public interface StudentRepository extends CrudRepository<Student, Integer>{
+
+	
+}
+
+
+
+
+application.yml
+---------------
+
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/sbms27
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: sbuser
+    password: sbpass
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+
+    show-sql: true
+
+
+
+=============================================================================================================================
+
+I want to do crud operations to find some data OR retrieve the data from the database ,
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+
+Application.java
+================
+
+package com.example.demo;
+
+import java.util.Optional;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ConfigurableApplicationContext;
+
+import com.example.demo.entity.Student;
+import com.example.demo.repository.StudentRepository;
+
+@SpringBootApplication
+public class Application {
+
+    private final StudentRepository studentRepository;
+
+    Application(StudentRepository studentRepository) {
+        this.studentRepository = studentRepository;
+    }
+
+	public static void main(String[] args) {
+		ConfigurableApplicationContext context = SpringApplication.run(Application.class, args);
+		
+			
+	   StudentRepository studentRepository = context.getBean(StudentRepository.class);
+	   
+	   
+	   Optional<Student> optional = studentRepository.findById(1);
+	   
+	   if(optional.isPresent()) {
+		   
+		System.out.println(optional.get());   
+		   
+	   }
+	   
+	   Iterable<Student> all = studentRepository.findAll();
+	  
+	   //this is method reference , using java 8 features
+	   all.forEach(System.out::println);
+	    
+	   //this is using lambda
+	   all.forEach(s -> System.out.println(s));
+	  	   
+	}
+
+}
+
+
+
+
+Student.java :           here we have to add toString () method to retrieve the data
+============
+
+
+package com.example.demo.entity;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name = "STUDENT_DTLS")
+public class Student {
+
+	
+	@Id
+	
+	@Column(name = "student_id")
+	private Integer id;
+	
+	@Column(name = "student_name")
+	private String name;
+	
+	@Column(name = "student_rank")
+	private Long rank;
+	
+	@Column(name = "student_gender")
+	private String gender;
+	
+	public Integer getId() {
+		return id;
+	}
+	public void setId(Integer id) {
+		this.id = id;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public Long getRank() {
+		return rank;
+	}
+	public void setRank(Long rank) {
+		this.rank = rank;
+	}
+	public String getGender() {
+		return gender;
+	}
+	public void setGender(String gender) {
+		this.gender = gender;
+	}
+	
+	
+	@Override
+	public String toString() {
+		return "Student [id=" + id + ", name=" + name + ", rank=" + rank + ", gender=" + gender + "]";
+	}	
+	
+}
+
+
+
+
+
+
+::::::::::::::::::::::::::::: and all other files are same ::::::::::::::::::::::
+
+
+
+
+==============================================================================================
+Now,  third crud operation ,  i want to delete a data from the db
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+Application.java
+================
+
+package com.example.demo;
+
+import java.util.Optional;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ConfigurableApplicationContext;
+
+import com.example.demo.entity.Student;
+import com.example.demo.repository.StudentRepository;
+
+@SpringBootApplication
+public class Application {
+
+    private final StudentRepository studentRepository;
+
+    Application(StudentRepository studentRepository) {
+        this.studentRepository = studentRepository;
+    }
+
+	public static void main(String[] args) {
+		ConfigurableApplicationContext context = SpringApplication.run(Application.class, args);
+		
+			
+	   StudentRepository studentRepository = context.getBean(StudentRepository.class);
+	   
+	   
+	   if(studentRepository.existsById(503)) {
+		   
+		   studentRepository.deleteById(503);
+	   } else {
+		   
+		   System.out.println("No record is found ........");
+	   }
+	   
+	}
+
+}
+
+
+
+
+
+============================================================================================================
+Now , i want to count how many data's are available 
+----------------------------------------------------
+
+
+Application.java
+================
+
+package com.example.demo;
+
+import java.util.Optional;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ConfigurableApplicationContext;
+
+import com.example.demo.entity.Student;
+import com.example.demo.repository.StudentRepository;
+
+@SpringBootApplication
+public class Application {
+
+    private final StudentRepository studentRepository;
+
+    Application(StudentRepository studentRepository) {
+        this.studentRepository = studentRepository;
+    }
+
+	public static void main(String[] args) {
+		ConfigurableApplicationContext context = SpringApplication.run(Application.class, args);
+				
+	   StudentRepository studentRepository = context.getBean(StudentRepository.class);
+	   
+	   long count = studentRepository.count();
+	   System.out.println(" Records Count :: " + count);
+	   
+	}
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
