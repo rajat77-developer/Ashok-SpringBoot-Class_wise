@@ -1,0 +1,296 @@
+============================
+            TASK
+============================
+                      ++++++++++++++++++++++++++++++++++++++++++++++++++
+                      I want to save multiple records at a single time
+                      +++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+Application.yml         ---> no modification needed, same as it is 
+StudentRepository.java  ---> no modification needed, same as it is 
+
+
+
+Application.java
+================
+
+
+package com.example.demo;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ConfigurableApplicationContext;
+
+import com.example.demo.entity.Student;
+import com.example.demo.repository.StudentRepository;
+
+@SpringBootApplication
+public class Application {
+
+    private final StudentRepository studentRepository;
+
+    Application(StudentRepository studentRepository) {
+        this.studentRepository = studentRepository;
+    }
+
+	public static void main(String[] args) {
+		ConfigurableApplicationContext context = SpringApplication.run(Application.class, args);
+		
+			
+	   StudentRepository studentRepository = context.getBean(StudentRepository.class);
+	   
+	   Student s1 = new Student( 1, "rahul",  101l,  "male"  );
+	   Student s2 = new Student( 2, "rajat",  102l, "female");
+	   Student s3 = new Student( 3, "rosan",  103l, "male"  );
+	   Student s4 = new Student( 4, "ronak",  104l, "male"  );
+	   Student s5 = new Student( 5, "ritika", 105l, "female");
+	   
+	   List<Student> students = Arrays.asList(s1,s2,s3,s4,s5);
+	   
+	   studentRepository.saveAll(students);
+	   
+	}
+}
+
+Student.java
+============
+
+package com.example.demo.entity;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name = "STUDENT_DTLS")
+public class Student {
+	
+	public Student() {
+
+	}
+	
+	public Student(Integer id, String name, Long rank, String gender) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.rank = rank;
+		this.gender = gender;
+	}
+ 
+  @Id
+	
+	@Column(name = "student_id")
+	private Integer id;
+	
+	@Column(name = "student_name")
+	private String name;
+	
+	@Column(name = "student_rank")
+	private Long rank;
+	
+	@Column(name = "student_gender")
+	private String gender;
+	
+	public Integer getId() {
+		return id;
+	}
+	public void setId(Integer id) {
+		this.id = id;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public Long getRank() {
+		return rank;
+	}
+	public void setRank(Long rank) {
+		this.rank = rank;
+	}
+	public String getGender() {
+		return gender;
+	}
+	public void setGender(String gender) {
+		this.gender = gender;
+	}
+	@Override
+	public String toString() {
+		return "Student [id=" + id + ", name=" + name + ", rank=" + rank + ", gender=" + gender + "]";
+	}		
+}
+
+
+
+                  
+                                    ==============================
+                                    findByXXX methods in Data JPA
+                                    ===============================
+
+==> By using findByXXX () methods we can retrieve the data based on no-prmary key columns also
+==> When we write findByXXX method, JPA will construct query based on method name..
+
+Note: Method Naming convention is very important for findByXXX methods.....
+
+
+
+=======
+Task
+=======
+                          
+                          ++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+                               I want to find the details students who are male 
+                          ++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+Application.java
+================
+package com.example.demo;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ConfigurableApplicationContext;
+
+import com.example.demo.entity.Student;
+import com.example.demo.repository.StudentRepository;
+
+@SpringBootApplication
+public class Application {
+
+    private final StudentRepository studentRepository;
+
+    Application(StudentRepository studentRepository) {
+        this.studentRepository = studentRepository;
+    }
+
+	public static void main(String[] args) {
+		ConfigurableApplicationContext context = SpringApplication.run(Application.class, args);
+		
+			
+	   StudentRepository studentRepository = context.getBean(StudentRepository.class);
+	   
+	   List<Student> maleStudents = studentRepository.findByGender("male");
+	   
+	   maleStudents.forEach(System.out::println);	   
+	}
+
+}
+
+
+StudentRepository.java
+======================
+
+package com.example.demo.repository;
+import java.util.List;
+import org.springframework.data.repository.CrudRepository;
+import com.example.demo.entity.Student;
+
+public interface StudentRepository extends CrudRepository<Student, Integer>{
+
+	//this is a abstract method
+	public List<Student> findByGender(String Gender);
+	
+}
+
+
+Note: 
++++++
+
+Application.yml  ---> no modification needed, same as it is 
+Student.java     ---> no modification needed, same as it is
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
