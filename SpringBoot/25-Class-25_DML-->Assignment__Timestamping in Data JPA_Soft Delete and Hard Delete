@@ -1,0 +1,532 @@
+                                                     +++
+                                                     DML
+                                                     +++
+
+DML stands for Data Manipulation Language.
+It is used to manipulate data inside database tables.
+DML is used to insert, update, delete, and retrieve data from database tables.
+DML commands are:
+
+          INSERT → add new records
+          UPDATE → modify existing records
+          DELETE → remove record
+          SELECT → read data (sometimes grouped separately)
+
+
+
+
+
+
+
+
+
+
+===========================================Assignment======================================================
+==> Insert, Update, Delete records using Custom Queries in Data JPA
+
+
+Very very Important::::
+===> If we perform Non select operations using Data JPA custom query then we shloud use below 2 annotations at our method.
+                
+                1 .   @Modifying
+                2 .   @Transactional
+                
+==> The above annotations are not required for selection operation.
+
+
+
+Let's do all the assignment one by one
+======================================
+
+Delete the record by using custom query
+---------------------------------------
+
+application.yml
+---------------
+
+package com.example.demo;
+
+import java.util.List;
+import java.util.Scanner;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ConfigurableApplicationContext;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+
+import com.example.demo.entity.Student;
+import com.example.demo.repository.StudentRepository;
+
+@SpringBootApplication
+public class Application {
+
+    private final StudentRepository studentRepository;
+
+    Application(StudentRepository studentRepository) {
+        this.studentRepository = studentRepository;
+    }
+
+	public static void main(String[] args) {
+			
+		ConfigurableApplicationContext context = SpringApplication.run(Application.class, args);
+		
+		StudentRepository studentRepo = context.getBean(StudentRepository.class);
+		
+		studentRepo.deleteStudent(5);
+		System.out.println("Deleted.....");
+			
+	}
+
+}
+
+
+
+StudentRepository.java
+----------------------
+
+package com.example.demo.repository;
+
+import java.util.List;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
+import org.springframework.data.jpa.repository.Query;
+import com.example.demo.entity.Student;
+
+import jakarta.transaction.Transactional;
+
+public interface StudentRepository extends JpaRepository<Student, Integer>{
+
+	//custom query
+	
+	@Query("delete from Student where id = :sid")
+	@Modifying
+	@Transactional
+	
+	public void deleteStudent(Integer sid);
+		
+}
+
+
+==================================================================================
+we want to save the record....2 ways  ---> using custom query, using save() method
+===================================================================================
+
+
+Application.java
+================
+
+package com.example.demo;
+
+import java.util.List;
+import java.util.Scanner;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ConfigurableApplicationContext;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+
+import com.example.demo.entity.Student;
+import com.example.demo.repository.StudentRepository;
+
+@SpringBootApplication
+public class Application {
+
+    private final StudentRepository studentRepository;
+    Application(StudentRepository studentRepository) {
+        this.studentRepository = studentRepository;
+    }
+
+	public static void main(String[] args) {
+		
+		ConfigurableApplicationContext context = SpringApplication.run(Application.class, args);
+		StudentRepository studentRepo = context.getBean(StudentRepository.class);
+		
+		studentRepo.updateStudent(2, "male");	
+		System.out.println("Updated.....");
+			
+	}
+
+}
+
+
+StudentRepository.java
+======================
+
+
+package com.example.demo.repository;
+
+
+import java.util.List;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
+import org.springframework.data.jpa.repository.Query;
+import com.example.demo.entity.Student;
+
+import jakarta.transaction.Transactional;
+
+public interface StudentRepository extends JpaRepository<Student, Integer>{
+
+	//custom query
+	
+	@Query("delete from Student where id = :sid")
+	@Modifying
+	@Transactional
+	
+	public void deleteStudent(Integer sid);
+	
+	//to update the record
+	@Query("update Student set gender = :gender where id = :sid ")
+	@Modifying
+	@Transactional
+	public void updateStudent(Integer sid, String gender);
+			
+	
+}
+
+
+                      ========================================================================
+                                Example of insert a student details 
+                      =========================================================================
+
+
+==> INSERT is a DML operation, JPQL does not support INSERT statements.
+==> In JPA, insert operations are handled through the entity lifecycle using save() or persist().
+==> If INSERT is required, we must use a native SQL query.
+
+Question =====>>>>>  Why does Spring Data JPA allow UPDATE and DELETE in JPQL but not INSERT?
+
+Spring Data JPA allows UPDATE and DELETE in JPQL because they operate on existing managed entities.
+INSERT is not allowed because creating new entities must go through the JPA entity lifecycle using 
+persist() or save() to maintain cache consistency, dirty checking, and database portability.
+
+
+Example:
+========
+
+StudentRepository.java
+======================
+
+package com.example.demo.repository;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
+import org.springframework.data.jpa.repository.Query;
+
+import com.example.demo.entity.Student;
+
+import jakarta.transaction.Transactional;
+
+public interface StudentRepository extends JpaRepository<Student, Integer> {
+
+	// custom query
+
+	@Query("delete from Student where id = :sid")
+	@Modifying
+	@Transactional
+
+	public void deleteStudent(Integer sid);
+
+	// to update the record
+	@Query("update Student set gender = :gender where id = :sid ")
+	@Modifying
+	@Transactional
+	public void updateStudent(Integer sid, String gender);
+
+	@Query(value = "insert into student_dtls(student_id, student_name, student_gender) values ( :id, :name, :gender)", nativeQuery = true)
+	@Modifying
+	@Transactional
+	public void insertStudent(Integer id, String name, String gender);
+
+}
+
+
+
+Application.java
+================
+
+
+package com.example.demo;
+
+import java.util.List;
+import java.util.Scanner;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ConfigurableApplicationContext;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+
+import com.example.demo.entity.Student;
+import com.example.demo.repository.StudentRepository;
+
+@SpringBootApplication
+public class Application {
+
+	private final StudentRepository studentRepository;
+
+	Application(StudentRepository studentRepository) {
+		this.studentRepository = studentRepository;
+	}
+
+	public static void main(String[] args) {
+
+		ConfigurableApplicationContext context = SpringApplication.run(Application.class, args);
+
+		StudentRepository studentRepo = context.getBean(StudentRepository.class);
+
+		studentRepo.insertStudent(5, "sonu", "male");
+
+		System.out.println("Inserted.....");
+
+	}
+
+}
+
+
+=========================+++++++++++++++++=================+++++++++++++++++++++++=================+++++++++++++++++++
+                                                        Timestamping in Data JPA
+=========================+++++++++++++++++=================+++++++++++++++++++++++=================+++++++++++++++++++
+
+==> @CreationTimestamp : It is used to populate record inserted date into DB column
+==> @UpdateTimestamp   : It is used to populate record updated date into DB column...
+
+Note: LocalDate class represents will date value, where as LocalDateTime class will represent Date with Time.
+
+
+Example:
+--------
+
+Student.java
+------------
+
+package com.example.demo.entity;
+
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name = "STUDENT_DTLS")
+public class Student {
+	
+	
+	
+	public Student() {
+
+	}
+	
+	public Student(Integer id, String name, Long rank, String gender) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.rank = rank;
+		this.gender = gender;
+	}
+
+
+
+	@Id
+	
+	@Column(name = "student_id")
+	private Integer id;
+	
+	@Column(name = "student_name")
+	private String name;
+	
+	@Column(name = "student_rank")
+	private Long rank;
+	
+	@Column(name = "student_gender")
+	private String gender;
+	
+	@CreationTimestamp
+	@Column(name = "Created Date", updatable = false)
+	private LocalDateTime createDate;
+	
+	@UpdateTimestamp
+	@Column(name = "Updated Date", insertable = false)
+	private LocalDateTime updateDate;
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public Long getRank() {
+		return rank;
+	}
+
+	public void setRank(Long rank) {
+		this.rank = rank;
+	}
+
+	public String getGender() {
+		return gender;
+	}
+
+	public void setGender(String gender) {
+		this.gender = gender;
+	}
+
+	public LocalDateTime getCreateDate() {
+		return createDate;
+	}
+
+	public void setCreateDate(LocalDateTime createDate) {
+		this.createDate = createDate;
+	}
+
+	public LocalDateTime getUpdateDate() {
+		return updateDate;
+	}
+
+	public void setUpdateDate(LocalDateTime updateDate) {
+		this.updateDate = updateDate;
+	}	
+	
+}
+
+
+Application.java
+----------------
+
+package com.example.demo;
+
+import java.util.List;
+import java.util.Scanner;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ConfigurableApplicationContext;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+
+import com.example.demo.entity.Student;
+import com.example.demo.repository.StudentRepository;
+
+@SpringBootApplication
+public class Application {
+
+	private final StudentRepository studentRepository;
+
+	Application(StudentRepository studentRepository) {
+		this.studentRepository = studentRepository;
+	}
+
+	public static void main(String[] args) {
+
+		ConfigurableApplicationContext context = SpringApplication.run(Application.class, args);
+
+		StudentRepository studentRepo = context.getBean(StudentRepository.class);
+
+		Student s = new Student(1, "sonu", 10l, "male");
+
+		studentRepo.save(s);
+		
+		System.out.println("Record saved.....");
+	}
+
+}
+
+
+Application.yml
+---------------
+
+
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/sbms27
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: sbuser
+    password: sbpass
+
+  jpa:
+    hibernate:
+      ddl-auto: create
+
+    show-sql: true
+
+
+StudentRepository.java
+======================
+
+package com.example.demo.repository;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
+import org.springframework.data.jpa.repository.Query;
+
+import com.example.demo.entity.Student;
+
+import jakarta.transaction.Transactional;
+
+public interface StudentRepository extends JpaRepository<Student, Integer> {
+
+}
+
+
+
+
+
+
+
+
+=========================+++++++++++++++++=================+++++++++++++++++++++++=================+++++++++++++++++++
+                                                        Soft Delete and Hard Delete
+=========================+++++++++++++++++=================+++++++++++++++++++++++=================+++++++++++++++++++
+
+==> Hard Delete means deleting the record from the DB parmanently using "Delete" query. Once we perform Hard Delete we can't get databack from DB.
+==> Soft Delete means updating the records as IN-ACTIVE. Soft Deleted records will present in DB so we can access whenever we want.
+
+        Ex: Active / De-Active
+
+Note: We can implement SOFT DELETE using additional column in DB table(ACTIVE_SW)
+
+
+ACTIVE_SW ==> Y ==> Active Record
+ACTIVE_SW ==> N ==> Deleted record
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
