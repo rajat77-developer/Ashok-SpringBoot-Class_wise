@@ -1,0 +1,6 @@
+when ever we get the error, definitely that error will be logged in the log file, log file will monitored by spulnk.
+
+To keep the records of the error that we are getting in the production environment there will be a support team like l1,l2,l3 will be available ,
+they will monitor the spulnk, the will monitor the application logs by using spulnk then they will create bugs in the jera, 
+bugs will be created, the bug number will be availabe . The bug number will expalin what is the error 
+when the error occures , which scenario that error occured 
