@@ -1,0 +1,321 @@
+
+
+                                  =============================================
+                                      Working with stored procedures
+                                  =============================================
+
+
+==> Procedure means set of sql queries..
+==> procedures are used to write bussiness logic at database side ..
+==> Procedures are used to improve performance of the application..
+
+
+Procedure to retrieve data from product table 
+
+
+===============================
+Sql code to create Procedutre :
+===============================
+
+ DELIMITER $$
+
+CREATE PROCEDURE getProducts()
+BEGIN
+    SELECT
+        product_id,
+        product_price,
+        product_name
+    FROM PRODUCT;
+END$$
+
+DELIMITER ;
+ 
+ call getProducts();
+
+
+
+++++++++++++++++++++++++++++++++++++++++++++++ Calling procedure using JpaReposiotry +++++++++++++++++++++++++++++++++++++++++++++++++++
+
+ProductRepository.java
+======================
+
+
+package com.example.repository;
+
+import java.util.List;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+
+import com.example.entity.Product;
+
+public interface ProductRepository extends JpaRepository<Product, Integer>{
+	
+	
+	@Query(value = "call getProducts()", nativeQuery= true)
+	public List<Product> getAllProducts();
+
+}
+
+
+
+
+=============================================
+Example of this is given below with all codes
+---------------------------------------------
+
+
+
+Application.java
+----------------
+
+package com.example;
+
+import java.util.List;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ConfigurableApplicationContext;
+
+import com.example.entity.Product;
+import com.example.repository.ProductRepository;
+
+@SpringBootApplication
+public class Application {
+
+	public static void main(String[] args) {
+		
+		ConfigurableApplicationContext context = SpringApplication.run(Application.class, args);
+		
+		ProductRepository productRepository = context.getBean(ProductRepository.class);
+	
+		List<Product> products = productRepository.getAllProducts();
+		
+		products.forEach(System.out::println);	
+	
+	}
+
+}
+
+
+
+Product.java
+------------
+
+
+package com.example.entity;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+
+@Entity
+public class Product {
+
+	@Id
+	
+	@Column(name = "product_id")
+	private Integer productId;
+	
+	@Column(name = "product_price")
+	private Double productPrice;
+	
+	@Column(name = "product_name")
+	private String productName;
+
+	public Integer getProductId() {
+		return productId;
+	}
+
+	public void setProductId(Integer productId) {
+		this.productId = productId;
+	}
+
+	public Double getProductPrice() {
+		return productPrice;
+	}
+
+	public void setProductPrice(Double productPrice) {
+		this.productPrice = productPrice;
+	}
+
+	public String getProductName() {
+		return productName;
+	}
+
+	public void setProductName(String productName) {
+		this.productName = productName;
+	}
+
+	@Override
+	public String toString() {
+		return "Product [productId=" + productId + ", productPrice=" + productPrice + ", productName=" + productName
+				+ "]";
+	}
+}
+
+
+ProductRepository.java
+-======================
+
+package com.example.repository;
+
+import java.util.List;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+
+import com.example.entity.Product;
+
+public interface ProductRepository extends JpaRepository<Product, Integer>{
+	
+	
+	@Query(value = "call getProducts()", nativeQuery= true)
+	public List<Product> getAllProducts();
+
+}
+
+
+Appication.yml
+==============
+
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/sbms27
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: sbuser
+    password: sbpass
+    hikari:
+      maximum-pool-size: 20
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+
+    show-sql: true
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#########################################################################################
+    Practice questions
+#########################################################################################
+
+1. What is spring data jpa.
+2. Hibernate vs data jpa
+3. Spring data jpa repository
+4. what is entity.
+5. Annotation to map java class to db table
+6. How to develop application using Data jpa 
+7. CrudRepository methods
+8. JpaRepository methods
+9. CrudRepository vs JpaRepository
+10. what is pagination.
+11. Sorting
+12. Query by Example
+13. Working with FindByXXX methods
+14. Custom query by using @Query(@Modifying, @Transactional)
+15. HQL vs SQL
+16. What is Dialet ..
+17. Calling stored Procedures
+18. Timestamping
+19. Soft delete and Hard delete
+20. Primary key
+21. Generators
+22. Composite Primary key (@Embeddeble, @Embeddedld)
+23. Connection pooling(Hikari CP)
+24. Spring boot profiles
+25. How to develop Custom Generator
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
