@@ -1,0 +1,452 @@
+======================================================
+Association Mapping / Relationships in DB table
+======================================================
+
+==> We can devide DB side relations into 4 types
+
+Note: To establish relationships between table we will use Foreign key...
+
+1. One to One (Ex: One Person will have one Passport)
+2. One to Many (Ex: One Employee will have Multiple Address   ----> mostly used in industry )
+3. Many to One (Ex: Multiple Books belongs to one Author )
+4. Many to Many(Ex: Multiple Users having Multiple Roles )
+
+==> When DB tables are having Relation then we need to present that realtion in our Entity classes also..
+==> The process of representing DB tables relation in Entity classes is called Association Mapping...
+
+Casecade Type:  
+==============
+
+-> Default type is NONE.
+-> It represents operations on parent record should reflect on child record or not .
+
+   Ex: when we delete parent record then we want to delete all child records of that parent.
+
+Fetch Type:
+===========
+-> Default type is LAZY.
+-> It represents weather load child records along with Parent or not.
+
+  Ex: When we retrieve Parent record i want to retrive all child records of that Parent.
+
+
+                                          ===============================
+                                            One to Many  and ManyToOne
+                                          ===============================
+
+Example:
+========
+
+Application.java
+=================
+
+package com.sonu;
+
+import java.util.Arrays;
+import java.util.List;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ConfigurableApplicationContext;
+
+import com.sonu.entity.Address;
+import com.sonu.entity.Employee;
+import com.sonu.repository.EmployeeRepository;
+
+@SpringBootApplication
+public class Application {
+
+	public static void main(String[] args) {
+		
+    ConfigurableApplicationContext context = SpringApplication.run(Application.class, args);
+		
+		//parent data
+		Employee e = new Employee();
+		e.setEmpName("subas");
+		e.setEmpSalary(1600.00);
+		
+		
+		//child data
+		Address a1 = new Address();
+		a1.setCity("Hyd");
+		a1.setState("Tg");
+		a1.setCountry("India");
+		a1.setEmp(e);
+		
+		
+		//child data 2
+		Address a2 = new Address();
+		a2.setCity("bls");
+		a2.setState("odisha");
+		a2.setCountry("India");
+		a2.setEmp(e);
+	
+		//creating one collections for 2 address
+		
+		List<Address> addrList = Arrays.asList(a1,a2);
+		e.setAddr(addrList); // this collections i am setting for my parent 
+		
+		
+		EmployeeRepository employeeRepo = context.getBean(EmployeeRepository.class);
+		employeeRepo.save(e);
+		
+		System.out.println("Record Inserted..........");
+	}
+
+}
+
+
+Employee.java
+==============
+
+package com.sonu.entity;
+
+import java.util.List;
+
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
+
+@Entity
+public class Employee {
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Integer empId;
+	private String empName;
+	private Double empSalary;
+
+	@OneToMany(mappedBy = "emp", cascade = CascadeType.ALL)
+	private List<Address> addr;
+
+	public Integer getEmpId() {
+		return empId;
+	}
+
+	public void setEmpId(Integer empId) {
+		this.empId = empId;
+	}
+
+	public String getEmpName() {
+		return empName;
+	}
+
+	public void setEmpName(String empName) {
+		this.empName = empName;
+	}
+
+	public Double getEmpSalary() {
+		return empSalary;
+	}
+
+	public void setEmpSalary(Double empSalary) {
+		this.empSalary = empSalary;
+	}
+
+	public List<Address> getAddr() {
+		return addr;
+	}
+
+	public void setAddr(List<Address> addr) {
+		this.addr = addr;
+	}
+
+}
+
+
+Address.java
+=============
+
+package com.sonu.entity;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+
+@Entity
+public class Address {
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Integer addrId;
+	private String city;
+	private String state;
+	private String country;
+
+	@ManyToOne
+	@JoinColumn(name = "emp_id") // --- > here we defiend foreign key by using @JoinColumn 
+	private Employee emp;
+
+	public Integer getAddrId() {
+		return addrId;
+	}
+
+	public void setAddrId(Integer addrId) {
+		this.addrId = addrId;
+	}
+
+	public String getCity() {
+		return city;
+	}
+
+	public void setCity(String city) {
+		this.city = city;
+	}
+
+	public String getState() {
+		return state;
+	}
+
+	public void setState(String state) {
+		this.state = state;
+	}
+
+	public String getCountry() {
+		return country;
+	}
+
+	public void setCountry(String country) {
+		this.country = country;
+	}
+
+	public Employee getEmp() {
+		return emp;
+	}
+
+	public void setEmp(Employee emp) {
+		this.emp = emp;
+	}
+
+}
+
+
+EmployeeRepository.java
+=======================
+
+package com.sonu.repository;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.sonu.entity.Employee;
+
+public interface EmployeeRepository extends JpaRepository<Employee, Integer>{
+
+	
+}
+
+
+
+AddressRepository.java
+======================
+
+
+package com.sonu.repository;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import com.sonu.entity.Address;
+
+public interface AddressRepository extends JpaRepository<Address, Integer>{
+	
+
+}
+
+Application.yml
+===============
+
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/sbms27
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: sbuser
+    password: sbpass
+    hikari:
+      maximum-pool-size: 20
+
+  jpa:
+    hibernate:
+      ddl-auto: create
+
+    show-sql: true
+
+
+++++++++++++++
+  Task
++++++++++++++++
+
+let me delete the employee id and check wether the child will be deleted or not
+
+
+Application.java
+================
+
+package com.sonu;
+
+import java.util.Arrays;
+import java.util.List;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ConfigurableApplicationContext;
+
+import com.sonu.entity.Address;
+import com.sonu.entity.Employee;
+import com.sonu.repository.EmployeeRepository;
+
+@SpringBootApplication
+public class Application {
+
+	public static void main(String[] args) {
+		ConfigurableApplicationContext context = SpringApplication.run(Application.class, args);
+		EmployeeRepository employeeRepo = context.getBean(EmployeeRepository.class);
+		  employeeRepo.deleteById(1);	
+		System.out.println("Record deleted..........");
+	}
+
+}
+
+Application.yml
+===============
+
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/sbms27
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: sbuser
+    password: sbpass
+    hikari:
+      maximum-pool-size: 20
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+
+    show-sql: true
+
+
+
+RESULT:
+=======
+
+Both parent and child record has been deleted because of "@OneToMany(mappedBy = "emp", cascade = CascadeType.ALL)"
+
+Note: cascade = CascadeType.ALL
+
+
+
+                              ++++++++++
+                              Next Task
+                              ++++++++++
+
+==>  I need to retrive data from db, 
+
+
+
+Application.java
+================
+
+package com.sonu;
+
+import java.util.Arrays;
+import java.util.List;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ConfigurableApplicationContext;
+
+import com.sonu.entity.Address;
+import com.sonu.entity.Employee;
+import com.sonu.repository.EmployeeRepository;
+
+@SpringBootApplication
+public class Application {
+
+	public static void main(String[] args) {
+		ConfigurableApplicationContext context = SpringApplication.run(Application.class, args);
+	
+		  EmployeeRepository employeeRepo = context.getBean(EmployeeRepository.class);
+		  employeeRepo.findById(3);
+		 	System.out.println("Record saved..........");
+	}
+
+}
+
+
+RESULT:
+=======
+
+it is showing only Employee Data not child data like address details and all , why ?
+
+Because we set fetch type = LAZY..
+
+
+If we want to retrive data both the parent and child class entity then we need to set "fetch type = EAGER" in our parent entity class like below 
+
+
+
+Employee.java
+=============
+
+@OneToMany(mappedBy = "emp", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+private List<Address> addr;
+
+
+
+                                                      +++++++++++++++
+                                                          Task
+                                                      +++++++++++++++
+
+
+==> If a want to retrieve data from child class then what will happen
+
+
+Application.java
+================
+
+package com.sonu;
+
+import java.util.Arrays;
+import java.util.List;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ConfigurableApplicationContext;
+
+import com.sonu.entity.Address;
+import com.sonu.entity.Employee;
+import com.sonu.repository.AddressRepository;
+import com.sonu.repository.EmployeeRepository;
+
+@SpringBootApplication
+public class Application {
+
+	public static void main(String[] args) {
+		ConfigurableApplicationContext context = SpringApplication.run(Application.class, args);
+		 AddressRepository addressRepo = context.getBean(AddressRepository.class);
+		
+		 addressRepo.findById(3);
+		System.out.println("Record retrieved..........");
+	}
+
+}
+
+
+
+RESULT:
+=======
+
+both parent and child class data will retrieve.
+
+Q. why?
+-------
+
+With EAGER fetch, child fetch automatically pulls parent data Because a child entity is considered 
+incomplete without its parent, JPA designers made @ManyToOne EAGER by default.
+
+
+
