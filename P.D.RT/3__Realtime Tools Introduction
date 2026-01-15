@@ -1,0 +1,148 @@
+                                                                    ==============
+                                                                    Realtime Tools
+                                                                    ==============
+
+
+==> Tools will help us in coding + testing + deployment process.
+==> In Realtime environment,  we will use several tools as part of our SDLC(software development life cycle ).
+
+
+
+############## Maven & Gradle : Build Tools ####################
+
+-> Maven / Gradle are used to automate projecct build process.
+-> Create Project Structure
+-> Download required libraries ( Ex: springboot, jpa, junit.....)
+-> Compile Source Code
+-> Execute unit Test cases (Junit)
+-> Package our project as a jar/war file
+
+
+###################### Nexus / JFrog : Artifactory servers ###################
+
+-> To maintain remote repositories
+-> To store sharrd libraries 
+
+#################### Junit & Mocito : Unit Testing Tool ##################
+
+-> To perform Unit testing
+-> To identify bugs in code
+-> We can improvve code quality
+
+
+#################### jacocco : code Coverage Tool ################
+
+-> to generate code coverage report
+-> To identify unit testing statistics
+       ( how many lines tested and not tested )
+
+####################### Log4J : Logging Tool #####################
+
+-> To generate log messages
+-> We can see application execution flow 
+-> we can see exceptions occured in project
+-> We can understand run-time behaviour of our application
+
+######################### EKL/ Splunk : log monitoring tools ################
+
+-> To get applications logs from log files 
+-> To troubleshoot application exceptions
+-> ELK ( Elastic Search + Lof Stash + Kibana ) --Open source products 
+-> Splunk is licensed software 
+
+
+###################### SonarQube : Code Review Tool ###############
+
+-> To perform code review 
+-> To identify developers mistakes in coding 
+-> We can identify bugs in code
+-> We can identify duplciate code blocks
+-> We can identify vulnerabilities (security issues)
+
+###################### Postman : API Testing Tool ##################
+
+-> To test rest api functionality
+-> To test backend application behaviour
+
+
+#################### JMETRER : Performance Testing Tool #############
+
+-> Test application stability
+-> Test application responsiveness
+-> To identify bottleneck of the application
+
+#################### JENKINS:  CI CD tool #############################
+
+-> To automate build & deployment process
+-> To achieve CI & CD
+
+##################### Docker : Containerization #######################
+
+-> Run the application in container
+-> We can Isolate application execution
+-> We can make our application portable
+
+#################### Kubernetes : Orchestration ########################
+
+-> To manage docker containers
+-> Scaling
+-> Load Balancing
+-> Rolling updates and Rollback
+-> Deployment activities
+
+######################### Git Hub and Bitbucket ##############################
+
+-> To maintain project source code
+-> Code Integration at one place
+-> Code Monitoring (who/when/why/what)
+
+######################## JIRA :: Project Management ###############################
+
+-> Project tasks creation
+-> Task assignment for team mebers
+-> Bug Reporting by testing team
+-> Buf Assigment to developers
+-> Generate report of project tasks pending/ completed 
+
+############################ Swagger : Documentation #############################
+
+-> To generate REST  API documentation
+-> To test REST API through user interface
+
+########################## Kafka & Redis ################################
+
+-> Kafka is used for message broker (b 2 b)
+-> Redis is used for cache implementation
+
+
+
+
+
+
+
+=================================
+Every Java Devveloper Should Know
+=================================
+
+1. Backend Development (SpringBoot + Rest API + Microservices )
+2. Frontend Development (Angular / Reach JS )
+3. Devops Tools (Maven ,  Git , Sonar, Jenkins, Docker, K8s ..........)
+4. Linus Commands 
+5. Cloud Computing (AWS/ Azure/ GCP  )
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
