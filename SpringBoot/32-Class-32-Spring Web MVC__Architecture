@@ -1,0 +1,77 @@
+                                  +++++++++++++++++++++++++++++++++++++++++
+                                              Spring Web MVC
+                                  +++++++++++++++++++++++++++++++++++++++++
+
+=> It is one module available in spring framework.
+=>   Spring web MVC is used to develop 2 types of application
+
+1. Web Applciations(C 2 B)
+ Ex: gmail, facebook, naukri
+ 2. Distributed Applciations(B 2 B)
+ Ex:  MakeMyTrip ----> IRCTC
+      passport   ----> AADHAR
+
+
+=> Web and Distributed applications development made easy.
+=> From data binding to java Objects 
+=> Flexibility in form binding (type casting will be done  )
+=> Form validations (server validation)
+=> Supports multiple Presentations technologies (Ex: jsp & thymeleaf)
+=> Embedded Servers (Default : Tomcat)
+
+
+                                  ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+                                                Spring WEB MVC Architecture
+                                  ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+1. Dispatcher Servlets: It acts as a front controller
+2. HandlerMapper: It will identify which request should be processed by which controller and which method.
+3. Controller: It will handle request and decides response to send using ModelAndView object.
+4. ModelAndView : Model represents data in key-value format. View Represents logical file name to display.
+5. View Resolver: it is used to identify physical location of view files.
+6. View: It is used to render model data on view file.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
