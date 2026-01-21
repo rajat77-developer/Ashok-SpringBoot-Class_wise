@@ -1,0 +1,180 @@
+                            +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+                                    Building First Spring Web MVC Application
+                            +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+=> Create Spring boot application with below dependencies..
+
+            a. spring-boot-starter-project
+            b. tomcat-embed-jasper
+            c. spring-boot-devtools
+
+=> Create Controller class using @Controller annotation
+=> Write required methods in Controller class and bind them to Http Request Methods
+=> Create Presentation file ( jsp ) with presentation logic
+=> Configure View Resolver in application.properties file 
+=> Run the application and test it...
+
+b. tomcat-embed-jasper --> this dependency we need to add in our pom.xml file
+
+        <dependency>
+            <groupId>org.apache.tomcat.embed</groupId>
+            <artifactId>tomcat-embed-jasper</artifactId>
+        </dependency>
+
+===========================================================================================================
+                          First Application of Spring MVC Web_Aap 
+===========================================================================================================
+
+
+WelcomeController.java
+=======================
+
+package com.example.controller;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.servlet.ModelAndView;
+
+@Controller
+public class WelcomeController {
+
+	@GetMapping("/Welcome")
+	public ModelAndView getWelcomeMsg() {
+		
+		
+		ModelAndView mav = new ModelAndView();
+		
+		mav.addObject("msg", "welcome to my first web mvc application");
+		mav.setViewName("index");
+		
+		return mav;
+		
+	}
+	@GetMapping("/Greet")
+	public ModelAndView getGreetMsg() {
+		
+		
+		ModelAndView mav = new ModelAndView();
+		
+		mav.addObject("msg", "Good Evening");
+		mav.setViewName("index");
+		return mav;
+	}
+}
+
+
+DemoController.java
+===================
+
+package com.example.controller;
+
+import java.time.LocalDate;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.servlet.ModelAndView;
+
+@Controller
+public class DemoController {
+
+	
+	@GetMapping("/date")
+	public ModelAndView getTodayDate() {
+		
+		ModelAndView mav = new ModelAndView();
+		
+		LocalDate now = LocalDate.now();
+		
+		String msgTxt = "Today's date is ::" +now;
+		
+		mav.addObject("msg", msgTxt);
+		
+		mav.setViewName("index");
+		return mav;
+	}
+}
+
+application.java
+================
+
+spring.application.name=14-WebMVC_Aap1
+
+spring.mvc.view.prefix=/WEB-INF/views/
+spring.mvc.view.suffix=.jsp
+server.port=9090
+server.servlet.context-path=/webapp
+
+
+index.jsp
+=========
+
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+<h1>${msg}</h1>
+
+</body>
+</html>
+
+
+
+
+how to access:
+==============
+
+http://localhost:8080/Welcome
+http://localhost:8080/Greet
+http://localhost:8080/date
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
