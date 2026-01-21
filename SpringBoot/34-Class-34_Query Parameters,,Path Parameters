@@ -1,0 +1,87 @@
+
+What is context path ??
+=======================
+=> Project name we can use as context path 
+
+
+
+====> Client can send data to server in below 3 ways
+        1. Query Parameters
+        2. Path Parameters 
+        3. Request Body 
+
+
+++++++++++++++++++++++++++++++++
+      Query Parameters
+++++++++++++++++++++++++++++++++
+=> Query Parameters are used to send data from client to server in URL..
+=> Query Parameters also called as Requuest Parameters..
+=> Query Parameters will represent data in key value format ..
+=> Query Parameters should present only at end of the URL..
+=> Query Parameters will start with " ? " symbol...
+=> Query Parameters will be separated by " & " symbol..
+
+Ex-1 : www.youtbe.com/watch?v=asf797979
+
+---> v=asf797979 this part is called key value pair ...
+
+=> To read Query Parameters in Spring Controller we will use @RequestParam anntation..
+                                  
+                                  ======================
+                                      Path Parameters 
+                                  ======================
+=> Path Parameters are used  to send data from Client to server in URL..
+=> Path Parameters are also called as URL parameters .
+
+Note: Path Parameters will represent data directly (without keys ) like below 
+
+Ex: www.ashokit.in/course/{cname}/trainer/{tname}
+
+=> Path Parameters can present anywhere in the URL
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
