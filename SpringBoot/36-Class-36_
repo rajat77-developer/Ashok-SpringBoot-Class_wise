@@ -1,0 +1,58 @@
+                                    ====================================
+                                    Query Parameters /Request parameters
+                                    ====================================
+
+=> To send data to server in URL
+=> Key Value format
+=> will present At end of the URL
+=> Start with ? symbol
+=> Will be separated by & symbol
+
+URL:     http://localhost:8080/book?name=Aptitute&author=rsagarwal
+
+==> To read query params we will use @RequestParam annotation...
+
+
+
+
+
+
+
+
+                              ==============================================================
+                                          Path Parameters or URI Parameters
+                              ==============================================================
+
+=> To send data to server in URL
+=> It will represent data directly (no keys)
+=> Can present anywhere in URL
+=> Starts with " / " symbol
+
+
+=> To read query params we will use @PathVariable annotation..
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
