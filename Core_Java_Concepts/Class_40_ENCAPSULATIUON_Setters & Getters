@@ -6,7 +6,7 @@
 Encapsulation: Combining variables and methods as single unit is called as Encapsulation. Ex. Java classes . It is using for data hiding.
 
 Abstraction: Hiding un necessary details and providing only useful information is called as abstaction.
-
+ 
               Ex.  abstract class and interfaces
 
 Inhheritance:  The process of extending properties from one class to another class is called so. It is used for code re-usability.
