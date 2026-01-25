@@ -1,0 +1,228 @@
+                                    ====================================
+                                    Query Parameters /Request parameters
+                                    ====================================
+
+=> To send data to server in URL
+=> Key Value format
+=> will present At end of the URL
+=> Start with ? symbol
+=> Will be separated by & symbol
+
+URL:     http://localhost:8080/book?name=Aptitute&author=rsagarwal
+
+==> To read query params we will use @RequestParam annotation...
+
+Example for Query Parameters
+============================
+
+BookController.java
+--------------------
+
+package com.example.controller;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
+@Controller
+public class BookController {
+	
+	//http://localhost:8080/msg?name=sonu
+	@GetMapping("/msg")
+	public ModelAndView getMsg(@RequestParam String name) {
+		
+		
+		String msgTxt = name + ",Good evening";
+		ModelAndView mav =new ModelAndView();
+		mav.addObject("msg", msgTxt);
+		mav.setViewName("index");
+		
+		
+		return mav;
+	}
+
+	//http://localhost:8080/slot?data=sonu
+	@GetMapping("/slot")
+	public ModelAndView getSlotBook(@RequestParam ("data")String uname) {
+		
+		
+		String msgTxt = uname + ",Good evening";
+		ModelAndView mav =new ModelAndView();
+		mav.addObject("msg", msgTxt);
+		mav.setViewName("index");
+		
+		
+		return mav;
+	}
+		
+	//http://localhost:8080/book?name=spring&author=johnson
+	
+	@GetMapping("/book")
+	public ModelAndView getBookData(@RequestParam String name, String author) {
+		
+		System.out.println("Name :: "+name);
+		System.out.println("Author ::"+author);
+		ModelAndView mav =new ModelAndView();
+		mav.addObject("msg", name+ " by " + author +" is out of stock.....");
+		mav.setViewName("index");
+		
+		return mav;
+	}
+}
+
+
+
+index.jsp
+---------
+
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<h1>${msg}</h1>
+</body>
+</html>
+
+application.properties
+-----------------------
+
+spring.application.name=15-WebMVC_Aap-2-RequestParam
+spring.mvc.view.prefix=/views/
+spring.mvc.view.suffix=.jsp
+
+
+pom.xml
+--------
+
+we need to add this dependency-->
+
+
+<dependency>
+            <groupId>org.apache.tomcat.embed</groupId>
+            <artifactId>tomcat-embed-jasper</artifactId>
+        </dependency>
+
+
+
+
+
+
+
+
+
+                              ==============================================================
+                                          Path Parameters or URI Parameters
+                              ==============================================================
+
+=> To send data to server in URL
+=> It will represent data directly (no keys)
+=> Can present anywhere in URL
+=> Starts with " / " symbol
+
+
+=> To read query params we will use @PathVariable annotation..
+
+
+Example for PathParameters
+===========================
+
+
+CarController.java
+------------------
+
+package com.example.controller;
+
+
+/*
+
+Path parameters example 
+
+
+*/
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.servlet.ModelAndView;
+
+@Controller
+public class CarController {
+
+	
+	
+	
+	
+	//    URL ---> http://localhost:8080/car/90/hyd
+	//    URL ---> http://localhost:8080/car/120/hyd
+	
+	
+	@GetMapping("/car/{carId}/hyd")
+	public ModelAndView getCarColor(@PathVariable Integer carId) {
+		
+		
+		ModelAndView mav = new ModelAndView();
+		
+		String color = null;
+		
+		if(carId >= 100) {
+			color = "RED";
+		}else {
+			
+			color = "BLACK";
+		}
+		
+		mav.addObject("msg", "Car color is :: "+color);
+		
+		mav.setViewName("index");
+		
+		
+		return mav;
+	}
+	
+	
+	
+	//      URL ---> http://localhost:8080/stock/maruti/location/hyd
+	
+	
+	@GetMapping("/stock/{brand}/location/{loc}")
+	public ModelAndView getCarStock(@PathVariable String brand, @PathVariable String loc) {
+		
+		
+		
+		System.out.println("brand name is ::" +brand);
+		System.out.println("location is ::" +loc);
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("msg",	" in " + loc + "  "  +brand+  " cars Out Of Stock ");
+		mav.setViewName("index");
+		return mav;
+	}
+	
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
