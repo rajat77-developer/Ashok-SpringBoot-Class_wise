@@ -102,16 +102,10 @@ pom.xml
 we need to add this dependency-->
 
 
-<dependency>
+      <dependency>
             <groupId>org.apache.tomcat.embed</groupId>
             <artifactId>tomcat-embed-jasper</artifactId>
         </dependency>
-
-
-
-
-
-
 
 
 
@@ -153,13 +147,8 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class CarController {
 
-	
-	
-	
-	
 	//    URL ---> http://localhost:8080/car/90/hyd
 	//    URL ---> http://localhost:8080/car/120/hyd
-	
 	
 	@GetMapping("/car/{carId}/hyd")
 	public ModelAndView getCarColor(@PathVariable Integer carId) {
@@ -177,10 +166,7 @@ public class CarController {
 		}
 		
 		mav.addObject("msg", "Car color is :: "+color);
-		
 		mav.setViewName("index");
-		
-		
 		return mav;
 	}
 	
@@ -191,8 +177,6 @@ public class CarController {
 	
 	@GetMapping("/stock/{brand}/location/{loc}")
 	public ModelAndView getCarStock(@PathVariable String brand, @PathVariable String loc) {
-		
-		
 		
 		System.out.println("brand name is ::" +brand);
 		System.out.println("location is ::" +loc);
@@ -206,20 +190,223 @@ public class CarController {
 
 
 
+														Types of developing the Controller 
+													========================================
+
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+To represent our class as a controller we will use @Controller annotation .
+We can develop controller methods in 2 ways.
+
+1. By taking ModelAndView as a return type
+2. By taking String as a return type(widely used )
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+==========
+First one:
+==========
+this one return type is ModelAndView::::
+
+Example
+========
+
+
+@GetMapping("/welcome")
+	public ModelAndView getWelcomeMsg(@RequestParam String name) {
+
+		String msgTxt = name + ", Welcome to STS";
+
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("msg", msgTxt);
+		mav.setViewName("index");
+		return mav;
+
+	}
+
+
+Second one:
+===========
+1. we take Model is a method parameter 
+2. return type is String ::::::
+
+Example:
+========
+
+@GetMapping("/greet")
+	public String getGreetMsg(@RequestParam String name , Model model) {
+		
+		model.addAttribute("msg", name+",Good to see you..!!!");
+		return "index";
+		
+	}
+
+	Note: Method return type is String which represents logcal view name. Model is used to send data from controller to UI in key-value format..
+
+
+											=================================
+													Form Development
+											=================================
+
+=> Forms are essential part in web applications.
+=> Forms are used to collect data from user to perform business operation
+
+=======
+Steps:
+=======
+
+Step: 1
+========
+
+com.form.controller  : -> package name 
+------------------>>>
+UserController.java  : -> java file name 
+--------------------
+
+package com.form.controller;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+
+import com.form.binding.User;
+
+@Controller
+public class UserController {
+
+	@GetMapping("/")
+	public String loadForm() {
+
+		return "index";
+	}
+
+	@PostMapping("/user")
+	public String HandleSubmitBtn(User user, Model model) {
+
+		System.out.println(user);
+		model.addAttribute("msg", "Used saved");
+		return "index";
+
+	}
+}
+
+
+Step:2
+======
+
+
+com.form.binding :-> package name
+---------------------------------
+User.java : -> file name 
+---------------------------------
+
+package com.form.binding;
+
+public class User {
+
+	private String name;
+	private String email;
+	private Long phoneNo;
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	public Long getPhoneNo() {
+		return phoneNo;
+	}
+	public void setPhoneNo(Long phoneNo) {
+		this.phoneNo = phoneNo;
+	}
+	
+	@Override
+	public String toString() {
+		return "User [name=" + name + ", email=" + email + ", phoneNo=" + phoneNo + "]";
+	}
+	
+}
+
+Step: 3
+=======
+
+
+index.jsp
+---------
+
+
+
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+	<font color='red'>${ msg }</font>
+
+	<h3>User Form</h3>
+
+	<form action="user" method="POST">
+
+
+		<table>
+			<tr>
+
+				<td>Name:</td>
+				<td><input type="text" name="name"></td>
+
+			</tr>
+			<tr>
+
+				<td>Email:</td>
+				<td><input type="email" name="email"></td>
+
+			</tr>
+			<tr>
+
+				<td>Phno :</td>
+				<td><input type="number" name="phoneNo"></td>
+
+			</tr>
+
+			<tr>
+
+				<td></td>
+				<td><input type="submit" name="Submit"></td>
+
+			</tr>
+		</table>
+
+	</form>
+
+
+</body>
+</html>
 
 
 
 
 
+Step:4
+======
 
+application.properties
+----------------------
 
+spring.application.name=16-WebMVC_FormAppPractice
 
-
-
-
-
-
-
+spring.mvc.view.prefix=/views/
+spring.mvc.view.suffix=.jsp
 
 
 
