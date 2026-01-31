@@ -1,1 +1,131 @@
 
+
+==> Spring WEB MVC provided Form Tag library to simplify forms develoment... 
+
+    <form : form />
+    <form : input/>
+    <form : password/>
+    <form : radiobutton/>
+    <form : select/>
+    <form : checkbox/>
+
+
+============================================================================================
+Requirement: Develop student web application with below 
+
+1) Student Registration : Store in database 
+
+  a. Name    - textfield 
+  b. Email   - textfield
+  c. gender  - radiobuttons
+  d. course  - drop down
+  e. timings - checkboxes
+
+2) View Students - display all registered students details in web page.
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+Step:1
+======
+
+Create SpringBoot application with below dependecies 
+
+a. web-starter
+b. datajpa-starter
+c. h2(embedded database) (we will store our data in h2 database )
+d. devtools
+e. jstl (we need to display the data in the web page )
+f. tomcat-embed-jasper 
+
+Step: 2
+========
+
+-> Create Entity class & repository interface to store the data 
+-> Create controller class to handle request and response 
+-> Create view files using JSP
+-> Configure below properties in application.properties / yml file
+-> Run the application and test it ..
+
+
+
+
+Dependencies need to add in pom.xml
+====================================
+
+jstl, tomact embed
+-------------------
+
+dependency>
+			<groupId>org.apache.tomcat.embed</groupId>
+			<artifactId>tomcat-embed-jasper</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>jakarta.servlet.jsp.jstl</groupId>
+			<artifactId>jakarta.servlet.jsp.jstl-api</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.glassfish.web</groupId>
+			<artifactId>jakarta.servlet.jsp.jstl</artifactId>
+		</dependency>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
