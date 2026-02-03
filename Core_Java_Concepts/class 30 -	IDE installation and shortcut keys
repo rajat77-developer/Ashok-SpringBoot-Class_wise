@@ -1,0 +1,78 @@
+1) Download IDE as zip file
+
+2) Extract IDE zip file
+
+3) Open STS.exe / eclipse.exe file
+
+4) Choose Workspace (location to store our projects)
+
+5) Create Java Project
+
+   -> File -> New -> Java Project -> Give Project Name -> Finish
+
+   -> IN java project we are able to below two folders
+
+          - src (source files --> .java files we will create under src directory)
+
+          - bin (binaries --> .class files will be stored in bin directory)
+		  
+		  
+		 
+  -> Once project created then we can create our programs / classes in that project
+
+Note: One project can contain any no.of classes
+
+      -> Goto src directory --> Right click on src --> select new --> select class --> Give Classname ---> Finish
+
+      -> We can pass commandline arguments also in IDE
+
+Right Click on Program --> Run as -> Run Configurations -> Arguments -> Program Variables --> Enter Variables with space -> Apply --> Finish		 
+		  
+		  
+===========================================================================
+                    shortcuts for sts/eclipse
+----------------------------------------------------------------------------					
+
+ctrl + M               to maximise and minimise the screen
+
+ctrl + D               to delete the line
+
+ctrl + shift + enter   to add a new blank line
+
+ctrl + shift + F      for allignment of program or formating of code
+
+ctrl +/-              for increase and decrease the font size
+
+ctrl + shift + r      to find a file in workspace
+
+ctrl + shift + t      for opening pre-defined classes which are available (for jar file)
+
+ctrl + w              to close opened file
+
+ctrl + shift + w      to close all the opened file at a time
+
+ctrl + shift + o      to organise the imports statements
+ 
+ctrl + /              to comment single line or un-commenting
+
+ctrl + shift + /      to comment multiple lines (first select multiple lines where we have to comment then press ctrl+shift+/)
+
+alt + shift + sr      to generate getters and setters
+
+alt + shift + ss      to generate two string methods
+
+alt + shift + so      to generate constructor
+
+ctrl + o              to display all the variables in the class(complete outline of the class we can see)
+
+ctrl + shift + p      to go to the closing bracket directly
+
+crtl + 1 + enter      to get the return statement of method
+
+ctrl + q              directly go to previously edited palce
+
+alt + shift + z       to surround or add try catch block (select the code then press alt+shift+z)
+ 
+alt + shift + R       to rename or refactor (select and change the name then at a time all the palces names will be changed)
+
+alt + shift + t       to open the context - sensetive refactoring menu.
