@@ -72,10 +72,307 @@ dependency>
 
 
 ===============================================================================================================================
+   Note: Dynamic registation form page i need to create like a mini basic project
 
-+++++++++++++++++++++++++
-Start Project with Steps 
-+++++++++++++++++++++++++
+											+++++++++++++++++++++++++
+											Start Project with Steps 
+											+++++++++++++++++++++++++
+
+=========
+Step -1 :
+=========
+
+-> I am creating a student entity to inject the form data in my db 
+
+
+com.form.entity -->
+StudentEntity.java
+------------------
+
+package com.form.entity;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+
+@Entity
+
+@Table(name="STUDENT_DTLS")
+public class StudentEntity {
+
+	@Id
+	private Integer sid;
+	private String name;
+	private String email;
+	private String gender;
+	private String course;
+	private String timings;
+
+	public Integer getSid() {
+		return sid;
+	}
+
+	public void setSid(Integer sid) {
+		this.sid = sid;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getGender() {
+		return gender;
+	}
+
+	public void setGender(String gender) {
+		this.gender = gender;
+	}
+
+	public String getCourse() {
+		return course;
+	}
+
+	public void setCourse(String course) {
+		this.course = course;
+	}
+
+	public String getTimings() {
+		return timings;
+	}
+
+	public void setTimings(String timings) {
+		this.timings = timings;
+	}
+
+	@Override
+	public String toString() {
+		return "StudentEntity [sid=" + sid + ", name=" + name + ", email=" + email + ", gender=" + gender + ", course="
+				+ course + ", timings=" + timings + "]";
+	}
+
+}
+
+
+
+Step 2:
++++++++
+Create a studentRepo -->
+
+com.form.Repo -->
+StudentRepository.java
+----------------------
+
+package com.form.Repo;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.form.entity.StudentEntity;
+
+public interface StudentRepository extends JpaRepository<StudentEntity, Integer>{
+
+}
+
++++++++
+Step 3:
++++++++
+
+Note: Binding is important, binding is used to bind the form data to the object (entity is different and binding is different)
+
+com.form.binding -->
+Student.java
+============
+
+package com.form.binding;
+
+import java.util.Arrays;
+
+public class Student {
+
+	private Integer sid;
+	private String name;
+	private String email;
+	private String gender;
+	private String course;
+	private String[] timings;
+
+	/*
+	 * why we add "private String [] timings;" array for timings because students
+	 * can choose multiple timings
+	 * 
+	 */
+	public Integer getSid() {
+		return sid;
+	}
+
+	public void setSid(Integer sid) {
+		this.sid = sid;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getGender() {
+		return gender;
+	}
+
+	public void setGender(String gender) {
+		this.gender = gender;
+	}
+
+	public String getCourse() {
+		return course;
+	}
+
+	public void setCourse(String course) {
+		this.course = course;
+	}
+
+	public String[] getTimings() {
+		return timings;
+	}
+
+	public void setTimings(String[] timings) {
+		this.timings = timings;
+	}
+
+	@Override
+	public String toString() {
+		return "Student [sid=" + sid + ", name=" + name + ", email=" + email + ", gender=" + gender + ", course="
+				+ course + ", timings=" + Arrays.toString(timings) + "]";
+	}
+
+}
+
+
+
+
+StudentController.java
+=======================
+
+package com.form.Controller;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+
+import com.form.Repo.StudentRepository;
+import com.form.binding.Student;
+
+@Controller
+public class StudentController {
+	
+	@Autowired
+	private StudentRepository repo;
+
+	
+	//method to load student form 
+	@GetMapping("/")
+	public String loadForm(Model model) {
+		
+		loadFormData(model);
+		
+		return"index";		
+		
+	}
+
+	private void loadFormData(Model model) {
+		List<String> coursesList = new ArrayList<>();
+		coursesList.add("Java");
+		coursesList.add("Generative AI");
+		coursesList.add("React");
+		coursesList.add("AWS Cloud");
+		coursesList.add("Devops");
+		coursesList.add("Python");
+		
+		List<String> timingsList = new ArrayList<>();
+		
+		timingsList.add("Morning");
+		timingsList.add("Afternoon");
+		timingsList.add("Evening");
+		
+		Student student = new Student();
+		//model is used to send the data in key-value format , so here keys are " courses and timings" and the values are "timingsList, coursesList"
+		model.addAttribute("courses", coursesList);
+		model.addAttribute("timings", timingsList);
+		model.addAttribute("student", student);
+	}
+	
+	//method to save student from data 
+	/*
+			in index.jsp page we have mentiond "<form:form action="save" modelAttribute="student" method="POST">"
+            POST request to save the data, so we need to create a post method to save the data 
+    */
+	@PostMapping("/save")
+		public String handleSubmit(Student s, Model model) {
+			System.out.println(s);
+			//logic to save data
+			
+			model.addAttribute("msg", "Registered successfully");
+			loadFormData(model);
+			return "index";
+		}
+		
+	//method to display saved students data 
+	
+		
+	}
+--------------------------------------------------------------------------------------------
+
+######################
+Indicator Note: How to remove boiler plate of code , because we have to use 2 times the same code in @GetMapping , @Postmapping as well
+
+Select the code which is used multiple times then right click on it then you will see a option --> Refactor --> Extract Method --> place your method name (LoadFormData)
+
+
+List<String> coursesList = new ArrayList<>();
+		coursesList.add("Java");
+		coursesList.add("Generative AI");
+		coursesList.add("React");
+		coursesList.add("AWS Cloud");
+		coursesList.add("Devops");
+		coursesList.add("Python");
+		
+		List<String> timingsList = new ArrayList<>();
+		
+		timingsList.add("Morning");
+		timingsList.add("Afternoon");
+		timingsList.add("Evening");
+		
+		Student student = new Student();
+		//model is used to send the data in key-value format , so here keys are " courses and timings" and the values are "timingsList, coursesList"
+		model.addAttribute("courses", coursesList);
+		model.addAttribute("timings", timingsList);
+		model.addAttribute("student", student);
 
 
 
