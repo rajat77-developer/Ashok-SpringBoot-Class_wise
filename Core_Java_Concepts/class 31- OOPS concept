@@ -1,0 +1,113 @@
+The main advantage of OOPS is code re-usability
+
+OOPS principles
+---------------
+1) Encapsulation
+2) Abstraction
+3) Polymorphism
+4) Inheritance
+
+========================================
+Encapsulation:- 
+========================================
+
+-> Encapsulation is used to combine our variables and methods as single entity /unit
+
+-> Encapsulation provides data hiding
+-> We can achieve encapsulation using Classes
+
+  class Demo{
+  
+       //variables
+        
+	   //methods
+  }
+  
+  
+==================================
+Abstraction
+----------------------------------
+->  Abstraction means hiding un-necessary data and providing only required data.
+	
+->  We can achieve Abstraction using interfaces & abstraction classes
+
+Ex: We will not bother about how laptop working internally.
+    we will not bother about how car engine is starting internally
+	
+	we just have to check weather a car or laptop is working or not. so all the internal processes is hidden how its working internally
+	just we are getting the output from the device or only that much of data that is required for us.
+	
+
+======================================
+Polymorphism
+======================================
+
+-> Exhibiting multiple behaviours based on situation is called as Polymorphism.
+
+Ex:-
+
+      10 + 20 = 30   (+ is adding)  
+
+      "hi" + "hello" = hihello   (here + is concatination)
+
+       here + plays a polymorphic behaviour.	
+
+       same object is playing different roles according to the situations
+
+
+==============================================
+Inheritance
+==============================================
+
+-> Extending the properties from one class to another calss is called as Inheritance.
+
+-> The main aim of inheritance is code re-usability.
+
+Ex:- child will inherit properties from parent
+
+
+
+Note:- In java, one child can't inherit properties from two parents at a time.
+
+
+==================
+Class
+==================
+-> Class is a plan or model or template
+-> Class is a blue print of object.
+-> Class is used to declare variables and methods.
+-> Project means collection of classes.
+-> Once class is created then we can create any no. of object for class.
+-> 'class' keyword is used to create classes in java 
+
+   class <ClassName>{
+      
+	  //variables
+	  //methods
+   
+   }
+
+-> classes does not exist physically.
+
+
+==============
+Object
+==============
+-> Any real-world entitiy is called as Object.
+-> Objects exist physically
+-> Objects will be created based on the class.
+-> Without having the class we cannot create object(class is mendatory to create objects)
+-> Object creation means allocating memory in JVM 
+-> 'new' keyword is used to create the object
+
+    ClassName refVariable = new ClassName ();
+	
+	User u1 = new User ();
+	
+	User u2 = new User ();
+
+-> Objects will be created by JVM in the runtime.	
+-> Objects will be created in heap area.
+-> If object is not in use then Garbage collector will remove that object from heap.
+-> Garbage Collector is responsible for memory cleanup activities in JVM heap area.	
+-> GC will remove only unused object from heap area. which is managed by JVM, we cannot manage and control GC.
