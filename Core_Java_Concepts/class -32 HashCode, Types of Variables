@@ -1,0 +1,172 @@
+====================
+What is Hash Code
+====================
+
+-> JVM will assign unique hashCode for every object
+
+-> No two objects will have same hashCode
+
+-> We can get hashCode of the object by calling java.lang.Object class hashCode ( ) method.
+
+        u1.hashCode ( );
+
+Note: java.lang.Object class is by default parent class for all java classes.
+
+
+example:
+
+   public class User {
+	
+	      public static void main(String[] args) {
+		     User u1 = new User();
+		
+		System.out.println(u1.hashCode());
+		
+		User u2 = new User();
+		
+		System.out.println(u2.hashCode());
+	}
+
+}
+
+output:
+
+1706234378
+1867750575
+
+	
+=============
+Variables
+=============
+
+-> Variables are used to store the data
+ 
+       int a = 10;  (int = datatype, a = variable )
+	  	   
+	   User u1 = new User();
+	   
+	   Student s1 = new Student ();
+
+-> Vaariables are divided into three types
+
+  a) Global Variables/ instance variables/non-static variables
+  b) static variables
+  c) Local Variables
+
+====================
+instance variables
+====================
+
+-> Variables which are declared inside the class and outside the method are called as instance variables
+
+-> instance variables can be accessed by all the methods available in the class that's why it is called as Global variable
+
+-> Initialization is optional for instance variables
+
+-> Instance variables are called as Object variables
+
+-> When we create the object, memory will be allocated for instance variables
+
+   Note:- If we create 2 objects, then memory will be allocated 2 times by JVM for Instance variable.
+
+-> If we don't intialize instance variable, then it will be initialized with default value based on datatype when the object is created
+
+-> Every Object will maintain its own copy of the instance variable.
+
+ex:-
+
+public class User {
+
+    int age;
+
+    public static void main(String[] args) {
+
+        User raju = new User();
+        raju.age = 20;
+        System.out.println(raju.age);
+
+        User rani = new User();
+        rani.age = 25;
+        System.out.println(rani.age);
+    }
+}
+
+output:
+20
+25
+
+
+===================================
+Static vairable
+===================================
+-> The variables which are declared inside the class and outside the method with 'static' keyword are called as static variables.
+
+-> Static variables are class level variables
+
+-> When class is loaded into JVM then imidiately memory will be allocated for static variables.
+
+-> Memory will be allocated for static variable only once when the class is loaded into the JVM.
+
+-> All objects of the will maintain the same copy of the static variable.
+
+-> ststic variable can be accessed directly by using class name.
+
+ex:-
+
+public class Students {
+	
+	String name;
+	String email;
+	long phno;
+	static String institute;
+	
+	   public static void main(String[] args) {
+		   
+		   Students.institute = "Ashokit";
+		
+		   Students Rohit = new Students();
+		   Rohit.name ="Rohit";
+		   
+		   Students Mohit = new Students();
+		   Mohit.name ="Mohit";
+		   
+	     }
+	
+  }
+
+==================================================
+When to declare variables as static or non-static ?
+==================================================
+
+-> If we want to store different values based on object then use instance variable.
+
+-> If we want to store same values for all objects then use static variable.
+
+
+==================
+Local variables
+==================
+
+-> The variables which are declared inside the method or constructor or block are called as Local Variables.
+
+-> If we declare a variable with in the method, then that variable can be used/accessed only with in that method.
+
+-> Before using local variables,we have to initialize them. 
+
+-> If we create a variable within the method, memory will be allocated for that variable when that method is executing.
+   After the method execution completed, local variable will be deleted from the JVM or memory.
+
+ex:- 
+
+class Demo{
+      public static void main(String[]args){
+	   
+	          int a = 10;
+			      int b = 20;
+			  
+			  System.out.println(a);
+			  System.out.println(b);
+	  
+	  }
+
+}
