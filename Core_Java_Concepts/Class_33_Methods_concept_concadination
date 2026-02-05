@@ -1,4 +1,177 @@
+Methods
+-----------
 
+-> Methods are used to perform some operations
+
+        returnType <methodName> (param1, param2, para3..... paramN) {
+
+        //logic
+
+        return value;
+
+        }
+
+-> Method return type is mandatory (if you don't want to return anything then you should use void)
+
+-> method name is mandatory
+
+-> Method parameters are optional
+
+-> When method is having return type then it has to return that value
+
+-> return statement should be the last line of the method
+
+
+ex:-
+
+   int add (int a, int b){
+      
+	  int c = a + b;
+	  return c;
+   }
+
+explaination:- Here "int" is datatype, add is method, and "int a" and "int b" is a parameter, int 'c' is operation,then it will return 'c' value
+
+-----------------------------------------------
+  void hello () {
+     
+	 System.out.println("Hello my friend")
+}
+
+Here return type is "void" so it will not return any value.
+
+-----------------------------------------------
+void fullname(String fname,String lname){
+
+     String name = fname + lname;
+}
+
+Here method is performig some logic i.e concadination but here retun type is void so it will not return any value.
+-------------------------------------------------
+
+boolean check (int age){
+  
+  if (age >= 18){
+       retun true;
+	    
+  }else{
+       retun false;
+  }
+
+}
+  
+==================================
+Methods are divided into 2 types
+
+1) instance methods ---> Object level methodName
+2) static method    ---> Class level method.
+
+-> instance method will be called by using Object
+-> static method will be called by using Class.  
+
+-> When we write methods in java class, by default jvm will not execute them, to execute our methods we have to call them.
+
+Note:- JVM will start our program execution from main method.Main method is called as entry point for JVM execution.
+
+examples:- 
+
+1)      void m1(){
+	  
+	  }
+------------------------------------	  	  
+	 
+2)      void m1 (int a, float b){
+
+      }
+------------------------------------	  
+
+3)     int add (int a, int b){
+        
+		int c = a + b;
+		return c;
+      }
+------------------------------------	  
+
+4)     int add (int a, int b){
+
+       return a + b;
+       
+	   }
+------------------------------------
+      boolean m2 (int a, intb){
+	  
+	  if(a > b)
+	      return true;
+	  else 
+          return false;
+  }		  
+	  
+------------------------------------>Here both codes are correct
+                 or
+    
+     boolean m2 (int a, int b){
+	    return a > b;
+	 }
+	 
+------------------------------------
+// this method is invalid because it is having two retun types
+
+   String void m2() {
+        return "hi";
+   }	 
+-------------------------------------- 
+
+ex:-
+
+package oops.examples;
+
+public class Student {
+
+	public static void main(String[] args) {
+		System.out.println("Hi, I am a student");
+	}
+
+	void hello() {
+		System.out.println("Hello my friend");
+	}
+
+	static void greet() {
+		System.out.println("Good Evening");
+	}
+}
+
+output:-
+Hi, I am a student
+
+Note:- Here in the above program we are getting output of only in main method. Because JVM don't know about other two methods "hello" i.e instance method & "greet" i.e static method
+	   for that we have to create object in the main method and have to call these methods from main method.	
+
+
+public class Student {
+
+	public static void main(String[] args) {
+		System.out.println("Hi, I am a student");
+		Student s1 = new Student();
+		s1.hello();
+		Student.greet();
+	}
+
+	void hello() {
+		System.out.println("Hello my friend");
+	}
+
+	static void greet() {
+		System.out.println("Good Evening");
+	}
+}	   
+
+output:-
+
+Hi, I am a student
+Hello my friend
+Good Evening
+
+******************************************************************
 
 
 Program to call the Methods in class
