@@ -1,0 +1,434 @@
+Questions:
+
+Q-1) Write a Java program to count the total number of occurrences of a given character in a string
+
+String s = "java"
+
+Char = 'a'
+
+Output : 2
+
+
+
+class CharOcc {
+
+    public static void main (String[ ] args){
+
+        String s = "java";
+        char ch = 'a';
+
+        char arr[ ] = s.toCharArray ( );
+
+        int count = 0;
+
+        for( int i = 0; i < arr.length ; i++ ){
+            if ( arr[i] == 'a' ){
+                count ++ ;
+            }
+        }
+
+        System.out.println(count);
+    }
+}
+
+
+---------------------------------------------------------------------------
+                                     OR
+									 
+
+public class CountCharacter {
+    public static void main(String[] args) {
+        String s = "java";
+        char ch = 'a';
+        int count = 0;
+
+        for (int i = 0; i < s.length(); i++) {
+            if (s.charAt(i) == ch) {
+                count++;
+            }
+        }
+
+        System.out.println(count);
+    }
+}
+==========================================================================================
+
+Q-2) Write a Java program to reverse a string
+
+Input = “java”
+
+Output = “avaj”
+
+
+class ReverseString {
+
+    public static void main(String[] args) {
+
+        String s = "java";
+        String rev = "";
+
+        for (int i = s.length() - 1; i >= 0; i--) {
+            rev = rev + s.charAt(i);
+        }
+
+        System.out.println(rev);
+    }
+}
+-------------------------------------------------
+                          OR	
+				
+
+class StringReverse {
+
+    public static void main(String[ ] args){
+
+        String s = "java";
+
+        StringBuffer sb = new StringBuffer(s);
+
+        sb.reverse ( );
+
+        System.out.println(sb);
+    }
+}
+
+========================================================================
+				
+Q-3) Write a Java program to check given String is a palindrome or not
+
+liril – Palindrome
+Madam – palindrome
+Java – Not Palindrome
+
+
+class PalindromeCheck {
+
+    public static void main(String[] args) {
+
+        String s = "liril";
+        String rev = "";
+
+        for (int i = s.length() - 1; i >= 0; i--) {
+            rev = rev + s.charAt(i);
+        }
+
+        if (s.equalsIgnoreCase(rev)) {
+            System.out.println("Palindrome");
+        } else {
+            System.out.println("Not Palindrome");
+        }
+    }
+}
+
+------------------------------------------------------------
+                         or
+						 
+public static void main(String[] args) {
+
+    String s = "madam"; // or String s = args[0]; for command line arguments
+
+    String s1 = "";
+
+    for (int i = s.length() - 1; i >= 0; i--) {
+        s1 = s1 + s.charAt(i);
+    }
+
+    if (s.equals(s1)) {
+        System.out.println("Palindrome");
+    } else {
+        System.out.println("Not Palindrome");
+    }
+}
+				
+---------------------------------------------------------------				
+						  or
+						  
+class Palindrome {
+
+    public static void main(String[] args) {
+
+        String s = args[0];
+
+        StringBuffer sb = new StringBuffer(s);
+
+        sb.reverse();
+
+        String s1 = sb.toString();
+
+        if (s.equals(s1)) {
+            System.out.println("Palindrome");
+        } else {
+            System.out.println("Not Palindrome");
+        }
+    }
+}
+						 
+=================================================================================
+Q-4) Write a Java program to check given two strings are anagrams or not
+
+Examples:
+
+keep & peek ⇒ Anagrams
+
+race & care ⇒ Anagrams
+
+Ashok & kosha ⇒ Anagrams
+
+Book & bomb ⇒ Not Anagrams
+
+
+
+import java.util.Arrays;
+
+class AnagramCheck {
+
+    public static void main(String[] args) {
+
+        String s1 = "keep";
+        String s2 = "peek";
+
+        // convert to lower case
+        s1 = s1.toLowerCase();
+        s2 = s2.toLowerCase();
+
+        // check length
+        if (s1.length() != s2.length()) {
+            System.out.println("Not Anagrams");
+            return;
+        }
+
+        // convert strings to char arrays
+        char[] a1 = s1.toCharArray();
+        char[] a2 = s2.toCharArray();
+
+        // sort both arrays
+        Arrays.sort(a1);
+        Arrays.sort(a2);
+
+        // compare sorted arrays
+        if (Arrays.equals(a1, a2)) {
+            System.out.println("Anagrams");
+        } else {
+            System.out.println("Not Anagrams");
+        }
+    }
+}
+
+-----------------------------------------------------------------------------
+                               or
+
+import java.util.Arrays;
+
+public class AnagramCheck {
+
+    public static void main(String[] args) {
+
+        // Check if two command-line arguments are provided
+        if (args.length < 2) {
+            System.out.println("Please provide two strings as command-line arguments.");
+            return;
+        }
+
+        String s1 = args[0];
+        String s2 = args[1];
+
+        // If lengths are not equal, they can't be anagrams
+        if (s1.length() != s2.length()) {
+            System.out.println("Given Strings are not anagrams");
+            return;
+        }
+
+        // Convert strings to character arrays
+        char[] a = s1.toCharArray();
+        char[] b = s2.toCharArray();
+
+        // Sort both arrays
+        Arrays.sort(a);
+        Arrays.sort(b);
+
+        // Compare sorted arrays
+        boolean flag = Arrays.equals(a, b);
+
+        if (flag) {
+            System.out.println("Given strings are anagrams");
+        } else {
+            System.out.println("Given Strings are not anagrams");
+        }
+    }
+}
+
+------------------------------------------------------------------------------
+Q-5) Java Program To Swap Two String Variables Without Using Third Variable
+
+Input :
+
+String a = “java” ;
+String b = “program”
+
+Output :
+
+String a = “program”
+String b = “java”
+
+
+public class SwapStrings {
+    public static void main(String[] args) {
+        String a = "java";
+        String b = "program";
+
+        // Step 1: Concatenate both strings
+        a = a + b;
+
+        // Step 2: Extract original 'a' from combined string
+        b = a.substring(0, a.length() - b.length());
+
+        // Step 3: Extract original 'b'
+        a = a.substring(b.length());
+
+        System.out.println("String a = " + a);
+        System.out.println("String b = " + b);
+    }
+}
+
+----------------------------------------------------------------
+                          or
+						  
+
+class SwapStrings{
+
+    public static void main(String[] args){
+
+        String a = "java";    // 4
+        String b = "program"; // 7
+
+        a = a + b; // 11
+
+        b = a.substring(0, a.length() - b.length());
+        a = a.substring(b.length());
+
+        System.out.println(" a = " + a);
+        System.out.println(" b = " + b);
+
+    }
+
+}
+						
+
+==========================================================================
+Q-6) Write a Java Program To Remove All Vowels From String
+
+Input :
+Hello, I love my india
+
+Output :
+Hll, lv my nd
+
+
+
+public class RemoveVowels {
+    public static void main(String[] args) {
+        String s = "Hello, I love my india";
+
+        // Remove vowels using replaceAll
+        s = s.replaceAll("[AEIOUaeiou]", "");
+
+        System.out.println(s);
+    }
+}
+
+===================================================================================
+Q-7) Write a Java Program To Reverse Each Word In Given String
+
+Input :
+Hello My Friend
+
+Output :
+olleH yM dneirF
+
+
+
+public class ReverseEachWord {
+    public static void main(String[] args) {
+        String input = "Hello My Friend";
+
+        // Split the string into words
+        String[] words = input.split(" ");
+
+        String result = "";
+
+        // Reverse each word
+        for (String word : words) {
+            String reversedWord = "";
+            for (int i = word.length() - 1; i >= 0; i--) {
+                reversedWord += word.charAt(i);
+            }
+            result += reversedWord + " ";
+        }
+
+        // Print the result
+        System.out.println("Output : " + result.trim());
+    }
+}
+
+-----------------------------------------------------------------
+                            or
+							
+					
+class ReverseEachWord{
+     public static void main(string... args){
+	  
+	  String s = "Hello My Friend";
+	  String[] arr = s.split("");
+	  
+	  for(int i=0; i < arr.length;i++){
+	       String x  =arr[i];
+		   
+		   StringBuffer sb = new Stringbuffer(x);
+		   sb.reverse();
+		   System.out.print(sb+"");
+	  }
+	 
+	 }
+
+}					
+
+=======================================================================
+Q-8) Write a Java Program To Count No. of Words in String
+
+Input :
+I love java programming
+
+Output :
+4
+
+
+public class CountWords {
+    public static void main(String[] args) {
+        String input = "I love java programming";
+
+        // Split the string using space
+        String[] words = input.split(" ");
+
+        // Count the number of words
+        int count = words.length;
+
+        System.out.println("Output : " + count);
+    }
+}
+
+							   
+-------------------------------------------------------------
+                       or 	
+
+class WordCount{
+      public static void main(String... args){
+	  
+	      String s = "Hello  Hello    My    Friend";
+		  
+		  String[]arr = s.trim().split("\\s+");
+
+           System.out.println(arr.length);		  
+	  
+	  }
+
+}
