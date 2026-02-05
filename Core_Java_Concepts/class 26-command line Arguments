@@ -1,0 +1,45 @@
+-> Arguments means Values
+-> Command line args sre used to supply dynamic values as input for our program.
+-> Cmd Args will be received by main method.
+-> Cmd Args default data type is String
+-> WE can pass multiple cmd args, they will be stored into one array
+
+
+
+class CmdArgs{
+
+public static void main(String[] a){
+
+        String s1 = a[0];
+		Stirng s2 = a[1];
+	    String s3 = a[2];
+
+      System.out.println(s1+s2+s3);
+   }	  
+	
+
+}		 
+
+
+javac CmdArgs.java
+
+java CmdArgs ashok it hyd	
+-----------------------------------	
+
+Q) Write a java program to perform sum of two numbers using Cmd arguments
+
+class CmdArgs{
+
+public static void main(String[]args){
+
+     System.out.println("Total Cmd Args" + a.length);
+     String s1 = args[0];
+	 String s2 = args[1];
+	 
+	 int x = Integer.parseInt(s1);
+	 int y = Integer.parseInt(s2);
+ 
+ System.out.println(x + y);
+  }
+
+}
