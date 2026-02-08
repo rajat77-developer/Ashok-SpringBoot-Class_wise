@@ -9,8 +9,12 @@
     <form : select/>
     <form : checkbox/>
 
+==> to use web mvc form tag library we have to use below directive
+
+		<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 
 ============================================================================================
+
 Requirement: Develop student web application with below 
 
 1) Student Registration : Store in database 
