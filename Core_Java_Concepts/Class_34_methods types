@@ -1,3 +1,106 @@
+-> Every method contains 2 parts.
+
+    1) Method Declaration
+	2) Method Body
+	
+What is method Declaration?
+
+method declaration means we are going to decide what is the name of the method, what are the parameters it will take and what kind of value is return by method.
+
+Syntax:-
+
+          returntype methodname(list of parameters);
+		  
+		 
+what is returntype?
+-------------------
+-> return is data type that indicates what type of value is retun by the particular method.
+
+-> returntype can be any primitive type or array type or refrence type.
+
+-> if method does not return any value then retun type must be specified using a java keyword called " void".
+
+-> specifying returntype is mandatory.
+
+-----------------------------------------
+What is method name ?
+-----------------------------------------
+-> To identify and access the method there is a suitable name is given for a method which is called as method name.
+
+-> a methodname can be any valid java identifier.
+
+-> specifying method name is mandatory
+
+-----------------------------------------
+What are method parameters ?
+-----------------------------------------
+-> parameters are the variables that will receive the values that are passed into the. particular method on which data method will perform the operations.
+
+-> we can write 0 or more number of parameters of any primitive type or array type or reference type
+
+-> specifying parameters is optional.
+
+-------------------------------------------
+method body / method implementation
+-------------------------------------------
+
+-> method body means we are going to write the group of statements that are executed by the method.
+
+-> a method body can be written in between a pair of curly braces.
+
+   syntax:-
+
+        returntype methodname(list of parameters)
+      {
+         //statements;
+         return value;
+      }
+
+-> here we can write 0 or more number of statements in between the pair of curly braces.
+
+-> when we write 0 statements then it is called as null implementation.
+
+-> If the return type is specified as other than void then we must return a value from our method using java keyword called "retun".
+
+
+
+  
+
+ 
+// scenario-1 (with parameters and with return type)
+	int m1(int a, int b) {
+		int c = a + b;
+		return c;
+	}
+
+	// scenario -2 (with parameters & no return type)
+	void m2(int a, int b) {
+		int c = a + b;
+		System.out.println(c);
+	}
+
+	// scenario -3 (with return type but no parameters)
+	int m3() {
+		int a = 10;
+		int b = 20;
+		int c = a + b;
+		return c;
+
+	}	
+ 
+    //scenario -4 ( no return type and no parameters)
+	void m4 () {
+		System.out.println("hi");
+	}
+	
+
+1) Methods with parameters & with retun type.
+2) Methods with parameters & without return type.
+3) Methods with retun type and without parameters.
+4) Methods without return type and without parameters.	
+
+********************************************************************************************************
+
 //scenario-1(with parameters and with return type.
 =================================================
 int add(int a, int b) {
