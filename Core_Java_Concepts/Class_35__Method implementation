@@ -1,3 +1,65 @@
+how to write instance method:-
+------------------------------
+=> if it is instance we will call the method by using object, if it is static method we will call the method by using class name.
+
+
+public class Driver {
+	public static void main(String[] args) {
+		
+		Driver d = new Driver();
+		
+		int[]arr = {10,20,30,40};
+		
+		d.print(arr);
+		
+		
+	}
+	
+	void print(int[]arr) {
+		String str = Arrays.toString(arr);
+		System.out.println(str);
+	}
+
+}	
+
+-------------------------------------
+for static method
+-------------------------------------
+
+public class Driver {
+	public static void main(String[] args) {
+		
+		Driver d = new Driver();
+		
+		int[]arr = {10,20,30,40};
+		
+		Driver.print(arr);   //calling directly by using class name
+		
+	}
+	
+	static void print(int[]arr) {
+		String str = Arrays.toString(arr);
+		System.out.println(str);
+	}
+
+}
+
+==========================================================
+Working with methods using objects
+==========================================================
+-> Object means physical entity.
+-> Objects are used to store the data.
+-> Objects will be created based on class name.
+-> To create the object we will use "new" operator.
+-> Object will be stored in heap area.
+-> For every object JVM will assign one unique hashcode.
+
+-> In realtime projects, data will be represented in the form of objects only.
+-> Java is a OOP language, so everything will be represented in the form of Objects.
+-> In realtime projects, mainly our method will deal with Objects only.
+
+*******************************************************************************************************
+
 Task:
 =====
 Create a method to calling an array .
