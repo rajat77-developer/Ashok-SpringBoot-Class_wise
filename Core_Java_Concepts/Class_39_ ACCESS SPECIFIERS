@@ -1,46 +1,45 @@
-                                      ACCESS SPECIFIERS/ MODIFIERS
-                                  ====================================
+Access specifiers/modifiers in java
+=============================================
 
--> These are used to specify  accessibility for our classes ,variables and methods.
--> In java, we have below 4  access specifiers.
+-> These are used to specify accessibility for our classes,constructors, variables & methods.
 
-    1.Public
-    2.Private 
-    3.Protected
-    4.Default
+-> In java we have below 4 access specifiers/modifiers
 
-Public: It is used to specify  global access for classes, variables, methods and Constructors.
+         1) public
+         2) private
+         3) protected
+         4) default
 
-      ->we can take class as public 
-      ->constructor as public 
-      ->variables and methods also we can take as public  
+public:- It is used to specify global access for classes, variables,methods and Constructors.
 
-NOTE: if we use " public " for the class name then class name & file name should be same . We should have only one public class in the java file.
+        ->  We can take class as public
+		->  we can take constructor as public
+		->  We can take variables as public
+		->  We can take methods as public
 
-Private: It is used to specify local access.Private variable,private methods,private constructors can't be accessed outside of the class.
-      
-      ->we can't use private for class(it is not allowed )
-      ->we can take variables , methods, constructors as private 
+Note: public means anybody can access from inside and outside the class also.		
+		  
 
+private:- It isused to specify loacal access.private variables, private methods, private constructors
+          can't be accessed outside of the class. If the variable or method is made private then we can access 
+          that in the same class.
+		  
+		  -> We can't use private for class (not allowed)
+		  -> We can take variable as private
+		  -> We can take constructor as private.(nobody can create obj from outside of class)
+		  -> We can take method as private.(nobody can call our method from outside of class)
+		  
+Singleton class:- to make our java class a singleton, we will use private constructor.
+                  The java class which is having only one object is called as singleton class.		  
+		  
 
-Protected: Protected members can be accessed in same package and sub classes.
+protected:- protected members can be accessed in same package and sub classes.
 
-Default: Default members can be accessed in same package.
-      NOTE: only public and default specifires are allowed for classes. Private and protected are not allowed.
+default:- default members can be accessed in same package. If we dont specify any modifier then it comes under default modifier.
 
+Note:- Only public and default specifiers are allowed for classes. private and protected are not allowed.
 
-
-
-
-
-
-
-
-
-
-
-
-
+Note:- If we use 'public' for the class name then class name & file name should ne same. We should have only one public class in java file.
 
 
 
