@@ -1,4 +1,236 @@
-                                Constructor
+previous class overview
+=============================================================
+
+Class : It is a plan or model. It contains variables & Methods
+
+Object : Physical Entity. It is used to access variables & methods of the class
+
+Variables : Used to store the data
+
+instance variables (inside class, outside method without static keyword)
+               -> When obj created, memory will be allocated for instance variables
+               -> Every obj will maintain its own copy of instance variables
+
+static variables (inside class, outside method with static keyword)
+               -> When class is loaded then memory will be allocated for static variables
+
+local variables (inside the method)
+               -> When method is invoked then only memory will be allocated for local variables
+               -> Before using local variable, we have to initialize that
+
+Methods : To perform some operation
+              
+			 -> instance method ---> We will call by using object
+
+             -> static method -----> We will call by using Classname
+
+             -> Method Declaration (Signature) ---> return type + name + list of parameters
+
+             -> Method Definition (Body) ----> logic
+			 
+			 
+			 
+==========================================================
+Constructors
+==========================================================
+-> It is a special method in java which is used to initialize current class of instance variables.
+
+-> Constructor name should be same as class name.
+
+-> Constructor should not have any return type(not even void).
+
+Note:- If we write return type for the constructor then it will become a method.
+
+Syntax:-
+
+    class Demo{
+	
+	      Demo() {
+		 }
+	}
+
+   Demo d = new Demo ( );
+
+Note: At the time of object creation our class Constructor will be executed. Constructor is mandatory to create the object.
+
+-> Object creation means calling the constructor.
+
+Note: If we don't write the constructor then, java compiler will add one default constructor to our class.
+
+-> We can check default constructor for the class using below command
+
+       javap classname	
+	   
+
+Note:- If we write constructor in the class, then compiler will not add any constructor.
+
+
+-> Constructors are divided into 2 types
+
+1) Zero Param Constructor / Default Constructor
+
+        Constructor without parameters
+
+                   class Student {
+
+                         Student ( ) {  
+                                   ...  
+                     }  
+
+                 }
+
+2) Parameterized Constructor
+
+          Constructor which contains 1 or more paramters
+
+                  class Student {
+
+                       Student (int i, int b ) {  
+                                        ...	   
+                    }
+			}
+
+
+------------------------------------------------------------
+
+class Employee {
+
+       public Employee(int i , int j) {
+         System.out.println(i + j);
+      }
+
+        public static void main(String[] args) {
+           Employee emp = new Employee(100, 200);
+          }
+
+     }
+			
+			
+------------------------------------------------------------
+public class Employee {
+	    
+	String name;
+	double salary;
+	
+	  public Employee(String name, double salary){
+		  
+		  this.name = name;
+		  this.salary =salary;
+		   System.out.println(this.name + "  " + this.salary);
+		   
+	   }
+    
+	   
+	   public static void main(String[] args) {
+		   Employee emp1 = new Employee("Rohit",80000);
+		   Employee emp2 = new Employee("Rohan",70000);
+		   
+	}
+}
+
+-------------------------------------------------------------
+
+
+public class Student {
+
+	int id;
+	String name;
+	int age;
+	String gender;
+	
+	public Student(int id, String name, int age, String gender) {
+		this.id = id;
+		this.name = name;
+		this.age = age;
+		this.gender = gender;
+		
+		System.out.println(this.id + " " + this.name + " " + this.age + " " + this.gender);
+		
+	}
+	
+	public static void main(String[] args) {
+		Student s = new Student(101, "Rohit", 29, "male");
+	}
+}
+
+---------------------------------------------------------------------
+
+
+Note:- 	
+-----------------
+this keyword
+-----------------
+
+-> this is a predefined keyword in java.
+
+-> It is used to reprsent current class objects 
+
+
+===============================
+Constructor overloading
+===============================	
+
+-> Writing more than one constructor with different parameters are called as Constructor Overloading.
+
+  class Employee{
+  
+      public Employee(int id){
+	  
+	  }
+	  
+	  public Employee(double d){
+	  
+	  }
+  }	
+  
+  
+-----------------------------------------------------
+public class Employee {
+	    
+	String name;
+	double salary;
+	
+	public Employee() {
+		
+		
+	}
+	
+	   Employee(String name, double salary){
+		  
+		  this.name = name;
+		  this.salary =salary;
+		   System.out.println(this.name + "  " + this.salary);
+		   
+	   }
+	   
+	   Employee(double salary, String name){
+		  this.name = name;
+		  this.salary = salary;
+		  System.out.println(this.salary + " " + this.name);
+		  
+	   }
+	   
+	   Employee(String name) {
+          this.name = name;
+          System.out.println(this.name + " " + this.salary);
+	   } 
+    
+	   
+	   public static void main(String[] args) {
+		   Employee emp1 = new Employee("Rohit",80000);    //Rohit  80000
+		   Employee emp2 = new Employee("Rohan", 70000);   // Rohan  70000
+		   
+		   Employee emp3 = new Employee("Subham");         // Subham 0.0
+		   
+		   Employee emp4 = new Employee();                  // no output
+		   	   
+	}
+}
+
+****************************************************************************************************
+****************************************************************************************************
+
+                              Constructor
                     ========================================
 
 1. it is a special method in java which is used to initialize current class instance variable.
