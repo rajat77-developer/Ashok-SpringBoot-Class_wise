@@ -1,3 +1,240 @@
+                              -------------------
+                                inheritance
+                              -------------------
+-> The process of extending the properties from one class to another class is called inheritance.
+
+-> To extend the properties we will use 'extends' keyword
+
+-> From which class we are extending the properties that class is called 'Parent' or 'Super' or 'Base 'class.
+
+-> The class which is is extending the properties is called 'child class' or 'Sub class' or 'Derived class'.
+
+-> By using inheritance we can achieve code re-usability.
+
+ex:
+
+   class User {
+        //properties
+		//methods
+    
+     }
+	 
+	 class Student extends User{
+	 
+	 }
+	 
+	 
+Note: In the above example 'User' class is acting as  parent class and Student class is acting as child class.
+
+examples:-
+
+public class User {
+	
+	int id;
+	String name;
+
+}
+
+-----------------------------------
+
+public class Student extends User {
+	
+	int rank;
+	
+	public static void main(String[] args) {
+		
+		Student s = new Student(); //child class object creation
+		s.rank = 1;
+		
+		//accessing parents class properties using child class object.
+		s.id = 102;
+		s.name = "Rohit";
+		
+		System.out.println(s.id + " " + s.name + "  " + s.rank);
+
+	}
+
+}
+
+-----------------------------------------------------
+public class Student extends User {
+	
+	int rank;
+	
+	public static void main(String[] args) {
+		
+		User s = new User(); //Parent class object created
+		s.rank = 1;          //invalid because parent cannot access child's properties
+		
+		//accessing parents class properties using child class object.
+		s.id = 102;
+		s.name = "Rohit";
+		
+		
+
+	}
+
+}
+
+=======================================================
+inheritance w.r.t to method
+=======================================================
+
+public class User {
+	
+	int id;
+	String name;
+	
+	void m1() {
+		
+		System.out.println("Parent class :: m1 method is called");
+	}
+
+}
+-----
+
+public class Employee extends User{
+	    
+	void m2() {
+		
+		System.out.println("child class :: m2 method is called");
+	}
+	
+	public static void main(String[] args) {
+		
+		//creating object for child class
+		Employee emp = new Employee();
+		
+		emp.m1(); //calling parent class method
+		
+		
+		emp.m2(); //calling child class method
+	}
+}
+
+----------------------------------------------------------
+inheritance w.r.t constructors
+----------------------------------------------------------
+-> Whenever we create child class object, then first it will execute parent class 0-peram constructor and then it will execute child class constructor.
+   if the parent class has param constructors then also it will execute 0-param constructor. if zero param constructor is not 
+   available then program will not compile.
+   
+-> so for parent class zero param constructor is mendatory weather by default or by us.   
+
+Q) Why Parent class constructor is executing first?
+
+-> Child class should able to access parent class properties hence parent class constructor will execute first to 
+   initiliaze parent class properties.
+
+
+public class User {
+	
+	int id;
+	String name;
+	
+	
+     public User() {
+    	 
+    	 System.out.println("Parent class:: constructor called");
+     }
+}
+
+
+public class Employee extends User{
+	
+	public Employee() {
+    System.out.println("child class ::constructor called");
+	
+	}
+	    
+	void m2() {
+		
+		System.out.println("child class :: m2 method is called");
+	}
+	
+	public static void main(String[] args) {
+		
+		//creating object for child class
+		Employee emp = new Employee();	 
+	 }
+}	
+
+output:
+-------
+Parent class:: constructor called
+child class ::constructor called 
+
+
+----------------------------------------------------
+
+public class User {
+
+	int id;
+	String name;
+
+	public User() {
+
+		System.out.println("Parent class:: constructor called");
+	}
+
+	void m1() {
+
+		System.out.println("Parent class :: m1 method is called");
+	}
+
+}
+
+
+
+public class Employee extends User {
+
+	double salary;
+
+	public Employee() {
+		System.out.println("child class ::constructor called");
+
+	}
+
+	void m2() {
+
+		System.out.println("child class :: m2 method is called");
+	}
+
+	public static void main(String[] args) {
+
+		// creating object for child class
+		Employee emp = new Employee();
+
+		emp.id = 101; // calling parent class method
+		emp.name = "Rohit";
+
+		emp.salary = 20000.00; // calling child class method
+
+		System.out.println(emp.id + "--" + emp.name + "--" + emp.salary);
+	}
+}
+
+output: 
+Parent class:: constructor called
+child class ::constructor called
+101--Rohit--20000.0
+
+
+=======================
+Types of Inheritance
+=======================
+1) Single Level
+2) Multi Level
+3) Multiple  -> Not supported by Java due to Ambiguity problem
+4) Hybrid 
+5) Hierarchical
+
+
+*************************************************************************************************************************************
+notes for same topic below also
+*************************************************************************************************************************************
+
+
 
                           =================================================
                                           INHERITANCE 
