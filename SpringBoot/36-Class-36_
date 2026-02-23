@@ -279,10 +279,8 @@ StudentController.java
 =======================
 
 package com.form.Controller;
-
 import java.util.ArrayList;
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -294,7 +292,10 @@ import com.form.binding.Student;
 
 @Controller
 public class StudentController {
-	
+
+
+//we will inject stundent repository into rest controller by using @Autowird annotation
+
 	@Autowired
 	private StudentRepository repo;
 
@@ -339,7 +340,18 @@ public class StudentController {
 	@PostMapping("/save")
 		public String handleSubmit(Student s, Model model) {
 			System.out.println(s);
+			
+
 			//logic to save data
+			
+			StudentEntity entity = new StudentEntity();
+			
+			//copy data from binding object to entity object 
+			
+			BeanUtils.copyProperties(s, entity); // we need to copy data from student to student entity
+			
+			entity.setTimings(Arrays.toString(s.getTimings()));
+			repo.save(entity);//while save the form data to to database it is expecting student entity but we have binding (student) 
 			
 			model.addAttribute("msg", "Registered successfully");
 			loadFormData(model);
@@ -381,7 +393,21 @@ List<String> coursesList = new ArrayList<>();
 
 
 ================================================================================================================================
+what all are things we did in our project ?
+like challanges and resolutations...
 
+1. when we display the data and save it in our database we will face timging is null chhallanges . 
+why so ?
+
+--> in Student class we declared timings in arrya format (private String[] timings;) but in StudentEntity we have declared in String format (private String timings;)
+	so here problem is data mismatch.. 
+	Now how do we resolve this things .....
+	
+    so what we will do , we first convert that timings array to string after that we wills save our repo data .
+	below we will use 
+	
+	::  entity.setTimings(Arrays.toString(s.getTimings()));
+	::  repo.save(entity);
 
 
 
