@@ -90,13 +90,13 @@ public class Demo {
         SBIBank b1 = new SBIBank();
         SBIBank b2 = new SBIBank();
 
-        boolean bankObjStatus = b1.equals(b2); // false
+        boolean bankObjStatus = b1.equals(b2); // false because it compares address
         System.out.println("Both Banks Are Equal ?? :: " + bankObjStatus);
 
         String s1 = new String("ashokit");
         String s2 = new String("ashokit");
 
-        boolean stringObjStatus = s1.equals(s2); // true
+        boolean stringObjStatus = s1.equals(s2); // true because it compares content 
         System.out.println("Both Strings Are Equal ?? :: " + stringObjStatus);
 
     }
