@@ -78,6 +78,30 @@ double getHomeLoanRofi() {
 	}
 }
 
+--------------------------------------------------------------------------
+
+//Methods Overriding Example with User-Defined and String Objects	
+	
+	
+public class Demo {
+
+    public static void main(String[] args) {
+
+        SBIBank b1 = new SBIBank();
+        SBIBank b2 = new SBIBank();
+
+        boolean bankObjStatus = b1.equals(b2); // false
+        System.out.println("Both Banks Are Equal ?? :: " + bankObjStatus);
+
+        String s1 = new String("ashokit");
+        String s2 = new String("ashokit");
+
+        boolean stringObjStatus = s1.equals(s2); // true
+        System.out.println("Both Strings Are Equal ?? :: " + stringObjStatus);
+
+    }
+}
+
 
 Note: Object class equals () method will compare address of the objects where String class equals () method will compare content of the objects.
 Note: String class overriding equals() method.
