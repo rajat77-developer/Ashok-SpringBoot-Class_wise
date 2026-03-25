@@ -25,7 +25,7 @@ Ex-1 : www.youtbe.com/watch?v=asf797979
 
 ---> v=asf797979 this part is called key value pair ...
 
-=> To read Query Parameters in Spring Controller we will use @RequestParam anntation..
+=> To read Query Parameters in Spring Controller we will use @RequestParam annotation..
                                   
                                   ======================
                                       Path Parameters 
