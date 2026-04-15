@@ -5,7 +5,7 @@
 => Create Spring boot application with below dependencies..
 
             a. spring-boot-starter-project
-            b. tomcat-embed-jasper   (this dependency is used to compile jsp file )
+            b. tomcat-embed-jasper   (this dependency is used to compile jsp file ) if you are using jsp as a presentation technology then this dependency is mandatory.
             c. spring-boot-devtools
 
 => Create Controller class using @Controller annotation
