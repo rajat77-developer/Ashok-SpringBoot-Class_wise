@@ -136,7 +136,24 @@ http://localhost:8080/date
 
 
 
+#################################################################################################################################################################
+#################################################################################################################################################################
+what is context path in spring boot / in application.properties file ?
 
+Answer: 
+
+Context path is the root path of a web application used to access all its resources and endpoints.
+
+
+🔹 Example
+
+If:
+
+server.servlet.context-path=/webapp
+
+Then:
+
+http://localhost:8080/webapp/hello
 
 
 
