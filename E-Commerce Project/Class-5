@@ -1,0 +1,24 @@
+Where we will use Linux OS ?
+============================
+
+1. Application deployment will happen on linux machines only.
+2. Tools will be installed on Linux machines only
+
+Ex: Docker, Jenkins, nexus, SonarQube, Elk etc......
+
+3. Application log files will be stored in linux machines only
+
+============
+What is OS ?
+============
+
+-> Software which acts as mediator between user and computer .
+-> User will communicate with computers using os .
+-> without os, we can't use any computer.
+-> Os provides platform to run our application in computers .
+  Ex: Notepad,Calculator, browsers etc........
+
+
+
+
+
