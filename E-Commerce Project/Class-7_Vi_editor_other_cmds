@@ -1,0 +1,97 @@
+==================== TEXT & LOG COMMANDS ====================
+
+-------------------- VIEW FILE --------------------
+tac linux.txt           →       show file in reverse (last line first)
+rev linux.txt           →       reverse each line content
+wc linux.txt            →       count lines, words, characters
+
+-------------------- HEAD (TOP LINES) --------------------
+head                    →       show first 10 lines (default)
+head -n 20 app.log      →       show first 20 lines
+head -n 25 app.log      →       show first 25 lines
+
+-------------------- TAIL (BOTTOM LINES) --------------------
+tail                    →       show last 10 lines (default)
+tail app.log            →       show last 10 lines of file
+tail -n 20 app.log      →       show last 20 lines
+
+-------------------- SEARCH (GREP) --------------------
+grep                    →       search text in file
+grep 'apache' app.log   →       search 'apache'
+grep -i 'java' app.log  →       case-insensitive search
+grep -i 'exception' app.log →   search 'exception' (ignore case)
+grep -n 'exception' app.log →   show line numbers
+grep -v 'apache' app.log →      exclude 'apache' lines
+
+===========================================================
+
+
+
+
+
+==================== VI EDITOR CHEAT SHEET ====================
+
+-------------------- MODES --------------------
+Normal Mode        →       default mode (for navigation & commands)
+Insert Mode        →       for typing/editing text
+Command Mode       →       for save, quit, search (uses :)
+
+-------------------- SWITCH MODES --------------------
+i                  →       insert before cursor
+a                  →       insert after cursor
+o                  →       new line below
+O                  →       new line above
+Esc                →       back to Normal mode
+
+-------------------- SAVE & EXIT --------------------
+:w                 →       save file
+:q                 →       quit
+:wq                →       save and quit
+:x                 →       save and quit
+:q!                →       quit without saving
+
+-------------------- NAVIGATION --------------------
+h                  →       move left
+l                  →       move right
+k                  →       move up
+j                  →       move down
+0                  →       move to line start
+$                  →       move to line end
+gg                 →       go to first line
+G                  →       go to last line
+:n                 →       go to line number n
+
+-------------------- EDITING --------------------
+x                  →       delete character
+dd                 →       delete full line
+yy                 →       copy (yank) line
+p                  →       paste below
+P                  →       paste above
+u                  →       undo
+Ctrl + r           →       redo
+
+-------------------- SEARCH --------------------
+/text              →       search forward
+?text              →       search backward
+n                  →       next match
+N                  →       previous match
+
+-------------------- VISUAL MODE --------------------
+v                  →       select text
+V                  →       select full line
+y                  →       copy selected
+d                  →       delete selected
+
+==============================================================
+
+
+
+
+
+
+
+
+
+
+
+
