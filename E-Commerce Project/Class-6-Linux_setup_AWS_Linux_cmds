@@ -1,0 +1,116 @@
+Linux Commands 
+==============
+
+====================== LINUX CHEAT SHEET ======================
+
+-------------------- BASIC --------------------
+whoami             →       shows current user
+pwd                →       shows present working directory
+date               →       shows current date & time
+
+-------------------- CALENDAR --------------------
+cal                →       shows current month calendar
+cal 2026           →       shows full year 2026 calendar
+
+-------------------- DIRECTORY --------------------
+mkdir dir1         →       create directory named dir1
+rmdir dir1         →       remove empty directory
+rm -rf devops      →       delete directory with all contents
+
+-------------------- LIST FILES --------------------
+ls                 →       list files & folders
+ls -l              →       long format (permissions, size, etc.)
+ls -la             →       include hidden files
+ls -lt             →       newest files first
+ls -ltr            →       oldest files first
+ls -l devops       →       list contents of devops
+
+-------------------- NAVIGATION --------------------
+cd                 →       go to home directory
+cd ..              →       move one level up
+cd ../..           →       move two levels up
+
+-------------------- FILE OPERATIONS --------------------
+touch f1.txt       →       create empty file
+cat f1.txt         →       view file content
+cat > f1.txt       →       overwrite file
+cat >> f1.txt      →       append to file
+cat -n f1.txt      →       show with line numbers
+
+-------------------- DELETE --------------------
+rm f1.txt          →       delete file
+rm *.txt           →       delete all .txt files
+
+-------------------- COPY & MOVE --------------------
+cp linux.txt os.txt        →       copy file
+mv linux.txt linux-os.txt  →       rename file
+mv os.txt aws/             →       move file
+cat m1.txt m2.txt > m3.txt →       merge files
+
+-------------------- PERMISSIONS --------------------
+chmod 777 f1.txt   →       full access to all
+chmod 755 file     →       owner full, others read/execute
+chmod +x script.sh →       make file executable
+chown user file    →       change file owner
+
+-------------------- USERS --------------------
+adduser devops     →       create user
+passwd devops      →       set password
+su - devops        →       switch user
+sudo -i            →       switch to root user
+
+-------------------- PROCESS --------------------
+ps -ef             →       show running processes
+top                →       live process monitor
+kill -9 PID        →       force stop process
+
+-------------------- NETWORK --------------------
+ifconfig           →       show IP address (older)
+ip a               →       show IP (modern command)
+ping google.com    →       check connectivity
+netstat -tulnp     →       show open ports
+
+-------------------- DISK --------------------
+df -h              →       disk usage
+du -sh *           →       folder size
+free -m            →       memory usage
+
+-------------------- SYSTEM --------------------
+clear              →       clear terminal
+history            →       command history
+uptime             →       system running time
+reboot             →       restart system
+shutdown now       →       shutdown system
+
+==============================================================
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
