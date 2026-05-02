@@ -1,0 +1,56 @@
+Note:   default username for ubuntu is ubuntu..
+
+==================== SED & USER COMMANDS ====================
+
+-------------------- SED (STREAM EDITOR) --------------------
+sed 's/linux/amazon/' linux-os.txt        →       replace first occurrence in each line
+sed 's/linux/unix/2' linux-os.txt         →       replace 2nd occurrence in each line
+sed 's/linux/unix/g' linux-os.txt         →       replace all occurrences (global)
+sed -i 's/linux/unix/g' linux-os.txt      →       replace in file (permanent)
+sed -i '2d' linux-os.txt                  →       delete 2nd line
+sed -i '$d' linux-os.txt                  →       delete last line
+sed -i '5,$d' linux-os.txt                →       delete from line 5 to end
+sed -i '4i\i am Rajat kumar' linux-os.txt →       insert text at line 4
+sed '$a\i love linux' linux-os.txt        →       append text at last line
+
+-------------------- USER MANAGEMENT --------------------
+sudo useradd <username>                   →       create new user
+sudo passwd <uname>                      →       set user password
+cat /etc/passwd                          →       list all users
+sudo su rajt                             →       switch to user rajt
+cd /home                                 →       go to home directory
+cd ~                                     →       go to current user's home
+exit                                     →       logout / switch back
+
+-------------------- DELETE / MODIFY USER --------------------
+sudo userdel <uname>                     →       delete user
+sudo userdel <uname> --remove            →       delete user with home directory
+sudo usermod -l <new-name> <old-name>    →       rename user
+
+============================================================
+
+
+
+
+Task:
+=====
+
+
+--> Enable pwd based authentication in linux vm
+--> create a new user 
+--> login into linux vm with new user credentials (uname and passwd)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
