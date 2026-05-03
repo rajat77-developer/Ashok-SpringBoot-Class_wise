@@ -1,0 +1,21 @@
+AWS services
+============
+EC2: virtual servers
+S3 : Simple storage services : unlimited storage 
+RDS : relational database services => RDBMS
+IAM : Identity and access management  => Users, groups and roles 
+VPC : Virtual private cloud => network
+Route 53: DNS -> domain mapping
+EKS -> Elastic kubernetes service
+Lambdas : serverless computing --> run your application without thinking abt server 
+cloud watch : monitor resourcs 
+Beanstack : platform as a service 
+
+
+NOTE: 
+
+when join  a organisation ,  you will login as a IAM user .
+
+
+
+
