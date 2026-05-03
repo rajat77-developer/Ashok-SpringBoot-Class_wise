@@ -1,0 +1,95 @@
+
+sudo cat /etc/ssh/sshd_config   →       display SSH server configuration file (read-only)
+cat /etc/group                  →  Shows all groups available on the system
+
+
+sudoers file (/etc/sudoers)
+Controls who can run commands as root using sudo
+Always edit using: sudo visudo
+
+Syntax:
+
+user  host=(run_as_user)  command
+
+Example:
+
+rajat ALL=(ALL) ALL
+rajat ALL=(ALL) NOPASSWD: ALL
+NOPASSWD → no password required
+sshd_config (/etc/ssh/sshd_config)
+Configuration of SSH server (remote login)
+
+Important settings:
+
+Port 22
+PermitRootLogin no
+PasswordAuthentication yes
+
+Restart SSH after changes:
+
+sudo systemctl restart sshd
+.bashrc (~/.bashrc)
+User shell configuration file
+Runs when terminal opens
+Used for aliases and environment variables
+
+Example:
+
+alias ll='ls -alF'
+export JAVA_HOME=/usr/lib/jvm/java-17
+
+Apply changes:
+
+source ~/.bashrc
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+`sudo cat /etc/ssh/sshd_config`  →  display SSH server configuration file (read-only)
+
+`cat /etc/group`  →  display all groups in the system
+
+`id john`  →  show UID, GID, and groups of user john
+
+`cat /etc/passwd`  →  display user account details
+
+`cat /etc/shadow`  →  display encrypted user passwords (root only)
+
+`whoami`  →  show current logged-in user
+
+`groups`  →  show groups of current user
+
+`id`  →  show UID, GID, and groups of current user
+
+
+`sudo usermod -aG <group-name> <user-name>`  →  add user to a group (append without removing existing groups)
+
+                                      **Example:**
+                                      `sudo usermod -aG sudo rajat`
+
+sudo groupadd <group-name> → create a new group
+
+sudo gpasswd -d <username> <group-name> → remove user from a group
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
