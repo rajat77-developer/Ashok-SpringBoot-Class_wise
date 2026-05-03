@@ -1,0 +1,51 @@
+        r read
+        w write
+        x exectue
+
+A file contains with 3 sections of permissions
+      
+      user(owner) => u
+      group => g
+      others => o
+
+
+`chmod u+x f1.txt`  →  add execute (x) permission to user (owner)
+
+`chmod u-w f1.txt`  →  remove write (w) permission from user (owner)
+
+`chmod g+wx f1.txt`  →  add write (w) and execute (x) permissions to group
+
+`chmod 000 f1.txt`  →  remove all permissions (no read, write, execute)
+
+`chmod 456 f1.txt`  →  set permissions:
+
+* user = read (4)
+* group = read + execute (5)
+* others = read + write (6)
+
+
+
+chown john f1.txt → change owner of file to user john
+
+sudo chown :devopsgrp f1.txt → change group of file to devopsgrp
+
+chown new-owner:new-group file/directory → change both owner and group
+
+
+
+ping www.google.com → check network connectivity
+Example:
+ping www.google.com
+
+wget <url> → download file
+Example:
+wget https://example.com/file.zip
+
+curl <url> → fetch data from URL
+Example:
+curl https://api.github.com
+
+ifconfig → show network details
+Example:
+ifconfig
+
