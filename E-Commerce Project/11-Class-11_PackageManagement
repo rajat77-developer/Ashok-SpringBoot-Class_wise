@@ -1,0 +1,99 @@
+
+
+Amazon linux + Red Hat = yum
+Ubuntu Linux + Debian = apt 
+
+
+
+
+yum install git -y → install Git (auto-confirm yes)
+
+yum install maven → install Maven
+
+git --version → check Git version
+
+mvn --version → check Maven version
+
+java -version → check Java version
+
+
+
+
+INSTALLING WEBSERVER IN LINUX MACHINE 
+=====================================
+
+Website is a software which is used to run websites.
+
+Websites are 2 types 
+
+        1. static websites(fixed content )
+                    EX: wikipedia
+        2. dynamic websites (content will be changed based on user)
+
+                    EX: gmail, facebook
+
+
+for static ===> httpd
+for dynamic ===> tomcat
+
+yum install httpd -y
+service httpd start 
+Note:    http : protocol no : 80
+access httpd server : paste the public ip of ec2 machine
+
+
+
+how to change the content of httpd server 
+-> cd /var/www/httpd
+-> vi index.html
+add some content to this file then go to browser and reaccess this page 
+
+
+
+#########################################################################################################################################
+
+
+systemctl commands 
++++++++++++++++++
+
+start
+stop
+restart
+reloading
+enabling/disabling service we will use systemctl commands 
+
+systemctl start <service-name>
+systemctl stop <service-name>
+systemctl restart <service-name>
+
+
+How to change host name in linux machine ?
+
+
+============================
+sudo hostname docker-server
+===========================
+root@ip-172-31-5-12 john
+-> restart the session
+$exit
+
+root@docker-server
+
+Note: connect back to linux vm using ssh command..
+
+
+===================
+Assignment 
+===================
+
+  Deploy spring boot application in AWS Cloud...
+
+
+
+
+
+
+
+
+
+
