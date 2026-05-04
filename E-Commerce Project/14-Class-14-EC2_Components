@@ -1,0 +1,41 @@
+=============
+EC2 Component
+=============
+
+AMI
+INSTANCE TYPE  --> t2.micro is free of cost 
+KEYPAIRS   --> Used to establish secured connection with EC2 VM 
+VPC --> Network for ec2
+SECURITY GROUPS --> Firewall(inbound and outbound )
+EBS(storage)
+
+Note:
+
+for jenkins , we need atleast 4gb of ram
+Windows => RDP => 3389
+ssh => 22
+http => 80
+https => 443
+mysql => 3306
+
+
+EBS
+====
+
+EBS volume 
+Windows: 30GB (default)
+Linux : 8 GB (default)
+
+Note: EBS vol max capacity : 16TB
+
+
+TYPES OF IP ADDRESS IN AWS
+==========================
+3 Types:
+
+public IP: For outside access (it is dynamic ip). When we restart vm then public ip gets changed.
+private IP : Fixed IP address for internal communication 
+Elastic IP: Fixed public it (It is commercial )
+
+
+
