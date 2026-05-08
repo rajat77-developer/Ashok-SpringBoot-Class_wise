@@ -1,0 +1,211 @@
+============================
+		class-64
+============================
+
+---------------		
+Reflection API
+---------------
+		
+-> Using reflection api we can analyze our java classes
+		
+-> Reflection api is used to analyze our java classes  
+		
+    what variables available?
+		
+	what methods available?
+		
+	what constructors available?
+	
+	
+------------------------------------------------	
+	
+public class Student {
+
+	private int id;
+	private String name;
+
+	public void display() {
+		System.out.println("hi");
+
+	}
+
+	public void m1() {
+		System.out.println("this is m1()");
+
+	}
+
+	public void m2() {
+		System.out.println("this is m2()");
+	}
+
+}
+
+
+
+package in.ashokit;
+
+import java.lang.reflect.Constructor;
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
+
+public class Demo {
+
+	public static void main(String[] args) throws Exception {
+
+		Class clz = Class.forName("in.ashokit.Student");
+
+		Field[] fields = clz.getDeclaredFields();
+		for (Field f : fields) {
+			System.out.println(f.getName());
+
+		}
+
+		Method[] methods = clz.getDeclaredMethods();
+		for (Method m : methods) {
+			System.out.println(m.getName());
+		}
+
+		Constructor[] constructors = clz.getDeclaredConstructors();
+		for (Constructor c : constructors) {
+			System.out.println(c.getName());
+		}
+	}
+
+}
+
+
+=========================================================================
+Accessing private variable outside the class using Reflection API
+=========================================================================
+
+package in.ashokit;
+
+public class Student {
+
+	private int age;
+
+	public void getAge() {
+		System.out.println("Age : " + age);
+		
+	}
+}
+
+
+package in.ashokit;
+
+import java.lang.reflect.Field;
+
+public class Demo {
+
+	public static void main(String[] args) throws Exception {
+
+		//loading class inot jvm
+		Class clz = Class.forName("in.ashokit.Student");
+		 
+		
+		//creating object for the loaded class
+		Object obj = clz.newInstance();
+        
+		
+		//getting the field whose name is age
+		Field field = clz.getDeclaredField("age");
+	
+		
+		//making variable accessible outside of the class
+	field.setAccessible(true);
+	
+	//set value to field
+	field.set(obj, 35);
+	
+	
+	Student s = (Student) obj;
+	s.getAge(); 
+
+	}
+	
+}
+
+
+
+===============================
+Garbage Collection
+===============================
+
+-> Garbage Collection is the process of removing us-used /un-referenced objects from JVMs heap area 
+
+-> Garbage Collection is an in-build process in JVM 
+
+-> In JVM garbage collector available to perform garbage collection
+
+-> Garbage Collector is a daemon thread (runs in background)
+
+
+
+package in.ashokit;
+
+
+public class Student{
+
+   public static void main(String[] args{
+
+      // Object created
+      Student s1 = new Student();
+
+      // nullifying (making obj eligible for GC)
+      s1 = null;
+
+      System.gc();
+
+      Runtime.getRuntime().gc();
+
+   }
+
+    protected void finalize() throws Throwable {
+    System.out.println("finalize( ) called...");
+     }
+  }
+
+=> When we assign s1=null then s1 become un-referenced object and it is eligible for GC 
+ 
+=> When  GC identify un-refrenced obj then it will call finalize() method and it will remove that object from heap area (memory clean up)
+ 
+ 
+=========================================
+How to invoke GC in java?
+=========================================
+
+In java we have 2 ways to invoke GC 
+     
+     System.gc();
+
+     Runtime.getRuntime().gc();
+
+Note:- Even if we call above methods there is no gaurantee that JVM will start GC immediatley
+       GC execution process will be managed by JVm only.
+	   
+	 
+===================================================
+How GC works internally in JVM ?
+===================================================
+
+-> Garbage Collection works in below phases 
+
+1) Stop the world
+
+2) Marking
+
+3) Sweeping
+
+4) Compaction 
+
+
+-> When GC starts it will triger Heap area and it will identify un-refrenced objects and it will mark them 
+
+-> GC will sweep marked object 
+
+-> After sweeping completed memory holes will be created in Heap area to clear that GC will perform compaction( it will adjust).
+
+-> After Compaction,GC will give signal to JVm to continue the execution 
+
+Note:- GC process will slow down our program execution hance Sun Microsystem didn't give the chance for programmers to perform the 
+       Garbage Collection. It will be managed by JVM.
