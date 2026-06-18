@@ -1,0 +1,367 @@
+Q. Difference between print() and println() ?
+
+-> print() method is used to print the statement and keeps cursor in the same line.
+-> println() method is used to print the statement and move the cursor to next line.
+
+
+
+
+==============
+Loops in Java
+==============
+
+Loops are used to execute statements repeatedly
+
+We have below loops in java
+---------------------------
+
+1. while loop
+2. do while loop
+3. for loop
+4. for-each (arrays & collections)
+
+
+
+while loop
+===========
+-> it is going to execute statements until condition is true
+
+syntax:
+-------
+
+while(condition){
+
+//stmts
+}
+
+ASSIGNMENT:
+===========
+write a java program to print 1 to 10 using while loop
+
+-------------------------------------------------------
+
+
+public class Count {
+
+	public static void main(String[] args) throws IOException {
+
+		int i = 1;
+		
+		while(i<=10) {
+			
+			System.out.println(i);
+			i++;
+		}
+	}
+
+}
+
+===============================================================
+
+ASSIGNMENT:
+===========
+write a java program to print 10 to 1 using while loop
+
+
+
+public class Count {
+
+	public static void main(String[] args) throws IOException {
+
+		int i = 10;
+		
+		while(i>=1) {
+			
+			System.out.println(i);
+			i--;
+		}
+	}
+
+}
+
+
+
+
+==========================
+ do-while loop
+==========================
+
+-> It is used to execute statement first then it will check the condition
+
+Syntax:
+
+do{
+
+}while(condition);
+
+
+
+ASSIGNMENT:
+===========
+
+write a java program to print 1 to 10 using do-while loop
+
+
+code
+====
+
+
+public class Count {
+
+	public static void main(String[] args) throws IOException {
+
+		int i = 1;
+		
+		do {
+			
+			System.out.println(i);
+			i++;
+		}while(i<=10);
+	}
+
+}
+
+
+
+
+Q. What is difference between while and do-while ?
+
+while  -> it will check the condition first then it will execute the statements
+do-while -> it will execute statement first then it will check condition
+
+NOTE: Even if condition is not satisfied our statement will execute once .
+
+
+
+====================================================================================================================================
+
+                            FOR LOOP (very very important )
+
+====================================================================================================================================
+
+->  It is used to execute statements multiple times
+-> For loop is called as Range based loop
+
+syntax:
+=======
+
+for(initialization; condition; increment/decrement){
+   
+    //stmts
+}
+
+
+
+ASSIGNMENT:
+===========
+
+-> write an program to print 1 to 10 using for loop.
+
+
+
+Example:
+========
+
+
+public class Count {
+
+	public static void main(String[] args) throws IOException {
+
+		for (int i = 1; i <= 10; i++) {
+
+			System.out.println(i);
+		}
+
+	}
+
+}
+
+
+
+
+ASSIGNMENT:
+===========
+
+write an program to print 10 to 1 using for loop.
+
+Example:
+========
+
+
+public class Count {
+
+	public static void main(String[] args) throws IOException {
+
+		for (int i = 10; i >= 1; i--) {
+
+			System.out.println(i);
+		}
+
+	}
+
+}
+
+
+
+========================
+  Nested Loop
+========================
+
+
+-> Writing one loop inside another loop is called as Nested Loop
+
+		for(int i =1 ; i <= 5; i ++){
+			
+			for(int j = 1 ; j <= 5; j++) {
+				
+				
+			}
+		}
+
+
+
+-> As per above program , for every execution of outer loop 5 times inner loop will execute 
+-------------------------------------------------------------------------------------------
+
+for(int j = 1 ; j <= 5; j++) {
+				}   ==> this is inner loop 
+
+
+for(int i =1 ; i <= 5; i ++){
+				}  ===> this is outloop
+
+
+
+Example:1
+=========
+
+Write a java program to print below pattern using loops
+
+*
+**
+***
+****
+*****
+
+code:
+=====
+
+
+public class Count {
+
+	public static void main(String[] args) throws IOException {
+
+		for(int i =1 ; i <= 10; i ++){
+			
+			for(int j = 1 ; j <= i; j++) {
+				
+				System.out.print("*");
+			}
+			System.out.println();
+		}
+	}
+
+}
+
+
+Q. write a program to print below pattern?
+
+1
+12
+123
+1234
+12345
+
+
+
+
+code
+====
+
+public class Count {
+
+	public static void main(String[] args) throws IOException {
+
+		for(int i =1 ; i <= 5; i ++){
+			
+			for(int j = 1 ; j <= i; j++) {
+				
+				System.out.print(j);
+			}
+			System.out.println();
+		}
+	}
+
+}
+
+
+
+
+
+===================
+Branching statement
+====================
+
+in java, we have 3 branching statements 
+
+1. break
+2. continue
+3. return
+
+
+-> break is used to come out from switch case or loop
+-> continue is used to skip one iteration in the loop
+-> return is used to come out from method execution 
+
+
+break
+=====
+Example
+-------
+
+public class Count {
+
+	public static void main(String[] args) throws IOException {
+
+		for(int i =1 ; i <= 5; i ++){
+			
+			if(i > 2) {
+				break;
+			}
+			
+			System.out.println(i);
+		}
+	}
+
+}
+
+
+===================
+    continue
+===================
+
+Example
+=======
+
+
+public class Count {
+
+	public static void main(String[] args) throws IOException {
+
+		for (int i = 1; i <= 10; i++) {
+
+			if (i > 5) {
+				continue;
+			}
+
+			System.out.println(i);
+		}
+	}
+
+}
+-----------------------------------------------------------------------------
+Note: After 5 , condition is true, so the loop is skipped here ..
+
+
+
+
