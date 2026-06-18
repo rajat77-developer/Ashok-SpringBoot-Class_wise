@@ -1,0 +1,114 @@
+============
+SWITCH CASE
+===========
+
+-> Using switch case, wee can make decision
+-> When we have upto 5 conditions test then using if-else condition
+-> If we have more than that we will use switch case 
+
+
+syntax: 
+=======
+
+switch(case){
+
+case 1 : //stmts 1
+
+break;
+
+case 2 : //stmts 2
+
+break;
+
+case 3: //stmts 3
+
+break;
+
+case 4:
+
+breaks;
+
+default : //stmt default
+
+}
+
+
+ASSIGNMENT:
+===========
+Write a program to read a number from keyboard
+
+Based on given number print week of the day using "switch case"
+
+1 -> Monday
+2 -> Tuesday
+3 -> Wednesday
+4 -> Thursday
+5 -> Friday
+6 -> Saturday
+7 -> Sunday
+8 -> No days found 
+
+Code:
+=====
+
+
+package CountStringValues;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+public class Count {
+
+	public static void main(String[] args) throws IOException {
+
+		InputStreamReader isr = new InputStreamReader(System.in);
+		BufferedReader br = new BufferedReader(isr);
+		System.out.println("Enter a number ");
+		
+		String str  = br.readLine();
+		int num =Integer.parseInt(str);
+		
+		switch(num) {
+		
+		case 1: System.out.println("monday");
+		break;
+		
+		case 2: System.out.println("tuesday");
+		break;
+		
+		case 3: System.out.println("wednesday");
+		break;
+		
+		case 4: System.out.println("thursday");
+		break;
+		
+		case 5: System.out.println("friday");
+		break;
+		
+		case 6: System.out.println("saturday");
+		break;
+		
+		case 7: System.out.println("sunday");
+		break;
+		
+		default : System.out.println("No day found");
+		}
+	}
+
+}
+
+
+
+
+=========================
+troubleshoot & conclusion
+=========================
+
+-> ' if ' accept only Boolean value (or) Boolean statements
+-> ' switch ' accepts numbers , char, strings
+-> switch will not accept Boolean and decimal values
+-> switch case should belongs to same type
+-> switch case datatype and switch case input value should belongs to same data types
+-> default case is optional is switch
+-> break keyword is also optional
