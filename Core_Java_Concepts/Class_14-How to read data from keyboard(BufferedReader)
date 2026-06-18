@@ -1,0 +1,151 @@
+ASSIGNMENT:
+===========
+
+Develop a java program to decide role of software engineer based on his/her experience 
+
+0 - 2 year exp  --> associate engineer
+3 - 5 years exp --> software developer
+6 - 9 years exp --> sr. software developer
+10 - 15 years exp --> manager 
+
+====
+CODE
+====
+
+package CountStringValues;
+
+public class Count {
+
+	public static void main(String[] args) {
+
+		int exp = 5;
+
+		if (exp >= 0 && exp <= 2) {
+
+			System.out.println("associate engineer");
+		} else if (exp >= 3 && exp <= 5) {
+
+			System.out.println("software enginner");
+		} else if (exp >= 6 && exp <= 9) {
+
+			System.out.println("sr. software engineer ");
+		} else if (exp >= 10 && exp <= 15) {
+
+			System.out.println(" manager ");
+		}else {
+			
+			System.out.println(" role not found ");
+		}
+	}
+
+}
+
+
+
+
+
+-> in the above program , we have hardcoded value for the variable
+-> If we want to test our program with different values we need compile and execute every time.
+-> to overcome this problem we 	can read the data from keyboard.
+
+
+===============================
+How to read data from keyboard
+===============================
+
+1 . BufferedReader (java.io)       ---> follow link to get the documents ( https://docs.oracle.com/javase/8/docs/api/  )
+2. Scanner (java.util)
+3. CommandLine Arguments(input from main method)
+
+
+
+---------------------------------------------------BufferedReader Programme -------------------------------------------------------------
+
+
+
+package CountStringValues;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+public class Count {
+
+	public static void main(String[] args) throws IOException {
+
+		// int exp = 5;
+
+		InputStreamReader isr = new InputStreamReader(System.in);
+		BufferedReader br = new BufferedReader(isr);
+		String str = br.readLine();
+		int exp = Integer.parseInt(str);
+
+		if (exp >= 0 && exp <= 2) {
+
+			System.out.println("associate engineer");
+		} else if (exp >= 3 && exp <= 5) {
+
+			System.out.println("software enginner");
+		} else if (exp >= 6 && exp <= 9) {
+
+			System.out.println("sr. software engineer ");
+		} else if (exp >= 10 && exp <= 15) {
+
+			System.out.println(" manager ");
+		} else {
+
+			System.out.println(" role not found ");
+		}
+	}
+
+}
+
+------------------------------------------------------------------------------------------------------------------
+TASK
++++++++++++++++++++++++
+
+Write a java program to find given number is odd or even
+Note: Read number from keyboard 
+
+---------------------------------
+
+
+package CountStringValues;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+public class Count {
+
+	public static void main(String[] args) throws IOException {
+
+		InputStreamReader isr = new InputStreamReader(System.in);
+		BufferedReader br = new BufferedReader(isr);
+		System.out.println("Enter number ");
+		String str = br.readLine();
+		int num = Integer.parseInt(str);
+
+		if (num % 2 == 0) {
+
+			System.out.println("it is a even number ");
+		} else {
+
+			System.out.println("it is a odd number ");
+		}
+
+	}
+
+}
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+ASSIGNMENT 1: write a java programme to check given number is a prime number or not 
+ASSIGNMENT 2: write a java programme to check given year is a leap year or not 
+
+
+
+
+
+
+
+
