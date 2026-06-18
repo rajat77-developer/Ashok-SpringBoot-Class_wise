@@ -1,0 +1,101 @@
+Ternary Operator / Conditional Operator
+=======================================
+
+=> Used for decision making 
+
+Syntax: 
+
+
+(condition) ? expression-1 : expression-2
+
+
+-> If condition satisfied then expression-1 will execute otherwise expression-2 will execute.
+
+
+Example:
+       
+
+          package CountStringValues;
+
+public class Count {
+
+	
+	public static void main(String[] args) {
+		
+		
+		
+		int a = 10;
+		int b = 5;
+		
+		String s= (a > b) ? "yes" : "no";
+		
+		System.out.println(s);
+	}
+
+}
+
+
+===================
+instanceof operator
+===================
+
+
+--> It is used to check object reference belong to a class or not .
+
+String str = "sobu";
+if(str instanceof String) {
+	
+	//logic
+}
+
+
+
+==============================================
+	Control Statements
+==============================================
+
+--> Java program code will execute line by line (default behaviour)
+--> in project, code should execute based on user requirement.
+--> To satisfy user requirement our code should execute based on some conditions 
+--> Using control statement we can control program execution flow. 
+
+
+--> There are 3 types of control statements 
+
+
+1. Decision making statements/ Conditional statements
+2. Looping statements
+3. Transfer / Branching Statements
+
+
+Decision making statements/ Conditional statements
+==================================================
+
+1. simple if
+2. if - else
+3. if - else - if- else - if -else
+4. switch
+
+
+Looping Statements
+==================
+
+1. while loop
+2. do-while loop
+3. for loop
+4. for-each loop
+
+
+Transfer / Branching Statements
+===============================
+
+1. break;
+2. continue;
+3. return;
+
+
+
+
+
+
+
