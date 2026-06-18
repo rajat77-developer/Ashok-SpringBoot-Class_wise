@@ -12,7 +12,7 @@ Spring Context:
 ===============
 => It will deal wit configurations required for our Spring Application.
 
-Spring AOC:   --> Aspect Oriented Programming
+Spring AOP:   --> Aspect Oriented Programming
 ===========
 
 => AOP is used to separate bussiness logic and secondary logic .
