@@ -1,0 +1,72 @@
+==================
+					     ARRAYS
+					==================
+
+
+variable -> it is used to store the data 
+Datatype -> it is used specify type of the data
+
+
+int a;
+a = 20;
+
+
+--> It is a referenced data type
+--> It is used to store multiple values
+--> In Array size is fixed
+--> Array supports homogenius elements (same type of elements )
+
+Defination: Array is a container which is used to store collection of elements with same type.
+
+Syntax:
+=======
+
+//Array declaration
+
+datatype[] variableName;
+
+//Array creation
+
+variableName = new datatype [size];
+
+Ex: int[] arr = new int[5];
+
+
+code
+====
+
+public class Count {
+
+	public static void main(String[] args) throws IOException {
+
+		int [] arr= new int[3];
+		arr[0]=100;
+		arr[1]=200;
+		arr[2]=300;
+		
+		for (int i=0; i<arr.length;i++) {
+			
+			System.out.println(arr[i]);
+		}
+	}
+
+}
+
+
+code- to override the index of an array 
+=======================================
+
+public class Count {
+
+	public static void main(String[] args) throws IOException {
+
+		int [] arr= {100, 101, 102, 104};
+		arr[0]=500; //override the 0th index of an array
+		
+		for (int i=0; i<arr.length;i++) {
+			
+			System.out.println(arr[i]);
+		}
+	}
+
+}
