@@ -1,0 +1,10 @@
+1. Request validation
+2. Email/mobile masking
+3. Log message formatting
+4. Null-safe String handling
+5. DTO field validation
+6. CSV/String parsing
+7. Regex usage
+8. StringBuilder vs String
+9. Performance issue in loops
+10. API input sanitization
