@@ -1,0 +1,6 @@
+String in Java is immutable.
+String literals are stored in String Pool.
+If we create String using new keyword, object is created in heap.
+For content comparison we use equals().
+For reference comparison we use ==.
+For repeated modifications, StringBuilder is better than String.
