@@ -13,3 +13,595 @@
 13. contains()
 14. startsWith(), endsWith()
 =====================================
+
+                                                            1. What is String?
+                                                        ===========================
+
+Code
+====
+package com.example.string;
+
+public class Practice {
+
+    public static void main(String[] args) {
+
+        String s = "java";
+
+        System.out.println(s);
+    }
+}
+
+Explanation
+===========
+Output: java
+
+String s = "java";
+
+Memory:
+=======
+
+STACK MEMORY                         HEAP MEMORY
+-------------------                  -------------------
+s  ------------->                    "java"
+-------------------                  -------------------
+
+
+
+Diagram:
+
+STACK MEMORY                         HEAP MEMORY
+---------------------                -------------------------
+main() stack frame                    String Pool
+                                      -------------------------
+name  ---------- reference ------->   "java"
+---------------------                -------------------------
+
+
+Interview-style line:
+=====================
+For `String name = "Rajat";`, the reference variable `name` is stored in stack memory,
+and the actual String literal `"Rajat"` is stored in the String Pool inside heap memory.
+
+                                                          ======================================================
+                                                            Java String - Point 2: String Literal vs new String()
+                                                          ======================================================
+Main Topic:
+-----------
+In Java, we can create String in two common ways:
+
+String s = "java";
+
+and
+
+String s = new String("java");
+
+Both look similar, but internally memory behavior is different.
+
+1. String Literal
+
+Code
+String s = "java";
+String t = "java";
+
+Memory Diagram
+STACK MEMORY                         HEAP MEMORY
+--------------------                 --------------------------
+main() stack frame                    String Pool
+                                      --------------------------
+s  -------- reference ------------\
+                                    \
+                                     ---->  "java"
+                                    /
+t  -------- reference ------------/
+--------------------                 --------------------------
+
+Step-by-step Explanation
+
+Step 1
+------
+String s = "java";
+JVM checks the String Pool.If "java" is not present, JVM creates "java" inside the String Pool.
+
+Then s points to "java".
+
+Step 2
+String t = "java";
+
+JVM again checks the String Pool.
+
+Now "java" is already present.
+
+So JVM will not create a new object.
+
+t will also point to the same "java" object.
+
+Important Point
+
+s and t are two different reference variables in stack memory.But both are pointing to the same "java" object in String Pool.
+Output
+System.out.println(s == t);
+System.out.println(s.equals(t));
+
+Output:
+true
+true
+
+Reason
+
+s == t → true
+
+Because both references point to the same String Pool object.
+
+s.equals(t) → true
+Because both have the same content: "java".
+
+2. Using new String()
+
+Code
+
+String s = new String("java");
+String t = new String("java");
+
+Memory Diagram
+STACK MEMORY                         HEAP MEMORY
+--------------------                 ------------------------------
+main() stack frame                    Normal Heap Area
+                                      ------------------------------
+s  -------- reference ------------>   Object 1: "java"
+
+t  -------- reference ------------>   Object 2: "java"
+
+
+                                      String Pool
+                                      ------------------------------
+                                      "java"
+--------------------                 ------------------------------
+
+Explanation
+
+new keyword always creates a new object in heap memory.
+
+s points to one object.
+t points to another object.
+
+Both objects have the same value "java",
+but both are different objects in memory.
+Output
+System.out.println(s == t);
+System.out.println(s.equals(t));
+
+Output:
+
+false
+true
+Reason
+s == t → false
+Because s and t point to different heap objects.
+
+s.equals(t) → true
+Because both have the same content: "java".
+3. Mixed Case
+Code
+String s = "java";
+String t = new String("java");
+Memory Diagram
+STACK MEMORY                         HEAP MEMORY
+--------------------                 ------------------------------
+main() stack frame                    String Pool
+                                      ------------------------------
+s  -------- reference ------------>   "java"
+
+
+                                      Normal Heap Area
+                                      ------------------------------
+t  -------- reference ------------>   new String object: "java"
+--------------------                 ------------------------------
+Explanation
+s points to the "java" object inside String Pool.
+
+t points to a new String object inside normal heap memory.
+
+Both have the same content,
+but both are different objects.
+Output
+System.out.println(s == t);
+System.out.println(s.equals(t));
+
+Output:
+
+false
+true
+Reason
+s == t → false
+Because s points to String Pool object,
+but t points to a new heap object.
+
+s.equals(t) → true
+Because both have the same content: "java".
+4. Difference Between == and equals()
+==
+== checks reference / object location.
+
+Example:
+
+String s = "java";
+String t = "java";
+
+System.out.println(s == t);
+
+Output:
+
+true
+
+Because both point to the same object in String Pool.
+
+equals()
+equals() checks actual content / text.
+
+Example:
+
+String s = new String("java");
+String t = new String("java");
+
+System.out.println(s.equals(t));
+
+Output:
+
+true
+
+Because both have the same text: "java".
+
+5. Final Comparison Table
+Code	== Result	equals() Result	Reason
+String s = "java"; String t = "java";	true	true	Same String Pool object
+String s = new String("java"); String t = new String("java");	false	true	Different heap objects, same content
+String s = "java"; String t = new String("java");	false	true	One pool object, one heap object, same content
+6. Main Rules to Remember
+String literal uses String Pool.
+
+new String() creates a new object in heap memory.
+
+== compares reference / object location.
+
+equals() compares actual content / text.
+
+For String content comparison, always use equals().
+7. Interview Answer
+
+In Java, String literals are stored in the String Pool.
+
+When we create two Strings with the same literal value, Java reuses the same object from the String Pool.
+
+Example:
+
+String s = "java";
+String t = "java";
+
+Here, both s and t point to the same "java" object in String Pool.
+
+That is why:
+
+s == t
+
+returns true.
+
+But when we use new String():
+
+String s = new String("java");
+String t = new String("java");
+
+Java creates new objects in heap memory.
+
+So s == t returns false, because both references point to different objects.
+
+But s.equals(t) returns true, because the actual content is the same.
+
+8. One-line Memory Summary
+String s = "java";
+
+s = reference variable in stack memory
+"java" = actual object in String Pool inside heap memory
+String s = new String("java");
+
+s = reference variable in stack memory
+new String object = normal heap memory
+"java" literal = String Pool
+9. Final Short Note
+For String literals with the same value, Java reuses the same object from String Pool.
+
+So s and t are different variables in stack,
+but both can point to the same object in String Pool.
+
+Use == only when you want to compare references.
+
+Use equals() when you want to compare actual String content.
+                                                                        
+                                                                        ===============
+                                                                        3. String Pool
+                                                                        ===============
+
+-> String Pool is a special memory area inside Heap memory. It stores String literals.
+
+                                      String s = "java";
+
+      Here "java" goes to String Pool.
+
+
+STACK MEMORY                         HEAP MEMORY
+--------------------                 --------------------------
+main() stack frame                    String Pool
+                                      --------------------------
+s  -------- reference ------------>   "java"
+--------------------                 --------------------------
+
+  Why String Pool is used?
+
+-> String Pool is used to save memory.
+                          
+                          Example:
+                          
+                          String s = "java";
+                          String t = "java";
+
+                    Without String Pool, Java would create two "java" objects.
+                    But with String Pool, Java creates only one "java" object and both variables point to it.
+
+
+
+                                                                                          STACK MEMORY                         HEAP MEMORY
+                                                                                          --------------------                 --------------------------
+                                                                                          main() stack frame                    String Pool
+                                                                                                                                --------------------------
+                                                                                          s  -------- reference ------------\
+                                                                                                                              \
+                                                                                                                               ----> "java"
+                                                                                                                              /
+                                                                                          t  -------- reference ------------/
+                                                                                          --------------------                 --------------------------
+
+So, System.out.println(s == t);  -->  OUTPUT: True      :: Because both s and t point to the same object. :: 
+
+How JVM works with String Pool?
+
+Code:
+
+        String s = "java";
+        String t = "java";
+Step 1
+--------
+String s = "java";
+
+JVM checks String Pool:  Is "java" already present in String Pool? Answer:
+
+No
+
+So JVM creates "java" in String Pool.
+
+s ---> "java"
+
+Step 2
+
+
+String t = "java"; JVM again checks String Pool:   Is "java" already present in String Pool?
+
+Answer:
+Yes
+
+So JVM does not create a new object. It simply gives the same reference to t.
+
+s ---> "java"
+t ---> same "java"
+
+
+There is only one String Pool area, not a new String Pool for every String.
+
+Example:
+
+String a = "java";
+String b = "java";
+
+String c = "python";
+String d = "python";
+
+
+                                                          Memory:
+                                                          ========
+
+                                                          STACK MEMORY                         HEAP MEMORY
+                                                          --------------------                 --------------------------
+                                                          main() stack frame                    String Pool
+                                                                                                --------------------------
+                                                          a  -------- reference ------------\
+                                                                                              \
+                                                                                               ----> "java"
+                                                                                              /
+                                                          b  -------- reference ------------/
+                                                          
+                                                          
+                                                          c  -------- reference ------------\
+                                                                                              \
+                                                                                               ----> "python"
+                                                                                              /
+                                                          d  -------- reference ------------/
+                                                          --------------------                 --------------------------
+
+There is one String Pool.
+Same literal value reuses same object.
+Different literal value creates different object inside the same String Pool.
+
+
+Interview explanation : 
+======================
+
+String Pool is a special area inside heap memory where Java stores String literals.
+When we create a String using literal syntax, JVM first checks the String Pool.
+If the same value already exists, JVM reuses the existing object.
+If the value does not exist, JVM creates a new object in the String Pool.
+This saves memory because duplicate String literals are not created again and again.
+
+=====================================================================================================================================================================
+                                                      4: Stack and Heap Memory
+=====================================================================================================================================================================
+
+Java memory has many parts, but for now focus on only these two:
+
+1. Stack Memory
+2. Heap Memory
+
+
+1. Stack Memory
+================
+Stack memory stores:
+                local variables
+                method calls
+                reference variables
+                primitive values
+
+Example:
+========
+                public static void main(String[] args) {
+                    int count = 10;
+                    String name = "Rajat";
+                }
+
+Here:
+        count = local primitive variable
+        name  = reference variable
+
+Both count and name are inside the main() method, so they are created in stack memory.
+
+
+2. Heap Memory
+===============
+
+Heap memory stores:   
+                  objects
+                  String Pool
+                  class-level object data
+
+For String:      String name = "Rajat";   Actual "Rajat" object is stored in String Pool, and String Pool is inside Heap Memory.
+
+Simple Diagram
+================
+                                                        String name = "Rajat";
+                                                        int count = 10;
+                                                        
+                                                        Memory:
+                                                        ++++++
+                                                        
+                                                        STACK MEMORY                         HEAP MEMORY
+                                                        --------------------                 --------------------------
+                                                        main() stack frame                    String Pool
+                                                                                              --------------------------
+                                                        name  -------- reference -------->    "Rajat"
+                                                        
+                                                        count = 10
+                                                        --------------------                 --------------------------
+                                                                                          
+name does not store actual "Rajat" text.
+name stores reference of "Rajat" object.
+Actual "Rajat" is stored in heap memory/String Pool.
+
+
+                              Example 1
+                              =========
+                                            public class Practice {
+                                                public static void main(String[] args) {
+                                            
+                                                    int age = 25;
+                                                    String city = "Pune";
+                                            
+                                                    System.out.println(age);
+                                                    System.out.println(city);
+                                                }
+                                            }
+
+      Memory:
+      =======
+                      STACK MEMORY                         HEAP MEMORY
+                      --------------------                 --------------------------
+                      main() stack frame                    String Pool
+                                                            --------------------------
+                      age = 25
+                      
+                      city -------- reference -------->     "Pune"
+                      --------------------                 --------------------------
+                      
+                      Output:
+                      
+                      25
+                      Pune
+              
+
+Example 3: Using new  ---->   String s = new String("java");
+
+                              Memory:
+                              =======
+                                      STACK MEMORY                         HEAP MEMORY
+                                      --------------------                 --------------------------
+                                      main() stack frame                    String Pool
+                                                                            --------------------------
+                                                                            "java"
+                                      
+                                                                            Normal Heap Area
+                                                                            --------------------------
+                                      s  -------- reference ------------>   new String object: "java"
+                                      --------------------                 --------------------------
+
+s is in stack memory. "java" literal is in String Pool. new String object is in normal heap memory. s points to the new heap object.
+
+Stack memory is used for method execution. 
+It stores local variables, method calls, primitive values, and references. Heap memory is used for object storage. All objects are created in heap memory.
+For String literals, Java stores them in String Pool, which is part of heap memory.
+                                                                    
+                                                                    =======================
+                                                                    Point 5: == vs equals()
+                                                                    =======================
+
+Main Rule
+=========
+checks reference / memory location
+equals()  checks actual content / text
+
+1. Using String Literal
+                          String s = "java";
+                          String t = "java"; 
+                          System.out.println(s == t);
+                          System.out.println(s.equals(t));
+
+                  Output
+                  ======
+                  true
+                  true
+
+        Memory
+        =======
+                              STACK MEMORY                         HEAP MEMORY
+                  --------------------                 --------------------------
+                  main() stack frame                    String Pool
+                                                        --------------------------
+                  s  -------- reference ------------\
+                                                      \
+                                                       ----> "java"
+                                                      /
+                  t  -------- reference ------------/
+                  --------------------                 --------------------------
+
+s == t   → true :::::: because both point to same "java" object in String Pool   s.equals(t) → true    ::: because both have same content "java"
+
+
+In Java, == compares object references, while equals() compares actual String content.
+
+                                                  6. String immutable
+                                                  ===================
+String is immutable. Original String object cannot change. String methods create a new String object. To use the new value, assign it back.
+
+Example:
+========
+
+String s = "java";
+s = s.toUpperCase();
+System.out.println(s); // JAVA
+
+
+
