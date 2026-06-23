@@ -1,0 +1,225 @@
+                                              length()
+                                              ========
+String s = "java";
+int len = s.length();
+System.out.println(len);
+
+Output: 4
+
+s points to "java" in String Pool.
+s.length() goes to that String object and counts characters."java" has 4 characters.So len = 4.
+
+Memory:
+========
+
+                    STACK MEMORY                         HEAP MEMORY
+                    --------------------                 --------------------------
+                    main() stack frame                    String Pool
+                                                          --------------------------
+                    s  -------- reference ------------>   "java"
+                    
+                    len = 4
+                    --------------------                 --------------------------
+
+Important difference: index vs length
+=====================================
+Character:  j   a   v   a
+Index:      0   1   2   3
+Length:     total 4 characters
+
+                                                          
+                                                          =========
+                                                          charAt()
+                                                          =========
+charAt() is used to get a character from a specific index.
+Syntax:
+        s.charAt(index);
+Example:
+          String s = "Rajat";
+          System.out.println(s.charAt(0));
+
+OUTPUT: R
+
+Index positions
+              Character:  R   a   j   a   t
+               Index:      0   1   2   3   4
+                
+                              ====================================
+                                toUpperCase() and toLowerCase()
+                              ====================================
+String s = "java";
+s = s.toUpperCase();
+System.out.println(s);
+
+Output: JAVA
+
+Now s points to new String "JAVA"
+                                                ==========
+                                                 concat()
+                                                ==========
+concat() is used to join two Strings.
+
+String s = "Java";
+String t = " Developer";
+System.out.println(s.concat(t));
+
+Output: Java Developer
+
+Because concat() creates a new String, but we did not store it.
+
+MEMORY
+            Before:
+            
+            s  ---->  "Java"
+            
+            
+            After s.concat(" Developer"):
+            
+            s  ---->  "Java"
+            
+                      "Java Developer"   // new String created, but no reference
+
+
+
+concat() joins Strings. + also joins Strings.
+
+Example:
+========
+
+        String s = "Java";
+        String result = s.concat(" Developer");
+         System.out.println(result);
+                                  ====================
+                                       equals()
+                                  ====================
+What is equals()?
+
+equals() is used to compare String content. equals() checks actual text
+
+String s = "java";
+String t = "java";
+System.out.println(s.equals(t));
+
+Output: true
+
+
+equals() → checks content with case
+equalsIgnoreCase() → checks content without case
+
+String s = "Rajat";
+String t = "rajat";
+
+System.out.println(s.equals(t));
+System.out.println(s.equalsIgnoreCase(t));
+
+OUTPUT: 
+        false
+        true
+
+=================================================================================================================
+                                                contains()
+=================================================================================================================
+contains() checks whether one String has another text inside it.
+
+String s = "Java Developer";
+System.out.println(s.contains("Java"));
+
+Output: true
+                                            ===========================
+                                            startsWith() and endsWith()
+                                            ===========================
+1. startsWith()
+
+startsWith() checks whether a String starts with a given text.
+
+String s = "Spring Boot";
+System.out.println(s.startsWith("Spring"));
+
+OUTPUT: true
+
+2. endsWith()
+
+endsWith() checks whether a String ends with a given text.
+
+String s = "Spring Boot";
+System.out.println(s.endsWith("Boot"));
+
+Output: true
+
+Because "Spring Boot" ends with "Boot".
+                                      ==================
+                                      trim() and strip()
+                                      ==================
+
+trim()  → removes spaces from start and end
+strip() → also removes spaces from start and end, but better for modern Unicode spaces
+
+Real-time use In project, user input can have extra spaces.
+
+Example:
+
+String username = "   rajat   ";
+
+username = username.trim();
+
+System.out.println(username);
+
+Output:
+rajat
+
+                              Point 7.9: substring()
+                              ======================
+                              
+substring() is used to take a small part from a String.
+
+String s = "Spring";
+System.out.println(s.substring(0, 3));
+
+Output:
+Spr
+
+
+
+                    Important Rule
+                    substring(startIndex, endIndex)
+
+startIndex is included
+endIndex is excluded
+
+Meaning:
+Start index character will be taken.
+End index character will NOT be taken.
+
+
+                        Very Important Formula
+substring(0, 3) takes index 0, 1, 2
+substring(1, 4) takes index 1, 2, 3
+substring(2) takes index 2 till end
+
+
+                                        Example 1
+
+String s = "Spring";
+System.out.println(s.substring(0, 3));
+
+Index diagram:
+==============
+
+Character:  S   p   r   i   n   g
+Index:      0   1   2   3   4   5
+
+Now:    s.substring(0, 3)
+
+Means:
+            Start from index 0
+            Go till index 3
+            But do not include index 3
+So it takes:
+Index 0 → S
+Index 1 → p
+Index 2 → r
+
+OUTPUT:
+Spr
+
+Index 3 has i, but it is not included.
