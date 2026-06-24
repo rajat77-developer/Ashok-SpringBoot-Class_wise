@@ -223,3 +223,45 @@ OUTPUT:
 Spr
 
 Index 3 has i, but it is not included.
+                                                                                  ==========
+                                                                                  replace()
+                                                                                  ==========
+What is replace()?
+
+replace() is used to replace one character or text with another.
+
+String s = "java";
+System.out.println(s.replace('a', 'o'));
+
+Output: jovo
+
+
+Example 2: Replace word
+=========================
+String s = "Java Developer";
+System.out.println(s.replace("Java", "Spring"));
+
+Output: Spring Developer
+                                                                              
+                                                                              ===================
+                                                                              Point 7.11: split()
+                                                                              ====================
+
+What is split()?
+
+split() is used to break one String into multiple parts.
+
+String s = "Java Spring Boot";
+String[] words = s.split(" ");
+
+Here we split by space " ".
+
+So result will be:
+Java
+Spring
+Boot
+
+
+
+
+
